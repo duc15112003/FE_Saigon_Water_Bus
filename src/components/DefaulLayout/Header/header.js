@@ -5,11 +5,11 @@ import About from "../../ingredient/about";
 
 function Header(){
     return(
-        <div className="Header">
-                <section className="relative mx-auto">
+<div className="Header fixed top-0 bg-white ">
+                <section className="relative mx-auto ">
 
-                    <nav className="flex justify-between bg-white-900 text-black w-screen">
-                        <div className="px-5 xl:px-12 py-6 flex w-full items-center">
+<nav className="flex justify-between bg-slate-50 text-black w-screen shadow-lg">
+                        <div className="px-5 xl:px-12 py-6 flex w-full items-center ">
                             <a className="text-3xl font-bold font-heading" href="#">
                                 <img
                                     className="h-12 w-15"
@@ -30,7 +30,7 @@ function Header(){
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="hover:text-gray-200" href="#">
+                                    <a className="hover:text-gray-200" href="/lich">
                                         Lịch khởi hành
                                     </a>
                                 </li>
@@ -40,7 +40,7 @@ function Header(){
                                     </a>
                                 </li>
                                 <li>
-                                    <a className="hover:text-gray-200" href="/about">
+                                    <a className="hover:text-gray-200" href="/contact">
                                         Liên Hệ
                                     </a>
                                 </li>
