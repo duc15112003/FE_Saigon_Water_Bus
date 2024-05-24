@@ -2,10 +2,19 @@ import React from 'react';
 
 const Home = () => {
     return (
-<>
-        <h1>Đây là home nhe</h1>
-</>
 
+        <div>
+                <h1>Trang chủ xin chào các bạn</h1>
+                                <h1>Trang chủ xin chào các bạn</h1>
+
+                <h1>Trang chủ xin chào các bạn</h1>
+
+                <h1>Trang chủ xin chào các bạn</h1>
+                <h1>Trang chủ xin chào các bạn</h1>
+                <h1>Trang chủ xin chào các bạn</h1>
+                <h1>Trang chủ xin chào các bạn</h1>
+
+        </div>
     );
 };
 

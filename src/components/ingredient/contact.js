@@ -5,7 +5,7 @@ const Contact = () => {
 <>
 <section className="bg-gray-100 py-10">
   <div className="container mx-auto px-4 lg:px-20">
-    <div className="flex flex-wrap -mx-4">
+    <div className="flex flex-wrap mt-12  ">
       <div className="w-full lg:w-1/2 px-4 py-3">
         <div className="bg-white p-6 rounded-lg shadow-md">
           <div className="mb-6">

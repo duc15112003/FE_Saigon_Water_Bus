@@ -3,13 +3,13 @@ import './footer.css'
 function footer() {
     return (
 
-        <div className="footer relative">
+        <div className="footer">
             <hr className="my-6 border-blueGray-300"/>
-            <footer className="relative bg-black-200 pt-8 pb-6">
+            <footer className="bg-black-200 pt-8 pb-6">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-wrap text-left lg:text-left">
                         <div className="w-full lg:w-6/12 px-4">
-                            <a className="text-3xl font-bold font-heading" href="#">
+                            <a className="text-3xl font-bold font-heading" href="/">
                                 <img
                                     className="Style_Image"
                                     alt=''
