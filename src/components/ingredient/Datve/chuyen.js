@@ -1,4 +1,5 @@
 import React, { useState, useMemo } from "react";
+import SeatingChart from "./ghetau";
 
 const listChuyen = [
     { id: 1, start_time: '08:30', start_gate: 'Bạch Đằng', end_gate: 'Thanh Đa', end_time: '09:30', price: 15000 },
@@ -8,6 +9,7 @@ const listChuyen = [
 
 function ChuyenTau() {
     const [selectedOption, setSelectedOption] = useState('Giờ đi sớm nhất');
+    const [openSeat, setOpenSeat] = useState({});
 
     const options = [
         'Giờ đi sớm nhất',
@@ -52,6 +54,7 @@ function ChuyenTau() {
                 ))}
             </div>
             {sortedChuyen.map(chuyen => (
+                <div>
                 <div key={chuyen.id} className="pageChuyen gap-2 flex container mx-auto p-4 border-b border-gray-300 shadow-lg mb-4">
                     <div className="w-3/12">
                         <img className="w-full h-full object-cover rounded-lg" alt="" src="/img/chuyentau.jpeg" />
@@ -87,12 +90,16 @@ function ChuyenTau() {
                     </div>
                     <div className="w-3/12 flex flex-col items-end justify-between">
                         <h1 className="text-xl font-bold text-blue-600">{chuyen.price.toLocaleString()}đ</h1>
-                        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">
+                        <button onClick={() => setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }))} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py
+                        -2 px-4 rounded transition">
                             Chọn chỗ
                         </button>
                     </div>
                 </div>
+                {openSeat[chuyen.id] && <SeatingChart />}
+        </div> 
             ))}
+
         </div>
     );
 }

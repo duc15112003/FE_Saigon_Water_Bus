@@ -165,10 +165,9 @@ const DatVe = () => {
     </div>
   </div>
 </section>
+<ChuyenTau/>
 
-{/* <ChuyenTau/> */}
-
-<SeatingChart/>
+{/* <SeatingChart/> */}
 {/* //sectionftve */}
 <div className='container mx-auto'>
           <section
