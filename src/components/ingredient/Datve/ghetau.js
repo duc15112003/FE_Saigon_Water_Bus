@@ -22,7 +22,7 @@ const seatLabels = [
   { id: 15, seat_name: "3C", status: true },
   { id: 16, seat_name: "3D", status: false },
   { id: 17, seat_name: "3E", status: true },
-    { id: 18, seat_name: "3F", status: true },
+{ id: 18, seat_name: "3F", status: true },
  { id: 19, seat_name: "3G", status: false },
   { id: 20, seat_name: "3H", status: true },
   { id: 21, seat_name: "3I", status: false },
@@ -72,9 +72,9 @@ const SeatingChart = () => {
         <div className={`relative `}>
           <div
             className="flex items-center justify-center h-12 w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-            onClick={() => seat.status&&handleSeatClick(seat)}
+            onClick={() => seat.status && handleSeatClick(seat)}
           >
-<span className={`relative cursor-pointer text-sm font-semibold ${isSelected ? 'text-transparent' : ''}`}>{seat.seat_name}</span>
+<span className={`relative cursor-pointer text-sm font-semibold ${!seat.status ? 'text-transparent' : ''} ${isSelected ? 'text-transparent' : ''}`}>{seat.seat_name}</span>
 
           </div>
 <div className={`${isSelected ? 'seat-type-info selected ' : ''}`} color="#B8B8B8">
