@@ -11,6 +11,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.testButton{
+  margin-left: 18%;
+}
+
+.btitle{
+  margin-left: 46%;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -11,7 +11,7 @@ const DatVe = () => {
     return (
         
         <div>
-            <div class="qodef-m-inner">
+            <div className="qodef-m-inner">
                     <div className="flex items-center justify-center bg-stone-200 h-40">
                         <div className="container mx-auto">
                             <h1 className="qodef-m-title entry-title text-xl font-bold ">
@@ -19,46 +19,46 @@ const DatVe = () => {
                             </h1>
                         </div>
                     </div>
-                <div>
+                    <div>
                     <section className=" bg-gray-100">
-  <div className="container mx-auto py-8 px-4">
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <div className="mb-6">
-        <style
-          dangerouslySetInnerHTML={{
-            __html:
-              '\n.vxr-search-ticket-box .search-box-container .button-container button {\n    background-color: #F7C600 !important;\n}\n.vxr-search-ticket-box .search-box-container.ver5 .button-container button span {\n    color: #1B1B1B;\n}\n.vxr-search-ticket-box .search-box-content .swap-section img { \n    content: url("https://saigonwaterbus.com/wp-content/uploads/2023/07/swb-swap.png");\n}\n',
-          }}
-        />
-        <div className="vxr-search-ticket-box">
-          <div className="search-box-container ver5">
-            <div id="Info" className="text-yellow-600 hidden" />
-            <form
-              autoComplete="off"
-              className="w-full"
-            //   action="javascript:VxrAutoCompleteSearch.searchTicketHomepage();"
-            >
-              <div className="search-box-content flex flex-wrap gap-4 items-end">
-                <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                  <label className="block text-gray-700">Nơi đi</label>
-<div className="flex items-center relative">
-  <select
-    className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
-    id="inputFrom"
-    defaultValue="" // Giá trị mặc định của select, có thể thay đổi tùy theo nhu cầu của bạn
-  >
-    <option value="" disabled hidden>Nhập nơi đi</option>
-    <option value="option1" selected>Bạch Đằng</option> 
-    <option value="option1" >Bình An</option> 
-    <option value="option1" >Thanh Đa</option> 
-  </select>
-  <img
-    decoding="async"
-    src="//static.vexere.com/webnx/prod/img/from-v5.svg"
-    alt=""
-    className="h-8 absolute right-3"
-  />
-</div>
+                  `<div className="container mx-auto py-8 px-4">
+                    <div className="bg-white p-6 rounded-lg shadow-lg">
+                      <div className="mb-6">
+                        <style
+                          dangerouslySetInnerHTML={{
+                            __html:
+                              '\n.vxr-search-ticket-box .search-box-container .button-container button {\n    background-color: #F7C600 !important;\n}\n.vxr-search-ticket-box .search-box-container.ver5 .button-container button span {\n    color: #1B1B1B;\n}\n.vxr-search-ticket-box .search-box-content .swap-section img { \n    content: url("https://saigonwaterbus.com/wp-content/uploads/2023/07/swb-swap.png");\n}\n',
+                          }}
+                        />
+                        <div className="vxr-search-ticket-box">
+                          <div className="search-box-container ver5">
+                            <div id="Info" className="text-yellow-600 hidden" />
+                            <form
+                              autoComplete="off"
+                              className="w-full"
+                            //   action="javascript:VxrAutoCompleteSearch.searchTicketHomepage();"
+                            >
+                              <div className="search-box-content flex flex-wrap gap-4 items-end">
+                                <div className="flex-1 flex flex-col w-full md:w-auto relative">
+                                  <label className="block text-gray-700">Nơi đi</label>
+                <div className="flex items-center relative">
+                  <select
+                    className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
+                    id="inputFrom"
+                    defaultValue="" // Giá trị mặc định của select, có thể thay đổi tùy theo nhu cầu của bạn
+                  >
+                    <option value="" disabled hidden>Nhập nơi đi</option>
+                    <option value="option1" selected>Bạch Đằng</option>
+                    <option value="option1" >Bình An</option>
+                    <option value="option1" >Thanh Đa</option>
+                  </select>
+                  <img
+                    decoding="async"
+                    src="//static.vexere.com/webnx/prod/img/from-v5.svg"
+                    alt=""
+                    className="h-8 absolute right-3"
+                  />
+                </div>
 
                   <input id="from" name="from" type="hidden" defaultValue="" />
                   <input id="nameFrom" name="nameFrom" type="hidden" />
