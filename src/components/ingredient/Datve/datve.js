@@ -4,6 +4,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import SeatingChart from './ghetau'
 import './datve.css'
+import ChuyenTau from './chuyen';
 const DatVe = () => {
       const [startDate, setStartDate] = useState(new Date());
 
@@ -164,8 +165,11 @@ const DatVe = () => {
     </div>
   </div>
 </section>
+<div className=''>
+  <ChuyenTau/>
 
-<SeatingChart/>
+</div>
+{/* <SeatingChart/> */}
 {/* //sectionftve */}
 <div className='container mx-auto'>
           <section
