@@ -1,18 +1,14 @@
-import { width } from '@fortawesome/free-solid-svg-icons/fa0';
 import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import SeatingChart from './ghetau'
 import './datve.css'
 import ChuyenTau from './chuyen';
 const DatVe = () => {
-      const [startDate, setStartDate] = useState(new Date());
 
     return (
         
         <div>
             <div class="qodef-m-inner">
-                    <div className="flex items-center justify-center bg-stone-200 h-40">
+                    <div className="flex items-center justify-center bg-stone-200 h-64">
                         <div className="container mx-auto">
                             <h1 className="qodef-m-title entry-title text-xl font-bold ">
                                 Đặt vé trực tuyến
@@ -21,149 +17,7 @@ const DatVe = () => {
                     </div>
                 <div>
                     <section className=" bg-gray-100">
-  <div className="container mx-auto py-8 px-4">
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <div className="mb-6">
-        <style
-          dangerouslySetInnerHTML={{
-            __html:
-              '\n.vxr-search-ticket-box .search-box-container .button-container button {\n    background-color: #F7C600 !important;\n}\n.vxr-search-ticket-box .search-box-container.ver5 .button-container button span {\n    color: #1B1B1B;\n}\n.vxr-search-ticket-box .search-box-content .swap-section img { \n    content: url("https://saigonwaterbus.com/wp-content/uploads/2023/07/swb-swap.png");\n}\n',
-          }}
-        />
-        <div className="vxr-search-ticket-box">
-          <div className="search-box-container ver5">
-            <div id="Info" className="text-yellow-600 hidden" />
-            <form
-              autoComplete="off"
-              className="w-full"
-            //   action="javascript:VxrAutoCompleteSearch.searchTicketHomepage();"
-            >
-              <div className="search-box-content flex flex-wrap gap-4 items-end">
-                <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                  <label className="block text-gray-700">Nơi đi</label>
-<div className="flex items-center relative">
-  <select
-    className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
-    id="inputFrom"
-    defaultValue="" // Giá trị mặc định của select, có thể thay đổi tùy theo nhu cầu của bạn
-  >
-    <option value="" disabled hidden>Nhập nơi đi</option>
-    <option value="option1" selected>Bạch Đằng</option> 
-    <option value="option1" >Bình An</option> 
-    <option value="option1" >Thanh Đa</option> 
-  </select>
-  <img
-    decoding="async"
-    src="//static.vexere.com/webnx/prod/img/from-v5.svg"
-    alt=""
-    className="h-8 absolute right-3"
-  />
-</div>
 
-                  <input id="from" name="from" type="hidden" defaultValue="" />
-                  <input id="nameFrom" name="nameFrom" type="hidden" />
-                  <input
-                    id="pickupPointDistrict"
-                    name="pickupPointDistrict"
-                    type="hidden"
-                  />
-                  <input id="pickupPointName" name="pickupPointName" type="hidden" />
-                  <input id="fromLabel" name="fromLabel" type="hidden" />
-                </div>
-                {/* button chuyen qua lai ngay di noi di den */}
-                <button>
-                <img class="swap-area" decoding="async" src="//static.vexere.com/webnx/prod/img/swap-v3.svg" alt=""></img>
-
-
-                </button>
-                <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                  <label className="block text-gray-700">Nơi đến</label>
-<div className="relative">
-  <select
-    className="appearance-none w-full p-2 border border-gray-300 rounded pr-10" // Thêm pr-10 để tạo khoảng trống bên phải cho icon
-    id="inputTo"
-    defaultValue=""
-  >
-    <option value="" disabled hidden>Nhập nơi đến</option>
-    <option value="option1">Option 1</option> 
-    <option value="option2">Option 2</option>
-    <option value="option3">Option 3</option>
-  </select>
-  <img
-    decoding="async"
-    src="//static.vexere.com/webnx/prod/img/to-v5.svg"
-    alt=""
-    className="h-8 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-  />
-</div>
-
-
-                  <input id="to" name="to" type="hidden" defaultValue="" />
-                  <input id="nameTo" name="nameTo" type="hidden" />
-                  <input
-                    id="dropoffPointDistrict"
-                    name="dropoffPointDistrict"
-                    type="hidden"
-                  />
-                  <input id="dropoffPointName" name="dropoffPointName" type="hidden" />
-                  <input id="toLabel" name="toLabel" type="hidden" />
-                </div>
-                <div className="flex-1 flex flex-col w-full md:w-auto relative">
-  <label className="block text-gray-700">Ngày khởi hành</label>
-  <div className="flex items-center relative">
-          <DatePicker
-            className="p-2 lg:w-80 w-auto border border-gray-300 rounded mr-2"
-            name="departDate"
-            selected={startDate}
-            onChange={(date) => setStartDate(date)}
-            dateFormat="dd/MM/yyyy"
-            style={{ width: '165%' }} // Loại bỏ !important và chỉ cần truyền một đối tượng JavaScript với thuộc tính width
-          />
-
-
-                <img
-                decoding="async"
-                src="//static.vexere.com/webnx/prod/img/date-v5.svg"
-                alt=""
-                className="h-8 absolute right-3 "
-              />  
-            </div>
-          </div>
-
-                <div className="flex w-full md:w-auto">
-                      <button
-                        className="bg-yellow-500 text-black py-2 px-4 rounded hover:bg-yellow-600"
-                        type="submit"
-                      >
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          className="w-6 h-6 inline-block mr-2"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                          />
-                        </svg>
-                        <span className="inline-block">Tìm vé</span>
-                      </button>
-
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      <div className="elementor-widget-container mt-6">
-        <h2 className="elementor-heading-title elementor-size-default text-xl font-bold text-gray-800">
-          Quý khách vui lòng kiểm tra Ngày Khởi Hành trước khi hoàn tất đặt vé
-        </h2>
-      </div>
-    </div>
-  </div>
 </section>
 <div className=''>
   <ChuyenTau/>
