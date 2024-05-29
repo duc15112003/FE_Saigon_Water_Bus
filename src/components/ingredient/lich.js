@@ -1,13 +1,7 @@
 function Lich() {
     return ( 
 <div className="">
-  <section className="lkh1">
-    <img
-      src="/img/lich.jpg"
-      alt=""
-      width="100%"
-    />
-  </section>
+
 <section className="lkh2">
   <div className="daily">
     <h2 className="text-xl font-bold py-4">Các chuyến Daily</h2>
