@@ -3,7 +3,8 @@ import SeatingChart from "./ghetau";
 import axios from "axios";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
+import ChiTietChuyen from "./tabthongtinchitiet";
+import MultiStepForm from "./QuyTrinhDatVe/allstep";
 
 function ChuyenTau() {
       const [startDate, setStartDate] = useState(new Date());
@@ -11,14 +12,13 @@ function ChuyenTau() {
 const [listChuyen, setListChuyen]= useState([])
 const [message1, setMessage1]= useState('')
 
-  const fromRef = useRef();
-  const toRef = useRef();
+const fromRef = useRef();
+const toRef = useRef();
 
 const year = startDate.getFullYear();
 const month = String(startDate.getMonth() + 1).padStart(2, '0'); // Lưu ý rằng tháng trong JavaScript là từ 0 đến 11
 const day = String(startDate.getDate()).padStart(2, '0');
 const formattedDate = `${year}-${month}-${day}`;
-
 
 const timChuyen = async (event) =>{
         // event.preventDefault();
@@ -42,6 +42,11 @@ try {
     setListChuyen([])
 }    
 }
+
+
+
+//tab chit iet chuyen
+const [openTab,setOpenTab]= useState(false);
 
 
 
@@ -81,8 +86,8 @@ const sortedChuyen = useMemo(() => {
         {/* form tim chuyen */}
 <div className="flex justify-center content-center">
                       <span className="font-bold text-3xl p-4"> {message1}</span>
-</div>
-<form
+        </div>
+        <form
               autoComplete="off"
               className="w-full"
             onSubmit={timChuyen}
@@ -95,8 +100,8 @@ const sortedChuyen = useMemo(() => {
                         className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
                         id="inputFrom"
                         ref={fromRef} // Giá trị mặc định của select, có thể thay đổi tùy theo nhu cầu của bạn
-                    >
-                                            <option value="nơi đến" selected disabled hidden>Nhập nơi đi</option>
+                         >
+                    <option value="nơi đến" selected disabled hidden>Nhập nơi đi</option>
                         <option value="1">Bạch đằng</option> 
                             <option value="2">Bình an</option>
                         <option value="3">Thanh đa</option>
@@ -130,15 +135,12 @@ const sortedChuyen = useMemo(() => {
                 <select
                     className="appearance-none w-full p-2 border border-gray-300 rounded pr-10" // Thêm pr-10 để tạo khoảng trống bên phải cho icon
                     id="inputTo"
-                    ref={toRef}
-                                    >
+                    ref={toRef}>
                         <option value="nơi đến" selected disabled hidden>Nhập nơi đến</option>
                         <option value="1">Bạch đằng</option> 
                             <option value="2">Bình an</option>
-
                         <option value="3">Thanh đa</option>
                             <option value="4">Hiệp Bình Chánh</option>
-
                         <option value="5">Linh Đông</option>
                     </select>
                     <img
@@ -174,22 +176,20 @@ const sortedChuyen = useMemo(() => {
                 decoding="async"
                 src="//static.vexere.com/webnx/prod/img/date-v5.svg"
                 alt=""
-                className="h-8 absolute right-3 "
+                className="h-8 absolute right-10"
               />  
             </div>
           </div>
                 <div className="flex w-full md:w-auto">
                       <button
                         className="bg-yellow-500 text-black py-2 px-4 rounded hover:bg-yellow-600"
-                        type="submit"
-                      >
+                        type="submit">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           fill="none"
                           viewBox="0 0 24 24"
                           stroke="currentColor"
-                          className="w-6 h-6 inline-block mr-2"
-                        >
+                          className="w-6 h-6 inline-block mr-2">
                           <path
                             strokeLinecap="round"
                             strokeLinejoin="round"
@@ -214,46 +214,62 @@ const sortedChuyen = useMemo(() => {
                 ))}
             </div>
 
-   {sortedChuyen.map(chuyen => (
-    <div>
-    <div key={chuyen.id} className="pageChuyen gap-2 flex container mx-auto p-4 border-b border-gray-300 shadow-lg mb-4">
+   {sortedChuyen.map(chuyen=> (
+    <div className="block border  rounded-lg border-b border-gray-300 shadow-lg mb-2 p-2">
+    <div key={chuyen.id} className="bg-white  w-full   pageChuyen gap-2 flex container mx-auto   mb-4">
         <div className="w-3/12">
-            <img className="w-full h-full object-cover rounded-lg" alt="" src="/img/chuyentau.jpeg" />
+            <img className="w-full h-full object-cover rounded-lg max-h-44 p-1" alt="" src="/img/chuyentau.jpeg" />
         </div>
-        <div className="w-6/12 px-4">
-            <h1 className="text-lg font-bold mb-2">Ghế ngồi {chuyen.availableSeats} chỗ</h1>
+        <div className="w-full">
+                <div className="flex w-full justify-between">
+            <div className=" px-4">
+            <h1 className="text-lg font-bold mb-2">Ghế ngồi 75 chỗ</h1>
             <div className="flex items-center mb-2">
                 <div className="ghe1 px-2">
-                    <svg className="TicketPC__LocationRouteSVG-sc-1mxgwjh-4 dSQflF" xmlns="http://www.w3.org/2000/svg" width="14" height="74" viewBox="0 0 14 74">
-                        {/* Mã SVG */}
-                    </svg>
+                    <svg class="TicketPC__LocationRouteSVG-sc-1mxgwjh-4 dSQflF" xmlns="http://www.w3.org/2000/svg" width="14" height="74" viewBox="0 0 14 74"><path fill="none" stroke="#787878" stroke-linecap="round" stroke-width="2" stroke-dasharray="0 7" d="M7 13.5v46"></path><g fill="none" stroke="#484848" stroke-width="3"><circle cx="7" cy="7" r="7" stroke="none"></circle><circle cx="7" cy="7" r="5.5"></circle></g><path d="M7 58a5.953 5.953 0 0 0-6 5.891 5.657 5.657 0 0 0 .525 2.4 37.124 37.124 0 0 0 5.222 7.591.338.338 0 0 0 .506 0 37.142 37.142 0 0 0 5.222-7.582A5.655 5.655 0 0 0 13 63.9 5.953 5.953 0 0 0 7 58zm0 8.95a3.092 3.092 0 0 1-3.117-3.06 3.117 3.117 0 0 1 6.234 0A3.092 3.092 0 0 1 7 66.95z" fill="#787878"></path></svg>
                 </div>
                 <div className="chuyen">
-                    <h1 className="font-medium">{chuyen.departureTime} ● {chuyen.fromTerminal}</h1>
+                    <h1 className="font-medium">{chuyen.departureTime} ● {chuyen.startTerminal}</h1>
                     <span className="text-xs text-gray-500">32 phút</span>
-                    <h1 className="font-medium">{chuyen.arrivalTime} ● {chuyen.toTerminal}</h1>
+                    <h1 className="font-medium">{chuyen.arrivalTime} ● {chuyen.endTerminal}</h1>
                 </div>
             </div>
-            <div className="gap-1">
-                <div className="flex items-center">
-                    <span className="font-medium">Thông tin chi tiết</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-4 h-4 ml-1">
-                        {/* Mã SVG */}
-                    </svg>
+                <div className="gap-1">
+                    <div className="flex items-center cursor-pointer">
+                        <span className="font-medium px-2">Thông tin chi tiết</span>
+                            <button onClick={()=>setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }))}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                        </svg>
+                            </button>
+                    </div>
+                    <h1 className="text-sm text-gray-600">Vé chặng thuộc chuyến {chuyen.departureDate} {chuyen.fromTerminal} - {chuyen.toTerminal}</h1>
                 </div>
-                <h1 className="text-sm text-gray-600">Vé chặng thuộc chuyến {chuyen.departureDate} {chuyen.fromTerminal} - {chuyen.toTerminal}</h1>
             </div>
-        </div>
-        <div className="w-3/12 flex flex-col items-end justify-between">
-            <h1 className="text-xl font-bold text-blue-600">{chuyen.totalSeats.toLocaleString()}đ</h1>
-            <button onClick={() => setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }))} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition">
-                Chọn chỗ
-            </button>
-        </div>
+            <div className=" flex flex-col items-end justify-between mt-2 p-4">
+                <span className="text-xl font-bold text-blue-600">15,000đ</span>
+                            <span className="text-lg  mb-2">Còn {chuyen.availableSeats} chỗ trống</span>
+<button 
+    onClick={() => setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }))}
+    className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition" 
+>
+    {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
+</button>
 
+            </div>
+                </div> 
+
+
+
+        </div>
     </div>
-                                {openSeat[chuyen.id] && <SeatingChart />}
 
+<div className="bg-white">
+{openSeat[chuyen.id] && <MultiStepForm chuyenTau={chuyen}/>}
+{openTab[chuyen.id] && <ChiTietChuyen/>}
+{/* {openTab && <MultiStepForm/>} */}
+
+</div>
 </div>
 ))}
 

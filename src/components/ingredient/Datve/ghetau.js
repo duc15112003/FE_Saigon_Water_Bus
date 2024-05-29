@@ -6,7 +6,6 @@ const seatLabels = [
     { id: 1, seat_name: "1A", status: true },
     { id: 2, seat_name: "1B", status: true },
     { id: 3, seat_name: "1C", status: true },
-
     { id: 4, seat_name: "1D", status: false },
     { id: 5, seat_name: "1E", status: true },
     { id: 6, seat_name: "1F", status: false },
@@ -84,50 +83,55 @@ const seatLabels = [
       { "id": 77, "seat_name": "8E", "status": false },
   { "id": 78, "seat_name": "8F", "status": false },
     { "id": 79, "seat_name": "8E", "status": false },
-
-
-
-
-
-
-
-
 ];
 
-const SeatingChart = () => {
-  const [clickedSeats, setClickedSeats] = useState([]);
+const SeatingChart = ({ clickedSeats,setClickedSeats }) => {
 
-  const handleSeatClick = (seat) => {
-    setClickedSeats((prevClickedSeats) => {
+  //thong bao qua so luong ge
+  const [notification, setNotification] = useState('');
+
+ const handleSeatClick = (seat) => {
+  setClickedSeats((prevClickedSeats) => {
+    if (prevClickedSeats.length >= 6 && !prevClickedSeats.includes(seat)) {
+      return prevClickedSeats;
+    } else {
       if (prevClickedSeats.includes(seat)) {
         return prevClickedSeats.filter(clickedSeat => clickedSeat !== seat);
       } else {
         return [...prevClickedSeats, seat];
       }
-    });
-  };
-  useEffect(() => {
-    console.log(clickedSeats);
-  }, [clickedSeats]);
+    }
+  });
+};
+
+useEffect(() => {
+  if (clickedSeats.length >= 6) {
+    setNotification('Bạn chỉ có thể chọn tối đa 6 ghế.');
+  } else {
+    setNotification('');
+  }
+}, [clickedSeats, setNotification]);
+
+  // Phần JSX còn lại của component SeatingChart
   
   
  const renderSeat = (seat) => {
   const isSelected = clickedSeats.includes(seat);
   return (
     <div className=''>
-      <div className={`seat-item available z-max text-sm ${isSelected ? 'selected-seat' : ''} ${seat.status ? '' : 'seat-type-info disabled unavailable'}`} key={seat}>
+<div className={`seat-item available z-max  ${isSelected ? 'selected-seat' : ''} ${seat.status ? '' : 'seat-type-info disabled unavailable'}`} key={seat} style={{ fontSize: '10px' }}>
         <div className={`relative `}>
           <div
             className="flex items-center justify-center h-12 w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
             onClick={() => seat.status && handleSeatClick(seat)}
           >
-<span className={`relative cursor-pointer  text-sm font-semibold ${!seat.status ? 'text-transparent' : ''} ${isSelected ? 'text-transparent' : ''}`}>{seat.seat_name}</span>
+<span className={`relative cursor-pointer font-semibold   ${!seat.status ? 'text-transparent' : ''} ${isSelected ? 'text-transparent' : ''}`}>{seat.seat_name}</span>
 
           </div>
 <div className={`${isSelected ? 'seat-type-info selected ' : ''}`} color="#B8B8B8">
   <svg
-    width={48}
-    height={40}
+    width={40}
+    height={32}
     viewBox="0 0 40 32"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
@@ -206,9 +210,9 @@ for (let i = 0; i < seatLabels.length; i += chunkSize) {
 
 // render seet
   return (
-<div className='container max-w-xl mx-auto'>
-  <div className="flex flex-col items-center mt-10 border border-gray-700">
-<div className='flex gap-32 py-4'>
+<div className="container max-w-xl mx-auto border-t border-solid border-gray-300">
+  <div className="flex flex-col items-center">
+      <div className='flex gap-20 py-2'>
         <div className="seat-type-info available content-center justify-center">
       <div className='flex content-center justify-center'>
                   <svg
@@ -356,7 +360,7 @@ for (let i = 0; i < seatLabels.length; i += chunkSize) {
 
 <div class="seat-type-info-value">Đang chọn</div></div>
 </div>
-<div className="flex flex-wrap justify-center mb-2 bg-gray-50 p-4" style={{
+<div className="flex flex-wrap justify-center  bg-gray-50 " style={{
   background: "#f2f2f2",
   borderTopLeftRadius: "50% 15px",
   borderTopRightRadius: "50% 15px",
@@ -391,29 +395,30 @@ for (let i = 0; i < seatLabels.length; i += chunkSize) {
 
 </div>
 <div>
-{clickedSeats === 0 && (
-  <div>
-    <h1>Vui lòng chọn ít nhất 1 chỗ ngồi</h1>
-  </div>
-)}
-
-
 </div>
 
-
+   <div className='text-red-500 font-bold'>
+    {notification}
+   </div>
 
     </div>
 <div className='container mx-auto flex'>
+
+
   <div className="flex-grow">
- 
-      <span className='font-bold'>Số ghế:</span>
+
+<span className='font-bold'>
+  {clickedSeats.length === 0 ? 'Vui lòng chọn ít nhất 1 chỗ ngồi' : `Số ghế: `}
+</span>
+
   
     {clickedSeats.map((seat, index) => (
       <span key={seat.id}>{seat.seat_name}{index !== clickedSeats.length - 1 && ', '}</span>
     ))}
   </div>
   <div>
-    Tổng tiền: {clickedSeats.length * 15000}
+    Tổng tiền: {clickedSeats.length * 15000}đ
+    
   </div>
 </div>
 
