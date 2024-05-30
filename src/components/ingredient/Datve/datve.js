@@ -3,9 +3,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import './datve.css'
 import ChuyenTau from './chuyen';
 const DatVe = () => {
-
     return (
-
         <div>
             <div class="qodef-m-inner">
                     <div className="flex items-center justify-center bg-stone-200 h-64">
@@ -17,20 +15,18 @@ const DatVe = () => {
                     </div>
                 <div>
                     <section className=" bg-gray-100">
-
-</section>
-<div className=''>
-  <ChuyenTau/>
-
+                      </section>
+                      <div className=''>
+                        <ChuyenTau/>
 </div>
 {/* <SeatingChart/> */}
 {/* //sectionftve */}
 <div className='container mx-auto'>
           <section
-  className="elementor-section elementor-top-section elementor-element elementor-element-059ba34 elementor-section-boxed elementor-section-height-default elementor-section-height-default qodef-elementor-content-no"
-  data-id="059ba34"
-  data-element_type="section"
->
+          className="elementor-section elementor-top-section elementor-element elementor-element-059ba34 elementor-section-boxed elementor-section-height-default elementor-section-height-default qodef-elementor-content-no"
+          data-id="059ba34"
+          data-element_type="section"
+        >
   <div className="elementor-container elementor-column-gap-default">
     <div
       className="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-fa754fc"

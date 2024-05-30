@@ -7,6 +7,26 @@ import ChiTietChuyen from "./tabthongtinchitiet";
 import MultiStepForm from "./QuyTrinhDatVe/allstep";
 
 function ChuyenTau() {
+    const [seatLabels,setSeatLabels]= useState([])
+    
+const timGhe = async (event, chuyenId) => {
+    if (event) {
+        event.preventDefault();
+    }
+
+    try {
+        const response = await axios.get(`http://localhost:8080/dat-ve/${chuyenId}`);
+        setSeatLabels(response.data);
+        // console.log(seatLabels);
+    } catch (error) {
+        console.error('Error fetching seat labels:', error);
+    }    
+}
+
+
+
+
+
       const [startDate, setStartDate] = useState(new Date());
 //fetch api
 const [listChuyen, setListChuyen]= useState([])
@@ -35,6 +55,7 @@ try {
         params: searchParams
     });
         setListChuyen(response.data)
+        console.log(listChuyen)
    setMessage1('')
 
 } catch (error) {
@@ -237,8 +258,7 @@ const sortedChuyen = useMemo(() => {
                 <div className="gap-1">
                     <div className="flex items-center cursor-pointer">
                         <span className="font-medium px-2">Thông tin chi tiết</span>
-                            <button onClick={()=>setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }))}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+<button onClick={() => {setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }));setOpenSeat(false);}}>                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
                             </button>
@@ -248,13 +268,14 @@ const sortedChuyen = useMemo(() => {
             </div>
             <div className=" flex flex-col items-end justify-between mt-2 p-4">
                 <span className="text-xl font-bold text-blue-600">15,000đ</span>
-                            <span className="text-lg  mb-2">Còn {chuyen.availableSeats} chỗ trống</span>
+                            <span className="text-lg  mb-2">Còn {chuyen.availableSeats-2} chỗ trống</span>
 <button 
-    onClick={() => setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }))}
+    onClick={(event) => { timGhe(event, chuyen.id);setOpenTab(false) ;setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] })) }}
     className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition" 
 >
     {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
 </button>
+
 
             </div>
                 </div> 
@@ -265,7 +286,7 @@ const sortedChuyen = useMemo(() => {
     </div>
 
 <div className="bg-white">
-{openSeat[chuyen.id] && <MultiStepForm chuyenTau={chuyen}/>}
+{openSeat[chuyen.id] && <MultiStepForm chuyenTau={chuyen} seatLabels={seatLabels}/>}
 {openTab[chuyen.id] && <ChiTietChuyen/>}
 {/* {openTab && <MultiStepForm/>} */}
 
