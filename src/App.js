@@ -9,7 +9,7 @@ function App() {
             <div className="">
                 <Routes>
                     {publicRoutes.map((route, index) => {
-                        const Layout =route.path==='/login'? AuthLayout: DefaultLayout;
+                        const Layout =route.path==='/login' || route.path==='/dang-ky'? AuthLayout: DefaultLayout;
                         const Page = route.component;
                         return (
                             <Route
