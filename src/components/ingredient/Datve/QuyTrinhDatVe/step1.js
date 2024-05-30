@@ -1,16 +1,17 @@
 import React from 'react';
 import SeatingChart from '../ghetau';
 
-const Step1 = ({ nextStep, clickedSeats,setClickedSeats}) => {
+const Step1 = ({ nextStep, clickedSeats,setClickedSeats,chuyenTau,seatLabels}) => {
   // Trong Step1, bạn có thể sử dụng clickedSeats để hiển thị các ghế đã được chọn.
   return (
     <div className='container mx-auto '>
-      <SeatingChart clickedSeats={clickedSeats} setClickedSeats={setClickedSeats}/>
+      <SeatingChart seatLabels={seatLabels} clickedSeats={clickedSeats} setClickedSeats={setClickedSeats} chuyenTau={chuyenTau}/>
       <div className='flex justify-end'>
       
 <button
-  className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center"
-  onClick={nextStep}  
+  className={`bg-green-500  text-white font-bold py-2 px-4 rounded flex items-center ${clickedSeats.length === 0 ||clickedSeats===null ? 'disabled bg-slate-100' : ''}`}
+  onClick={nextStep}
+
 >
   Tiếp tục
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 ml-2">

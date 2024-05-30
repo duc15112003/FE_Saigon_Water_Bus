@@ -3,7 +3,7 @@ import Step1 from './step1';
 import Step2 from './step2';
 import Step3 from './step3';
 
-const MultiStepForm = ({chuyenTau}) => {
+const MultiStepForm = ({chuyenTau,seatLabels}) => {
   const [step, setStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [clickedSeats, setClickedSeats] = useState([]);
@@ -21,7 +21,7 @@ const [userInfor, setUserInfor] = useState({});
   const StepComponent = useMemo(() => {
     switch (step) {
       case 1:
-        return <Step1 nextStep={nextStep} setClickedSeats={setClickedSeats} clickedSeats={clickedSeats} />;
+        return <Step1 nextStep={nextStep} chuyenTau={chuyenTau} seatLabels={seatLabels} setClickedSeats={setClickedSeats} clickedSeats={clickedSeats} />;
       case 2:
         return <Step2 nextStep={nextStep} prevStep={prevStep} clickedSeats={clickedSeats} chuyenTau={chuyenTau}/>;
       case 3:
@@ -29,7 +29,7 @@ const [userInfor, setUserInfor] = useState({});
       default:
         return null;
     }
-  }, [step, clickedSeats,userInfor]);
+  }, [step, clickedSeats,userInfor,seatLabels]);
 
   const stepTitles = ['Chọn Chỗ', 'Điểm đón, trả', 'Nhập thông tin'];
 
