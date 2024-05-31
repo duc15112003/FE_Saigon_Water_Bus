@@ -33,8 +33,6 @@ useEffect(() => {
 
 
   // Phần JSX còn lại của component SeatingChart
-  
-  
  const renderSeat = (seat) => {
   const isSelected = clickedSeats.includes(seat);
   return (
@@ -264,12 +262,10 @@ for (let i = 0; i < seatLabels.length; i += chunkSize) {
 
   <div className="seat-type-info-value">Ghế không bán</div>
 </div>
-
 <div class="seat-type-info selected">
     <div className='flex content-center justify-center'>
-<svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8.75" y="2.75" width="22.5" height="26.5" rx="2.25" fill="#FFFFFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"></rect><rect x="10.25" y="11.75" width="14.5" height="5.5" rx="2.25" transform="rotate(90 10.25 11.75)" fill="#FFFFFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"></rect><rect x="35.25" y="11.75" width="14.5" height="5.5" rx="2.25" transform="rotate(90 35.25 11.75)" fill="#FFFFFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"></rect><rect x="8.75" y="22.75" width="22.5" height="6.5" rx="2.25" fill="#FFFFFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"></rect><path class="icon-selected" d="M20.0002 6.33337C16.3202 6.33337 13.3335 9.32004 13.3335 13C13.3335 16.68 16.3202 19.6667 20.0002 19.6667C23.6802 19.6667 26.6668 16.68 26.6668 13C26.6668 9.32004 23.6802 6.33337 20.0002 6.33337ZM18.6668 16.3334L15.3335 13L16.2735 12.06L18.6668 14.4467L23.7268 9.38671L24.6668 10.3334L18.6668 16.3334Z" fill="transparent"></path><path class="icon-disabled" d="M24.96 9.45992L23.54 8.03992L20 11.5899L16.46 8.03992L15.04 9.45992L18.59 12.9999L15.04 16.5399L16.46 17.9599L20 14.4099L23.54 17.9599L24.96 16.5399L21.41 12.9999L24.96 9.45992Z" fill="transparent"></path></svg>
+        <svg width="40" height="32" viewBox="0 0 40 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="8.75" y="2.75" width="22.5" height="26.5" rx="2.25" fill="#FFFFFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"></rect><rect x="10.25" y="11.75" width="14.5" height="5.5" rx="2.25" transform="rotate(90 10.25 11.75)" fill="#FFFFFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"></rect><rect x="35.25" y="11.75" width="14.5" height="5.5" rx="2.25" transform="rotate(90 35.25 11.75)" fill="#FFFFFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"></rect><rect x="8.75" y="22.75" width="22.5" height="6.5" rx="2.25" fill="#FFFFFF" stroke="#B8B8B8" stroke-width="1.5" stroke-linejoin="round"></rect><path class="icon-selected" d="M20.0002 6.33337C16.3202 6.33337 13.3335 9.32004 13.3335 13C13.3335 16.68 16.3202 19.6667 20.0002 19.6667C23.6802 19.6667 26.6668 16.68 26.6668 13C26.6668 9.32004 23.6802 6.33337 20.0002 6.33337ZM18.6668 16.3334L15.3335 13L16.2735 12.06L18.6668 14.4467L23.7268 9.38671L24.6668 10.3334L18.6668 16.3334Z" fill="transparent"></path><path class="icon-disabled" d="M24.96 9.45992L23.54 8.03992L20 11.5899L16.46 8.03992L15.04 9.45992L18.59 12.9999L15.04 16.5399L16.46 17.9599L20 14.4099L23.54 17.9599L24.96 16.5399L21.41 12.9999L24.96 9.45992Z" fill="transparent"></path></svg>
     </div>
-
 <div class="seat-type-info-value">Đang chọn</div></div></div>
               <div className="flex flex-wrap justify-center  bg-gray-200 " style={{
                 background: "#f2f2f2",
@@ -321,8 +317,6 @@ for (let i = 0; i < seatLabels.length; i += chunkSize) {
 <span className='font-bold'>
   {clickedSeats.length === 0 ? 'Vui lòng chọn ít nhất 1 chỗ ngồi' : `Số ghế: `}
 </span>
-
-  
     {clickedSeats.map((seat, index) => (
       <span key={seat.id}>{seat.seatName}{index !== clickedSeats.length - 1 && ', '}</span>
     ))}
@@ -332,8 +326,6 @@ for (let i = 0; i < seatLabels.length; i += chunkSize) {
     
   </div>
 </div>
-
-
 
 </div>
   );
