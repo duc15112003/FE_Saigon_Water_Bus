@@ -1,33 +1,26 @@
 import React, { useState, useMemo, useRef} from "react";
-import SeatingChart from "./ghetau";
-import axios from "axios";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ChiTietChuyen from "./tabthongtinchitiet";
 import MultiStepForm from "./QuyTrinhDatVe/allstep";
+import apiService from "../../../services/tripservice";
 
 function ChuyenTau() {
-    const [seatLabels,setSeatLabels]= useState([])
+const [seatLabels,setSeatLabels]= useState([])
     
 const timGhe = async (event, chuyenId) => {
     if (event) {
         event.preventDefault();
     }
-
     try {
-        const response = await axios.get(`http://localhost:8080/dat-ve/${chuyenId}`);
-        setSeatLabels(response.data);
-        // console.log(seatLabels);
+        const responseData = await apiService.timGhe(chuyenId);
+        setSeatLabels(responseData)
     } catch (error) {
         console.error('Error fetching seat labels:', error);
     }    
 }
 
-
-
-
-
-      const [startDate, setStartDate] = useState(new Date());
+const [startDate, setStartDate] = useState(new Date());
 //fetch api
 const [listChuyen, setListChuyen]= useState([])
 const [message1, setMessage1]= useState('')
@@ -51,16 +44,14 @@ const searchParams = {
     departDate: formattedDate
 };
 try {
-    const response= await axios.get('http://localhost:8080/dat-ve',{
-        params: searchParams
-    });
-        setListChuyen(response.data)
-        console.log(listChuyen)
-   setMessage1('')
+    const data= await apiService.timChuyen(searchParams);
+        setListChuyen(data); 
+        console.log(listChuyen);
+         setMessage1('');
 
 } catch (error) {
-   setMessage1('Thông tin tìm kiếm không phù hợp vui lòng kiểm tra lại!')
-    setListChuyen([])
+   setMessage1('Thông tin tìm kiếm không phù hợp vui lòng kiểm tra lại!');
+    setListChuyen([]);
 }    
 }
 
