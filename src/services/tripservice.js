@@ -14,7 +14,7 @@ const timGhe = async (chuyenId) => {
   try {
     const response = await apiClient.get(`/dat-ve/${chuyenId}`);
     // console.log(response.data.data)
-    return response.data.data;
+    return response.data.result;
   } catch (error) {
     console.error('Error fetching seat labels:', error);
     throw error;
@@ -35,7 +35,7 @@ const timChuyen = async (searchParams) => {
 
 const apiService = {
   timGhe,
-  timChuyen,
+  timChuyen
   // Có thể thêm các hàm khác ở đây
 };
 

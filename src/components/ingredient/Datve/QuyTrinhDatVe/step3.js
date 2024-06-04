@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import ChuyenTau from '../chuyen';
 
-const Step3 = ({ prevStep, clickedSeats, userInfor, setUserInfor }) => {
+const Step3 = ({ prevStep, clickedSeats, userInfor, setUserInfor}) => {
+  console.log(clickedSeats)
+  console.log("id chuyentau",ChuyenTau)
   const [submitted, setSubmitted] = useState(false);
 
 const handleInputChange = (event) => {
@@ -82,7 +85,7 @@ const handleInputChange = (event) => {
     </svg>
     Quay lại
   </button>
-      Tổng tiền: {clickedSeats.length * 15000}đ
+      Tổng tiền: {clickedSeats.length * 15000}đ 
 
           <button
             type="submit"
