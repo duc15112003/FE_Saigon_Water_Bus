@@ -4,6 +4,7 @@ import Step2 from './step2';
 import Step3 from './step3';
 
 const MultiStepForm = ({chuyenTau,seatLabels}) => {
+  console.log("chuyentau",chuyenTau)
   const [step, setStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);
   const [clickedSeats, setClickedSeats] = useState([]);
@@ -25,7 +26,7 @@ const [userInfor, setUserInfor] = useState({});
       case 2:
         return <Step2 nextStep={nextStep} prevStep={prevStep} clickedSeats={clickedSeats} chuyenTau={chuyenTau}/>;
       case 3:
-        return <Step3 prevStep={prevStep} clickedSeats={clickedSeats} userInfor={userInfor} setUserInfor={setUserInfor}/>;
+        return <Step3 prevStep={prevStep} chuyenTau={chuyenTau} clickedSeats={clickedSeats} userInfor={userInfor} setUserInfor={setUserInfor}/>;
       default:
         return null;
     }

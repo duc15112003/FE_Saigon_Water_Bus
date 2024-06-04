@@ -7,7 +7,7 @@ import apiService from "../../../services/tripservice";
 
 function ChuyenTau() {
 const [seatLabels,setSeatLabels]= useState([])
-    
+     
 const timGhe = async (event, chuyenId) => {
     if (event) {
         event.preventDefault();
@@ -17,7 +17,7 @@ const timGhe = async (event, chuyenId) => {
         setSeatLabels(responseData)
     } catch (error) {
         console.error('Error fetching seat labels:', error);
-    }    
+    } 
 }
 
 const [startDate, setStartDate] = useState(new Date());
@@ -275,9 +275,9 @@ const sortedChuyen = useMemo(() => {
 
         </div>
     </div>
+{openSeat[chuyen.id] && <MultiStepForm chuyenTau={chuyen} seatLabels={seatLabels}/>}
 
 <div className="bg-white">
-{openSeat[chuyen.id] && <MultiStepForm chuyenTau={chuyen} seatLabels={seatLabels}/>}
 {openTab[chuyen.id] && <ChiTietChuyen/>}
 {/* {openTab && <MultiStepForm/>} */}
 
