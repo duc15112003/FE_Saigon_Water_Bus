@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Step2 = ({ nextStep, prevStep,chuyenTau,clickedSeats }) => {
+    localStorage.setItem('total', (clickedSeats.length * 15000).toString());
   return (
     <div className='container mx-auto '>
         <div className='mx-auto container flex justify-center w-1/2  h-96'>

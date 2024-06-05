@@ -10,21 +10,26 @@ const SeatingChart = ({ clickedSeats,setClickedSeats,seatLabels}) => {
   const [notification, setNotification] = useState('');
 
  const handleSeatClick = (seat) => {
+     console.log(seat)
   setClickedSeats((prevClickedSeats) => {
     if (prevClickedSeats.length >= 6 && !prevClickedSeats.includes(seat)) {
       return prevClickedSeats;
     } else {
-      if (prevClickedSeats.includes(seat)) {
-        return prevClickedSeats.filter(clickedSeat => clickedSeat !== seat);
-      } else {
-        return [...prevClickedSeats, seat];
-      }
+        if (prevClickedSeats.includes(seat)) {
+            // Nếu ghế đã được chọn trước đó, loại bỏ ghế đó khỏi danh sách
+            return prevClickedSeats.filter(clickedSeat => clickedSeat !== seat);
+        } else {
+            // Nếu ghế chưa được chọn trước đó, thêm ghế vào danh sách
+            return [...prevClickedSeats, seat];
+        }
     }
   });
 };
 
 useEffect(() => {
+    localStorage.setItem('seatData', JSON.stringify(clickedSeats));
   if (clickedSeats.length >= 6) {
+
     setNotification('Bạn chỉ có thể chọn tối đa 6 ghế.');
   } else {
     setNotification('');
@@ -120,6 +125,7 @@ const seatChunks = [];
 for (let i = 0; i < seatLabels.length; i += chunkSize) {
   seatChunks.push(seatLabels.slice(i, i + chunkSize));
 }
+
 
 // render seet
   return (

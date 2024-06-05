@@ -5,15 +5,20 @@ import ChiTietChuyen from "./tabthongtinchitiet";
 import MultiStepForm from "./QuyTrinhDatVe/allstep";
 import apiService from "../../../services/tripservice";
 
+const selectChuyen = [];
 function ChuyenTau() {
+
 const [seatLabels,setSeatLabels]= useState([])
-     
+
 const timGhe = async (event, chuyenId) => {
+
     if (event) {
         event.preventDefault();
     }
+
     try {
         const responseData = await apiService.timGhe(chuyenId);
+
         setSeatLabels(responseData)
     } catch (error) {
         console.error('Error fetching seat labels:', error);
@@ -43,11 +48,12 @@ const searchParams = {
     to: toRef.current.value,
     departDate: formattedDate
 };
+
 try {
     const data= await apiService.timChuyen(searchParams);
-        setListChuyen(data); 
-        console.log(listChuyen);
-         setMessage1('');
+    selectChuyen.push(data)
+    setListChuyen(data);
+    setMessage1('');
 
 } catch (error) {
    setMessage1('Thông tin tìm kiếm không phù hợp vui lòng kiểm tra lại!');
@@ -149,11 +155,11 @@ const sortedChuyen = useMemo(() => {
                     id="inputTo"
                     ref={toRef}>
                         <option value="nơi đến" selected disabled hidden>Nhập nơi đến</option>
-                        <option value="1">Bạch đằng</option> 
-                            <option value="2">Bình an</option>
-                        <option value="3">Thanh đa</option>
-                            <option value="4">Hiệp Bình Chánh</option>
-                        <option value="5">Linh Đông</option>
+                        <option value="1" name='bạch đằng'>Bạch đằng</option>
+                            <option value="2" name='bình an'>Bình an</option>
+                        <option value="3" name='thanh đa'>Thanh đa</option>
+                            <option value="4" name='hệp bình chánh'>Hiệp Bình Chánh</option>
+                        <option value="5" name='linh đông'>Linh Đông</option>
                     </select>
                     <img
                         decoding="async"
@@ -266,9 +272,7 @@ const sortedChuyen = useMemo(() => {
 >
     {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
 </button>
-
-
-            </div>
+        </div>
                 </div> 
 
 
