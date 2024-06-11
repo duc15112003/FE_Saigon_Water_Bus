@@ -34,7 +34,6 @@ const [userInfor, setUserInfor] = useState({});
   }, [step, clickedSeats,userInfor,seatLabels]);
 
   const stepTitles = ['Chọn Chỗ', 'Điểm đón, trả', 'Nhập thông tin'];
-
   return (
     <div className="container mx-auto p-4 h-full">
       <div className="flex justify-center mb-4">
