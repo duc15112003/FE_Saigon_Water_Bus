@@ -1,7 +1,7 @@
 // src/services/apiService.js
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080';
+const API_BASE_URL = 'http://localhost:8080/api/saigonwaterbus';
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -26,7 +26,7 @@ const timChuyen = async (searchParams) => {
     const response = await apiClient.get('/dat-ve', {
       params: searchParams,
     });
-    return response.data;
+    return response.data.result;
   } catch (error) {
     console.error('Error searching trips:', error);
     throw error;
