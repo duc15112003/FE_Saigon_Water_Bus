@@ -3,10 +3,10 @@ import { MagnifyingGlassIcon, UserIcon, CreditCardIcon, CheckBadgeIcon } from '@
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { PlusCircleIcon } from '@heroicons/react/24/solid';
-import { ArrowUpIcon, ArrowDownIcon, ArrowsRightLeftIcon, CalendarDaysIcon} from '@heroicons/react/24/solid';
 import '../ingredient/Datve/datve.css';
-import ChuyenTau from "./Datve/chuyen";
-import logoapp from "../../image/logo.png";
+
+import { useLocation } from 'react-router-dom';
+
 const stations = [
     { name: 'Bạch Đằng', description: 'Tọa lạc ngay trung tâm Thành phố (Q1) với công viên Bạch Đằng, phố đi bộ Nguyễn Huệ cùng nhiều địa điểm vui chơi, ăn uống khác đang chờ bạn.', image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-0-1-1536x880.jpg' },
     { name: 'Bình An', description: 'Kết nối 2 thành phố: TP. Thủ Đức - TP. HCM. Đây là nơi ngắm tòa nhà Landmark 81, kết nối Vinhome Central Park, Tân Cảng, Chợ Thảo Điền và các điểm đến khác.', image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-3-1536x880.jpg' },
@@ -16,6 +16,8 @@ const stations = [
 ];
 
 const Home = () => {
+
+    
     const [startDate, setStartDate] = useState(new Date());
     const [selectedStation, setSelectedStation] = useState(stations[0]);
     return (

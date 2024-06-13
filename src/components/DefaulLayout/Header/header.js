@@ -3,8 +3,10 @@ import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 
 import { useAuth } from "../../../AuthContext";
 
+
 function Header() {
   const { isLoggedIn, logout } = useAuth();
+
 
             const username = localStorage.getItem('us');
             // console.log(sessionStorage.getItem('us'))

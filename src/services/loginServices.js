@@ -18,7 +18,7 @@ const LoginProcess = async (username, password) => {
     
         const responseDataUsername = response.data.result.username;
         localStorage.setItem('token', response.data.result.token);
-        localStorage.setItem('us', responseDataUsername);
+        localStorage.setItem('us', username);
                 // window.location.href = '/';
 
         return "oke";
@@ -28,8 +28,26 @@ const LoginProcess = async (username, password) => {
     }
 };
 
+
+const LoginGoogle= async (code) =>{
+  console.log("code là",code)
+    try {
+      // Gửi yêu cầu GET đến backend với mã xác thực
+      const response = await axios.get('http://localhost:8080/api/saigonwaterbus/accesstoken', { params: { code } });
+      console.log('http://localhost:8080/api/saigonwaterbus/accesstoken', { code })
+      // Xử lý phản hồi từ backend nếu cần
+        localStorage.setItem('token', response.data.result.token);
+         localStorage.setItem('us', response.data.result.username);
+
+            return response.data;
+    } catch (error) {
+      throw new Error('Error processing Google code: ' + error.message);
+    }
+};
+
+
 const LoginService = {
-  LoginProcess
+  LoginProcess,LoginGoogle
 };
 
 export default LoginService;

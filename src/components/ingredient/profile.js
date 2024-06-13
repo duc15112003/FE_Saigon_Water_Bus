@@ -9,7 +9,7 @@ const UserDetailsPage = () => {
       try {
         // Lấy token từ local storage
         const token = localStorage.getItem("token");
-        
+        console.log("token la",token)
         // Tạo một header chứa token để gửi cùng yêu cầu HTTP
         const headers = {
           Authorization: `Bearer ${token}`
@@ -20,7 +20,7 @@ const UserDetailsPage = () => {
           "http://localhost:8080/api/saigonwaterbus/profile",
           { headers }
         );
-
+    console.log("link la",response)
         setUserDetail(response.data.result);
       } catch (error) {
         console.error("Error fetching user detail:", error);
