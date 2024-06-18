@@ -10,6 +10,7 @@ import Forsefl from "../components/ingredient/thongtintk";
 import Register from "../components/ingredient/dangky";
 import ThanhToanThanhCong from "../components/ingredient/thanhtoanthanhcong.js";
 import UserDetailsPage from "../components/ingredient/profile.js";
+import LichSuDatVe from "../components/ingredient/lichsudatve";
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/about', component: About },
@@ -21,8 +22,8 @@ const publicRoutes = [
     { path:'/lich-su',component:HistoryTicket},
     { path:'/thong-tin',component:Forsefl},
     { path:'/dang-ky',component:Register},
-    { path:'/profile',component:UserDetailsPage
-},
+    { path:'/profile',component:UserDetailsPage},
+        { path:'/lich-su-dat-ve',component:LichSuDatVe },
 
     {path: '/dat-ve/thanh-toan-thanh-cong',component:ThanhToanThanhCong}
 

@@ -40,6 +40,7 @@ useEffect(() => {
   // Phần JSX còn lại của component SeatingChart
  const renderSeat = (seat) => {
   const isSelected = clickedSeats.includes(seat);
+  console.log(seat)
   return (
 <div className=''>
 <div className={`seat-item available z-max  ${isSelected ? 'selected-seat' : ''} ${seat.status==='Notyet' ? '' : 'seat-type-info disabled unavailable'}`} key={seat} style={{ fontSize: '10px' }}>

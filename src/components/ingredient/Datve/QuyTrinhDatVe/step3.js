@@ -29,10 +29,10 @@ const Step3 = ({ prevStep }) => {
     localStorage.setItem('orderData', JSON.stringify(orderData)); // Lưu thông tin đơn hàng vào localStorage
 
     try {
-      const response = await axios.post('http://localhost:8080/api/payment/vnpay', {
+      const response = await axios.post('http://localhost:8080/api/saigonwaterus/payment/vnpay', {
         orderId: new Date().getTime().toString(), // Sử dụng timestamp làm orderId
         amount: total,
-        returnUrl: 'http://localhost:8080/api/payment/vnpay/return'
+        returnUrl: 'http://localhost:8080/api/saigonwaterus/payment/vnpay/return'
       });
       // Mở cửa sổ popup khi nhận được URL từ server
       paymentWindow = window.open(response.data, 'Payment', 'width=600,height=600');
@@ -49,7 +49,7 @@ const Step3 = ({ prevStep }) => {
       localStorageData[key] = localStorage.getItem(key);
     }
     try {
-      await axios.post('http://localhost:8080/api/saveLocalStorageData', { localStorageData });
+      await axios.post('http://localhost:8080/api/saigonwaterbus/saveLocalStorageData', { localStorageData });
     } catch (error) {
       console.error('Error sending localStorage data to server:', error);
     }
@@ -111,10 +111,10 @@ const Step3 = ({ prevStep }) => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/send-mail', emailData);
+      const response = await axios.post('http://localhost:8080/api/saigonwaterbus/send-mail', emailData);
       console.log(response.data); // Handle response data from the API if needed
       sendLocalStorageToServer();
-      window.location.href = 'http://localhost:3000/dat-ve/thanh-toan-thanh-cong'; // Redirect after email is sent
+      window.location.href = 'http://localhost:4141/dat-ve/thanh-toan-thanh-cong'; // Redirect after email is sent
     } catch (error) {
       console.error('Error calling the send-mail API:', error);
     } finally {

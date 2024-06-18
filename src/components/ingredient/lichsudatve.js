@@ -1,35 +1,49 @@
-// src/components/DataTable.js
-import React from 'react';
-import { CheckCircleIcon, XCircleIcon, PencilIcon } from '@heroicons/react/24/solid';
+import React, { useState, useEffect } from 'react';
+import { PencilIcon, CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
+const formatDateTime = (dateTimeString) => {
+    const dateObj = new Date(dateTimeString); // Chuyển chuỗi ngày giờ thành đối tượng Date
+    const hours = dateObj.getHours().toString().padStart(2, '0'); // Lấy giờ và định dạng số thành chuỗi 2 chữ số
+    const minutes = dateObj.getMinutes().toString().padStart(2, '0'); // Lấy phút và định dạng số thành chuỗi 2 chữ số
+    const seconds = dateObj.getSeconds().toString().padStart(2, '0'); // Lấy giây và định dạng số thành chuỗi 2 chữ số
+    const day = dateObj.getDate().toString().padStart(2, '0'); // Lấy ngày và định dạng số thành chuỗi 2 chữ số
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, '0'); // Lấy tháng (0-indexed) và cộng thêm 1 để chuyển thành 1-indexed, sau đó định dạng số thành chuỗi 2 chữ số
+    const year = dateObj.getFullYear(); // Lấy năm
 
-const data = [
-    {
-        id: 1,
-        idTicket: 'Ticket1',
-        idShip: 'Ship1',
-        CountSeat: 1,
-        nameSeat: 'A1',
-        total:'15.000đ'
-    },
-    {
-        id: 2,
-        idTicket: 'Ticket2',
-        idShip: 'Ship1',
-        CountSeat: 2,
-        nameSeat: 'A2, B1',
-        total:'15.000đ'
-    },
-    {
-        id: 3,
-        idTicket: 'Ticket3',
-        idShip: 'Ship2',
-        CountSeat: 1,
-        nameSeat: 'A1',
-        total:'15.000đ'
-    },
-];
+    return `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
+};
 
-const DataTable = () => {
+const LichSuDatVe = () => {
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+const fetchData = async () => {
+    try {
+        // Lấy token từ localStorage
+        const token = localStorage.getItem('token'); // Thay 'jwtToken' bằng key bạn lưu token trong localStorage
+
+        // Chuẩn bị options cho fetch request
+        const requestOptions = {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                // Thêm token vào header Authorization
+                'Authorization': `Bearer ${token}`
+            }
+        };
+
+        // Gửi yêu cầu fetch với các options đã chuẩn bị
+        const response = await fetch('http://localhost:8080/api/saigonwaterbus/lichsuve', requestOptions);
+        const jsonData = await response.json();
+        setData(jsonData.result);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+};
+
+
     const getIcon = (type) => {
         switch (type) {
             case 'check':
@@ -41,46 +55,63 @@ const DataTable = () => {
         }
     };
 
-    return (
-        <div className="overflow-x-auto">
-            <div className="flex items-center justify-center bg-stone-200 h-40">
-                <div className="container mx-auto">
-                    <h1 className="qodef-m-title entry-title text-xl font-bold ">
-                        Lịch sử đặt vé
-                    </h1>
-                </div>
+       return (
+    <div className="overflow-x-auto">
+        <div className="flex items-center justify-center bg-stone-200 h-40 mb-6">
+            <div className="container mx-auto text-center">
+                <h1 className="text-3xl font-bold text-gray-800">Lịch sử đặt vé</h1>
             </div>
-            <table className="min-w-full bg-white border border-gray-200">
-                <thead>
-                <tr>
-                    <th className="px-4 py-2 border-b text-left">STT</th>
-                    <th className="px-4 py-2 border-b text-left">Mã vé</th>
-                    <th className="px-4 py-2 border-b text-left">Mã tàu</th>
-                    <th className="px-4 py-2 border-b text-left">Số lượng ghế</th>
-                    <th className="px-4 py-2 border-b text-left">Tên ghế</th>
-                    <th className="px-4 py-2 border-b text-left">Thành tiền</th>
-                    <th className="px-4 py-2 border-b text-left"></th>
-                </tr>
-                </thead>
-                <tbody>
-                {data.map((item) => (
-                    <tr key={item.id}>
-                        <td className="px-4 py-2 border-b">{item.id}</td>
-                        <td className="px-4 py-2 border-b">{item.idTicket}</td>
-                        <td className="px-4 py-2 border-b">{item.idShip}</td>
-                        <td className="px-4 py-2 border-b">{item.CountSeat}</td>
-                        <td className="px-4 py-2 border-b">{item.nameSeat}</td>
-                        <td className="px-4 py-2 border-b">{item.total}</td>
-                        <td className="px-4 py-2 border-b flex justify-center">
-                            <PencilIcon className="w-5 h-5 text-blue-500 cursor-pointer" />
-                            xem chi tiết
-                        </td>
-                    </tr>
-                ))}
-                </tbody>
-            </table>
         </div>
-    );
+        {data && data.length > 0 ? (
+            <div className="container mx-auto px-4">
+                <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
+                    <thead>
+                        <tr className="bg-gray-100">
+                            <th className="px-4 py-2 border-b text-left font-medium text-gray-600">STT</th>
+                            <th className="px-4 py-2 border-b text-left font-medium text-gray-600">Tên ghế</th>
+                            <th className="px-4 py-2 border-b text-left font-medium text-gray-600">Số lượng vé</th>
+                            <th className="px-4 py-2 border-b text-left font-medium text-gray-600">Ngày mua</th>
+                            <th className="px-4 py-2 border-b text-left font-medium text-gray-600">Thành tiền</th>
+                            <th className="px-4 py-2 border-b text-left font-medium text-gray-600">Phương thức thanh toán</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {data.map((item, index) => (
+                            <tr key={index} className={index % 2 === 0 ? 'bg-gray-50' : 'bg-white'}>
+                                <td className="px-4 py-2 border-b text-gray-700">{index + 1}</td>
+                                <td className="px-4 py-2 border-b text-gray-700">{item.seats_name}</td>
+                                <td className="px-4 py-2 border-b text-gray-700">{item.seat_count}</td>
+                                <td className="px-4 py-2 border-b text-gray-700">{formatDateTime(item.created_at)}</td>
+                                <td className="px-4 py-2 border-b text-gray-700">
+                                    {parseFloat(item.total_amount).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}
+                                </td>
+                                <td className="px-4 py-2 border-b text-gray-700">
+                                    {item.pay_method === 'BANK_TRANSFER' ? 'Chuyển khoản' : 'Tiền mặt'}
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+        ) : (
+<div className="container mx-auto text-center mt-4 bg-gray-200 border border-gray-300 p-4 rounded-lg flex items-center justify-center space-x-2">
+    <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 20l4-16m2 16l4-16M6 9h14M4 15h14"></path>
+    </svg>
+<p className="text-gray-600">
+    Không có lịch sử đặt vé{' '}
+    <a href="/dat-ve">
+        <button className="bg-green-400 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+            <span>Đặt vé ngay</span>
+        </button>
+    </a>
+</p>
+</div>
+
+        )}
+    </div>
+);
+
 };
 
-export default DataTable;
+export default LichSuDatVe;

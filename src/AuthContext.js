@@ -15,14 +15,49 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem('isLoggedIn', 'true');
   };
 
-const logout = () => {
-  setIsLoggedIn(false);
+  const logout = () => {
+    setIsLoggedIn(false);
     localStorage.setItem('isLoggedIn', 'false');
-  sessionStorage.clear(); 
-  localStorage.clear();
-  window.location.href = '/login';
+    sessionStorage.clear();
+    localStorage.clear();
+    window.location.href = '/login';
+  };
 
-};
+  const checkTokenValidity = () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const tokenExpiration = JSON.parse(atob(token.split('.')[1])).exp * 1000;
+      const now = new Date().getTime();
+
+      if (now >= tokenExpiration) {
+        logout();
+      } else {
+        setTimeout(() => {
+          alert('Phiên đăng nhập của bạn đã hết hạn');
+          logout();
+        }, tokenExpiration - now);
+      }
+    }
+  };
+
+  const handleVisibilityChange = () => {
+    if (!document.hidden) {
+      checkTokenValidity();
+    }
+  };
+
+  useEffect(() => {
+    // Kiểm tra token khi component mount
+    checkTokenValidity();
+
+    // Đăng ký sự kiện visibilitychange
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    return () => {
+      // Hủy đăng ký sự kiện khi component unmount
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, login, logout }}>

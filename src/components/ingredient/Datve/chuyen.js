@@ -180,23 +180,23 @@ const sortedChuyen = useMemo(() => {
                 </div>
             <div className="flex-1 flex flex-col w-full md:w-auto relative">
                 <label className="block text-gray-700">Ngày khởi hành</label>
-                <div className="flex items-center relative">
+                <div className="flex items-center w-full">
                         <DatePicker
-                            className="p-2 lg:w-80 w-auto border border-gray-300 rounded mr-2"
+                            className="p-2 border border-gray-300 rounded mr-2"
                             name="departDate"
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
-                    
                             dateFormat="dd/MM/yyyy"
-                            style={{ width: '165%' }} // Loại bỏ !important và chỉ cần truyền một đối tượng JavaScript với thuộc tính width
+                            style={{ width: '199%' }} // Loại bỏ !important và chỉ cần truyền một đối tượng JavaScript với thuộc tính width
                         />
-                <img
+                            <img
                 decoding="async"
                 src="//static.vexere.com/webnx/prod/img/date-v5.svg"
                 alt=""
-                className="h-8 absolute right-10"
-              />  
+                className="h-8 absolute right-14"
+              /> 
             </div>
+ 
           </div>
                 <div className="flex w-full md:w-auto">
                       <button
