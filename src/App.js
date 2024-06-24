@@ -16,18 +16,14 @@ function App() {
           {notification}
         </div>
       )}
- 
-
                 <Routes>
                    {publicRoutes.map((route, index) => {
                         let Layout = DefaultLayout; // Default layout
-
-                        if (route.path === '/login' || route.path === '/dang-ky') {
+                        if (route.path === '/login' || route.path === '/dang-ky'||route.path==='/quen-mat-khau') {
                             Layout = AuthLayout;
                         } else if (route.path === '/lich-su-dat-ve'||route.path==='/dat-ve/thanh-toan-thanh-cong') {
                             Layout = NullLayout;
                         }
-
                         const Page = route.component;
                         return (
                             <Route

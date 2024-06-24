@@ -26,6 +26,8 @@ const timChuyen = async (searchParams) => {
     const response = await apiClient.get('/dat-ve', {
       params: searchParams,
     });
+        console.log(response.data.result)
+
     return response.data.result;
   } catch (error) {
     console.error('Error searching trips:', error);

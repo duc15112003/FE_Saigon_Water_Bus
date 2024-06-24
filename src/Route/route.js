@@ -11,6 +11,7 @@ import Register from "../components/ingredient/dangky";
 import ThanhToanThanhCong from "../components/ingredient/thanhtoanthanhcong.js";
 import UserDetailsPage from "../components/ingredient/profile.js";
 import LichSuDatVe from "../components/ingredient/lichsudatve";
+import ForgotPassword from "../components/ingredient/quenmk.js";
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/about', component: About },
@@ -23,7 +24,9 @@ const publicRoutes = [
     { path:'/thong-tin',component:Forsefl},
     { path:'/dang-ky',component:Register},
     { path:'/profile',component:UserDetailsPage},
-        { path:'/lich-su-dat-ve',component:LichSuDatVe },
+     { path:'/lich-su-dat-ve',component:LichSuDatVe },
+        {path:'/quen-mat-khau',component:ForgotPassword
+},
 
     {path: '/dat-ve/thanh-toan-thanh-cong',component:ThanhToanThanhCong}
 

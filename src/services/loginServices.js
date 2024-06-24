@@ -1,6 +1,6 @@
 
 import axios from 'axios';
-import { useAuth } from '../AuthContext';
+import { param } from 'jquery';
 const API_BASE_URL = 'http://localhost:8080/api/saigonwaterbus';
 
 const apiClient = axios.create({
@@ -30,15 +30,11 @@ const LoginProcess = async (username, password) => {
 
 
 const LoginGoogle= async (code) =>{
-  console.log("code là",code)
     try {
-      // Gửi yêu cầu GET đến backend với mã xác thực
-      const response = await axios.get('http://localhost:8080/api/saigonwaterbus/accesstoken', { params: { code } });
-      console.log('http://localhost:8080/api/saigonwaterbus/accesstoken', { code })
-      // Xử lý phản hồi từ backend nếu cần
-        localStorage.setItem('token', response.data.result.token);
-         localStorage.setItem('us', response.data.result.username);
-
+    const response = await axios.get(`http://localhost:8080/api/saigonwaterbus/accesstoken?code=${code}`);
+        localStorage.setItem('token', response.data.token);
+         localStorage.setItem('us', response.data.username);
+  console.log("data"+response.data)
             return response.data;
     } catch (error) {
       throw new Error('Error processing Google code: ' + error.message);

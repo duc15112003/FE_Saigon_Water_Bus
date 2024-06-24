@@ -7,7 +7,7 @@ const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     const savedIsLoggedIn = localStorage.getItem('isLoggedIn');
-    return savedIsLoggedIn === 'true' || false;
+    return savedIsLoggedIn;
   });
 
   const login = () => {
