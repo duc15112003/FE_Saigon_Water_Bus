@@ -8,6 +8,8 @@ import Port from "../components/ingredient/port";
 import HistoryTicket from "../components/ingredient/lichsudatve";
 import Forsefl from "../components/ingredient/thongtintk";
 import Register from "../components/ingredient/dangky";
+import ThanhToanThanhCong from "../components/ingredient/thanhtoanthanhcong.js";
+import UserDetailsPage from "../components/ingredient/profile.js";
 const publicRoutes = [
     { path: '/', component: Home },
     { path: '/about', component: About },
@@ -19,6 +21,10 @@ const publicRoutes = [
     { path:'/lich-su',component:HistoryTicket},
     { path:'/thong-tin',component:Forsefl},
     { path:'/dang-ky',component:Register},
+    { path:'/profile',component:UserDetailsPage
+},
+
+    {path: '/dat-ve/thanh-toan-thanh-cong',component:ThanhToanThanhCong}
 
 
 
