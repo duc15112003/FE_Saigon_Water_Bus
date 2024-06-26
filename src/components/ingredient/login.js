@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LoginService from '../../services/loginServices';
 import { useAuth } from '../../AuthContext';
+import axios from 'axios';
 
 function Login() {
   const { isLoggedIn, login } = useAuth();
@@ -11,34 +12,36 @@ function Login() {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [errorLogin, setErrorLogin] = useState('');
 
-useEffect(() => {
+  useEffect(() => {
     const handleGoogleRedirect = async () => {
-      try {
-        const urlParams = new URLSearchParams(window.location.search);
-        const code = urlParams.get('code');
-        if (code) {
+      const urlParams = new URLSearchParams(window.location.search);
+      const code = urlParams.get('code');
+      console.log("code", code);
+
+      if (code) {
+        try {
           await LoginService.LoginGoogle(code);
-          login(); // Gửi mã xác thực lên backend để xử lý
+          login();
           setShowSuccessMessage(true);
           setTimeout(() => {
-          setShowSuccessMessage(false);
-            window.location.href = '/'; // Chuyển hướng người dùng đến trang chính sau khi đăng nhập thành công
-          }, 2000); // Chờ 2 giây trước khi chuyển hướng
+            setShowSuccessMessage(false);
+            window.location.href = '/';
+          }, 2000);
+        } catch (error) {
+          console.error('Error occurred while processing Google redirect:', error);
         }
-      } catch (error) {
-        console.error('Error occurred while processing Google redirect:', error);
       }
     };
 
     handleGoogleRedirect();
-  }, [login]);
+  }, []); // Chỉ chạy một lần khi component được mount
 
   useEffect(() => {
     if (isLoggedIn) {
       setShowSuccessMessage(true);
       setTimeout(() => {
         window.location.href = '/';
-      }, 2000); // Chờ 2 giây trước khi chuyển hướng
+      }, 2000);
     }
   }, [isLoggedIn]);
 
@@ -64,26 +67,26 @@ useEffect(() => {
       // Gọi hàm login với đối tượng chứa thông tin đăng nhập
       await LoginService.LoginProcess(credentials.username, credentials.password);
       login();
-      console.log(login());
     } catch (error) {
       setShowSuccessMessage(true);
       setTimeout(() => {
-              setShowSuccessMessage(false);
-
-      }, 2000); // Chờ 2 giây trước khi chuyển hướng
-        setErrorLogin('sai')
+        setShowSuccessMessage(false);
+      }, 2000);
+      setErrorLogin('sai');
       console.error('Login failed:', error);
     }
   };
-const handleLoginWithGoogle = async () => {
-  try {
-    const response = await fetch('http://localhost:8080/api/saigonwaterbus/login/google');
-    const authorizationUri = await response.text();
-    window.location.href = authorizationUri;
-  } catch (error) {
-    console.error('Error occurred while logging in with Google:', error);
-  }
-};
+
+  const handleLoginWithGoogle = async () => {
+    try {
+      const response = await axios.get('http://localhost:8080/api/saigonwaterbus/login/google');
+      const authorizationUri = response.data; // Nếu API trả về URI dưới dạng text
+      console.log("Redirecting to: ", authorizationUri);
+      window.location.href = authorizationUri;
+    } catch (error) {
+      console.error('Error occurred while logging in with Google:', error);
+    }
+  };
 
   return (
 <div className="LoginPage">
@@ -141,7 +144,7 @@ const handleLoginWithGoogle = async () => {
                 className="mr-2 checked:bg-purple-700"
               />
               <label htmlFor="remember" className="text-xs font-semibold text-gray-600">Nhớ mật khẩu</label>
-              <a href="#" className="text-xs font-semibold text-purple-700 ml-auto">Quên mật khẩu?</a>
+              <a href="/quen-mat-khau" className="text-xs font-semibold text-purple-700 ml-auto">Quên mật khẩu?</a>
             </div>
           <div className="mb-3">
             <button

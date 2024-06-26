@@ -11,16 +11,14 @@ function ChuyenTau() {
 const [seatLabels,setSeatLabels]= useState([])
 
 const timGhe = async (event, chuyenId) => {
-
     if (event) {
         event.preventDefault();
     }
-
     try {
         const responseData = await apiService.timGhe(chuyenId);
-
         setSeatLabels(responseData)
     } catch (error) {
+
         console.error('Error fetching seat labels:', error);
     } 
 }
@@ -103,7 +101,7 @@ const sortedChuyen = useMemo(() => {
         <div className="mx-auto container p-4">
         {/* form tim chuyen */}
 <div className="flex justify-center content-center">
-                      <span className="font-bold text-3xl p-4"> {message1}</span>
+    <span className="font-bold text-3xl p-4"> {message1}</span>
         </div>
         <form
               autoComplete="off"
@@ -180,23 +178,23 @@ const sortedChuyen = useMemo(() => {
                 </div>
             <div className="flex-1 flex flex-col w-full md:w-auto relative">
                 <label className="block text-gray-700">Ngày khởi hành</label>
-                <div className="flex items-center relative">
+                <div className="flex items-center w-full">
                         <DatePicker
-                            className="p-2 lg:w-80 w-auto border border-gray-300 rounded mr-2"
+                            className="p-2 border border-gray-300 rounded mr-2"
                             name="departDate"
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
-                    
                             dateFormat="dd/MM/yyyy"
-                            style={{ width: '165%' }} // Loại bỏ !important và chỉ cần truyền một đối tượng JavaScript với thuộc tính width
+                            style={{ width: '199%' }} // Loại bỏ !important và chỉ cần truyền một đối tượng JavaScript với thuộc tính width
                         />
-                <img
+                            <img
                 decoding="async"
                 src="//static.vexere.com/webnx/prod/img/date-v5.svg"
                 alt=""
-                className="h-8 absolute right-10"
-              />  
+                className="h-8 absolute right-14"
+              /> 
             </div>
+ 
           </div>
                 <div className="flex w-full md:w-auto">
                       <button
@@ -255,7 +253,7 @@ const sortedChuyen = useMemo(() => {
                 <div className="gap-1">
                     <div className="flex items-center cursor-pointer">
                         <span className="font-medium px-2">Thông tin chi tiết</span>
-<button onClick={() => {setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }));setOpenSeat(false);}}>                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+<button onClick={() => {setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }));setOpenSeat(false);}}> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
                             </button>
@@ -266,21 +264,17 @@ const sortedChuyen = useMemo(() => {
             <div className=" flex flex-col items-end justify-between mt-2 p-4">
                 <span className="text-xl font-bold text-blue-600">15,000đ</span>
                             <span className="text-lg  mb-2">Còn {chuyen.availableSeats-2} chỗ trống</span>
-<button 
-    onClick={(event) => { timGhe(event, chuyen.id);setOpenTab(false) ;setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] })) }}
-    className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition" 
->
-    {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
-</button>
-        </div>
-                </div> 
-
-
-
+                        <button 
+                            onClick={(event) => {setSeatLabels([]); timGhe(event, chuyen.id);setOpenTab(false) ; setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] })) }}
+                            className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition" 
+                        >
+                            {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
+                        </button>
+                        </div>
+            </div> 
         </div>
     </div>
 {openSeat[chuyen.id] && <MultiStepForm chuyenTau={chuyen} seatLabels={seatLabels}/>}
-
 <div className="bg-white">
 {openTab[chuyen.id] && <ChiTietChuyen/>}
 {/* {openTab && <MultiStepForm/>} */}

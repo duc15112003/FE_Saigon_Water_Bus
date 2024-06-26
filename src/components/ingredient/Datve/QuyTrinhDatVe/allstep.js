@@ -3,8 +3,7 @@ import Step1 from './step1';
 import Step2 from './step2';
 import Step3 from './step3';
 
-const MultiStepForm = ({chuyenTau,seatLabels}) => {
-  console.log("chuyentau",chuyenTau)
+const MultiStepForm = ({chuyenTau,dateTrip,seatLabels}) => {
   localStorage.setItem('chuyenData', JSON.stringify(chuyenTau));
   const [step, setStep] = useState(1);
   const [completedSteps, setCompletedSteps] = useState([]);

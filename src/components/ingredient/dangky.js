@@ -1,271 +1,5 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-
-// const RegistrationForm = () => {
-//     const [formData, setFormData] = useState({
-//         firstName: '',
-//         lastName: '',
-//         birthday: '',
-//         gender: '',
-//         email: '',
-//         phone: '',
-//         province: '',
-//         district: '',
-//         ward: ''
-//     });
-
-//     const [provinces, setProvinces] = useState([]);
-//     const [districts, setDistricts] = useState([]);
-//     const [wards, setWards] = useState([]);
-//     const [step, setStep] = useState(1); // State để điều hướng giữa các phần của form
-
-//     useEffect(() => {
-//         axios.get('https://esgoo.net/api-tinhthanh/1/0.htm')
-//             .then(response => {
-//                 if (response.data.error === 0) {
-//                     setProvinces(response.data.data);
-//                 }
-//             })
-//             .catch(error => {
-//                 console.error('There was an error fetching the provinces!', error);
-//             });
-//     }, []);
-
-//     useEffect(() => {
-//         if (formData.province) {
-//             axios.get(`https://esgoo.net/api-tinhthanh/2/${formData.province}.htm`)
-//                 .then(response => {
-//                     if (response.data.error === 0) {
-//                         setDistricts(response.data.data);
-//                         setWards([]); // Reset wards when province changes
-//                     }
-//                 })
-//                 .catch(error => {
-//                     console.error('There was an error fetching the districts!', error);
-//                 });
-//         }
-//     }, [formData.province]);
-
-//     useEffect(() => {
-//         if (formData.district) {
-//             axios.get(`https://esgoo.net/api-tinhthanh/3/${formData.district}.htm`)
-//                 .then(response => {
-//                     if (response.data.error === 0) {
-//                         setWards(response.data.data);
-//                     }
-//                 })
-//                 .catch(error => {
-//                     console.error('There was an error fetching the wards!', error);
-//                 });
-//         }
-//     }, [formData.district]);
-
-//     const handleChange = (e) => {
-//         const { name, value } = e.target;
-//         setFormData({
-//             ...formData,
-//             [name]: value
-//         });
-//     };
-
-//     const handleSubmit = (e) => {
-//         e.preventDefault();
-//         if(step === 1){
-//             setStep(2); // Chuyển đến bước 2 khi nhấn submit ở bước 1
-//         } else if(step === 2){
-//             // Xử lý đăng ký và ghi lại mảng ở đây
-//             console.log('Form submitted:', formData);
-//         }
-//     };
-
-//     return (
-//         <div
-//             className="min-h-screen flex items-center justify-center"
-//             style={{
-//                 backgroundImage: `url(https://secure3.vncdn.vn/ttnew/r/2021/04/01/waterbus5-1617259851.jpg)`,
-//                 backgroundSize: 'cover',
-//                 backgroundPosition: 'center'
-//             }}
-//         >
-//             <div className="max-w-md w-full mx-auto p-8 bg-white shadow-md rounded-md">
-//                 <h2 className="text-2xl font-bold mb-6 text-center">Chào mừng tới Waterbus</h2>
-//                 {step === 1 && (
-//                     <form onSubmit={handleSubmit}>
-//                         <div className="grid grid-cols-2 gap-4 mb-4">
-//                             <div>
-//                                 <label className="block text-gray-700">First Name</label>
-//                                 <input
-//                                     type="text"
-//                                     name="firstName"
-//                                     value={formData.firstName}
-//                                     onChange={handleChange}
-//                                     className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                                 />
-//                             </div>
-//                             <div>
-//                                 <label className="block text-gray-700">Last Name</label>
-//                                 <input
-//                                     type="text"
-//                                     name="lastName"
-//                                     value={formData.lastName}
-//                                     onChange={handleChange}
-//                                     className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                                 />
-//                             </div>
-//                         </div>
-//                         <div className="grid grid-cols-2 gap-4 mb-4">
-//                             <div>
-//                                 <label className="block text-gray-700">Birthday</label>
-//                                 <input
-//                                     type="date"
-//                                     name="birthday"
-//                                     value={formData.birthday}
-//                                     onChange={handleChange}
-//                                     className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                                 />
-//                             </div>
-//                             <div>
-//                                 <label className="block text-gray-700">Gender</label>
-//                                 <div className="flex items-center mt-1">
-//                                     <input
-//                                         type="radio"
-//                                         name="gender"
-//                                         value="Male"
-//                                         checked={formData.gender === 'Male'}
-//                                         onChange={handleChange}
-//                                         className="mr-2"
-//                                     />
-//                                     <label className="mr-4">Male</label>
-//                                     <input
-//                                         type="radio"
-//                                         name="gender"
-//                                         value="Female"
-//                                         checked={formData.gender === 'Female'}
-//                                         onChange={handleChange}
-//                                         className="mr-2"
-//                                     />
-//                                     <label>Female</label>
-//                                 </div>
-//                             </div>
-//                         </div>
-//                         <div className="mb-4">
-//                             <label className="block text-gray-700">Email</label>
-//                             <input
-//                                 type="email"
-//                                 name="email"
-//                                 value={formData.email}
-//                                 onChange={handleChange}
-//                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                             />
-//                         </div>
-//                         <div className="mb-4">
-//                             <label className="block text-gray-700">Phone Number</label>
-//                             <input
-//                                 type="tel"
-//                                 name="phone"
-//                                 value={formData.phone}
-//                                 onChange={handleChange}
-//                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                             />
-//                         </div>
-//                         <label className="block text-gray-700">Địa chỉ</label>
-//                         <div className="mb-4 flex">
-//                             <select
-//                                 name="province"
-//                                 value={formData.province}
-//                                 onChange={handleChange}
-//                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                             >
-//                                 <option value="">Select Province</option>
-//                                 {provinces.map((province) => (
-//                                     <option key={province.id} value={province.id}>
-//                                         {province.full_name}
-//                                     </option>
-//                                 ))}
-//                             </select>
-//                             <select
-//                                 name="district"
-//                                 value={formData.district}
-//                                 onChange={handleChange}
-//                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                                 disabled={!formData.province}
-//                             >
-//                                 <option value="">Select District</option>
-//                                 {districts.map((district) => (
-//                                     <option key={district.id} value={district.id}>
-//                                         {district.full_name}
-//                                     </option>
-//                                 ))}
-//                             </select>
-//                             <select
-//                                 name="ward"
-//                                 value={formData.ward}
-//                                 onChange={handleChange}
-//                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                                 disabled={!formData.district}
-//                             >
-//                                 <option value="">Select Ward</option>
-//                                 {wards.map((ward) => (
-//                                     <option key={ward.id} value={ward.id}>
-//                                         {ward.full_name}
-//                                     </option>
-//                                 ))}
-//                             </select>
-//                         </div>
-//                     </form>
-//                 )}
-//                 {step === 2 && (
-//                     <form onSubmit={handleSubmit}>
-//                         {/* Các trường của bước 2 */}
-//                         <div>
-//                             <label className="block text-gray-700">Username</label>
-//                             <input
-//                                 type="text"
-//                                 name="username"
-//                                 value={formData.username}
-//                                 onChange={handleChange}
-//                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                             />
-//                         </div>
-//                         <div>
-//                             <label className="block text-gray-700">Password</label>
-//                             <input
-//                                 type="password"
-//                                 name="password"
-//                                 value={formData.password}
-//                                 onChange={handleChange}
-//                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                             />
-//                         </div>
-//                         <div>
-//                             <label className="block text-gray-700">Re-enter Password</label>
-//                             <input
-//                                 type="password"
-//                                 name="rePassword"
-//                                 value={formData.rePassword}
-//                                 onChange={handleChange}
-//                                 className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-//                             />
-//                         </div>
-//                     </form>
-//                 )}
-//                 <button
-//                     type="submit"
-//                     onClick={handleSubmit}
-//                     className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200"
-//                 >
-//                     {step === 1 ? 'Kế tiếp' : 'Đăng ký'}
-//                 </button>
-//             </div>
-//         </div>
-//     );
-// };
-
-// export default RegistrationForm;
-
-
-import React, { useState } from 'react';
-import registerUser from '../../services/register';
+import React, { useState, useEffect } from 'react';
+import registerUser, { sendMailCode } from '../../services/register';
 
 const RegistrationForm = () => {
     const [formData, setFormData] = useState({
@@ -277,56 +11,89 @@ const RegistrationForm = () => {
         password: '',
         confirmPassword: ''
     });
+
+    const [inputCode, setInputCode] = useState('');
+    const [timer, setTimer] = useState(0);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
-        const [loading, setLoading] = useState(false); // State để quản lý trạng thái loading
+    const [loading, setLoading] = useState(false);
 
+      const [showPassword, setShowPassword] = useState(false);
+            const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
+
+
+const toggleShowPasswordRepeat = () => {
+  setShowPasswordRepeat(!showPasswordRepeat);
+};
+
+const toggleShowPassword = () => {
+  setShowPassword(!showPassword);
+};
+
+
+    // console.log("input cođe",inputCode)
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value
         });
-        
     };
 
-const handleRegisterAccount = async (e) => {
+    const handleGetMailCode = async () => {
+        try {
+            setLoading(true);
+            const response = await sendMailCode(formData.email);
+                setTimer(120);
+                setError('');
+          
+            
+        } catch (error) {
+            console.error('Gửi mã xác nhận thất bại', error);
+            setError('Đã xảy ra lỗi khi gửi mã xác nhận');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    useEffect(() => {
+        let countdown;
+        if (timer > 0) {
+            countdown = setInterval(() => {
+                setTimer((prevTimer) => prevTimer - 1);
+            }, 3000);
+        }
+        return () => clearInterval(countdown);
+    }, [timer]);
+
+    const handleRegisterAccount = async (e) => {
         e.preventDefault();
+
+
         if (formData.password !== formData.confirmPassword) {
             setError('Mật khẩu và xác nhận mật khẩu không trùng khớp');
             return;
         }
-        
-        setLoading(true); // Bắt đầu hiển thị loading
 
-        // Giả lập loading trong 1.5 giây
-        setTimeout(async () => {
-            try {
-                const response = await registerUser(formData);
-                if (response) {
-                    if (response.data.code === 1002) {
-                        setError(response.data.message);
-                        setSuccess(false);
-                    } else {
-                        setSuccess(true);
-                        
-                        setError('');
-                        window.location.href = "/login";
-
-                    }
-                } else {
-                    setError('Đăng ký thất bại');
-                        setSuccess(false);
-                }
-            } catch (error) {
-                console.error('Đăng ký thất bại', error);
-                setError('Đã xảy ra lỗi khi đăng ký');
-                        setSuccess(false);
-            } finally {
-                setLoading(false); // Dừng hiển thị loading sau khi xử lý xong
+        setLoading(true);
+        try {
+            const response = await registerUser(formData,inputCode);
+            if (response.data.code === 1004) {
+                setError(response.data.message);
+                setSuccess(false);
+            } else {
+                                setSuccess(true);
+                setError('');
+                window.location.href = "/login";
             }
-        }, 1500); // Thời gian giả lập là 1.5 giây (1500 milliseconds)
+        } catch (error) {
+                // setError(response.data.message);
+            setSuccess(false);
+        } finally {
+            setLoading(false);
+        }
     };
+
     return (
         <div
             className="min-h-screen flex items-center justify-center"
@@ -336,26 +103,21 @@ const handleRegisterAccount = async (e) => {
                 backgroundPosition: 'center'
             }}
         >
-                    
-
-
             <div className="max-w-md w-full mx-auto p-8 bg-white shadow-md rounded-md">
-                                                     {error && <div className="mb-4 text-center text-red-500 font-bold">{error}</div>}
-{success && (
-    <div className="absolute inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-        <div className="bg-white p-8 rounded-lg shadow-lg">
-            <svg className="animate-spin h-5 w-5 mx-auto mb-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0c4.418 0 8 3.582 8 8s-3.582 8-8 8v-4H4zm2 5v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1H7a1 1 0 00-1 1zm2-9a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1V8z"></path>
-            </svg>
-            <p className="text-center text-gray-700">Đang xử lý...</p>
-        </div>
-    </div>
-)}
+                {error && <div className="mb-4 text-center text-red-500 font-bold">{error}</div>}
+                {success && (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75 z-50">
+                        <div className="bg-white p-8 rounded-lg shadow-lg">
+                            <svg className="animate-spin h-5 w-5 mx-auto mb-4 text-blue-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0c4.418 0 8 3.582 8 8s-3.582 8-8 8v-4H4zm2 5v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1H7a1 1 0 00-1 1zm2-9a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1V8z"></path>
+                            </svg>
+                            <p className="text-center text-gray-700">Đang xử lý...</p>
+                        </div>
+                    </div>
+                )}
 
-
-                <h2 className="text-2xl font-bold mb-6 text-center">Chào mừng tới Waterbus</h2>
-                    {/* {success && <div className="mb-4 text-green-500">{success}</div>} */}
+                <h2 className="text-xl font-bold mb-6 text-center">Đăng ký tài khoản SaiGonWaterBus</h2>
                 <form onSubmit={handleRegisterAccount}>
                     <div className="grid grid-cols-2 gap-4 mb-4">
                         <div>
@@ -414,54 +176,116 @@ const handleRegisterAccount = async (e) => {
                             className="mt-1 block w-full border border-gray-300 rounded-md p-2"
                         />
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Mật khẩu</label>
+                                <div className="mb-4">
+                                <label className="block text-gray-700">Mật khẩu</label>
+                                <div className="relative">
+                                    <input
+                                    type={showPassword ? "text" : "password"}
+                                    name="password"
+                                    value={formData.password}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                                    />
+                                    <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center focus:outline-none"
+                                    onClick={toggleShowPassword}
+                                    >
+                                    {showPassword ? (
+                                            <svg
+                                    viewBox="0 0 1024 1024"
+                                    fill="currentColor"
+                                    height="1em"
+                                    width="1em"
+                                    >
+                                    <path d="M942.2 486.2Q889.47 375.11 816.7 305l-50.88 50.88C807.31 395.53 843.45 447.4 874.7 512 791.5 684.2 673.4 766 512 766q-72.67 0-133.87-22.38L323 798.75Q408 838 512 838q288.3 0 430.2-300.3a60.29 60.29 0 000-51.5zm-63.57-320.64L836 122.88a8 8 0 00-11.32 0L715.31 232.2Q624.86 186 512 186q-288.3 0-430.2 300.3a60.3 60.3 0 000 51.5q56.69 119.4 136.5 191.41L112.48 835a8 8 0 000 11.31L155.17 889a8 8 0 0011.31 0l712.15-712.12a8 8 0 000-11.32zM149.3 512C232.6 339.8 350.7 258 512 258c54.54 0 104.13 9.36 149.12 28.39l-70.3 70.3a176 176 0 00-238.13 238.13l-83.42 83.42C223.1 637.49 183.3 582.28 149.3 512zm246.7 0a112.11 112.11 0 01146.2-106.69L401.31 546.2A112 112 0 01396 512z" />
+                                    <path d="M508 624c-3.46 0-6.87-.16-10.25-.47l-52.82 52.82a176.09 176.09 0 00227.42-227.42l-52.82 52.82c.31 3.38.47 6.79.47 10.25a111.94 111.94 0 01-112 112z" />
+                                    </svg>
+                                    ) : (
+                                        <svg
+                                    viewBox="0 0 1024 1024"
+                                    fill="currentColor"
+                                    height="1em"
+                                    width="1em"
+
+                                    >
+                                    <path d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" />
+                                    </svg>
+                                    )}
+                                    </button>
+                                </div>
+                                </div>
+                                <div className="mb-4">
+                                <label className="block text-gray-700">Mật khẩu</label>
+                                <div className="relative">
+                                    <input
+                                    type={showPasswordRepeat ? "text" : "password"}
+                                    name="confirmPassword"
+                                    value={formData.confirmPassword}
+                                    onChange={handleChange}
+                                    required
+                                    className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                                    />
+                                    <button
+                                    type="button"
+                                    className="absolute inset-y-0 right-0 pr-3 flex items-center focus:outline-none"
+                                    onClick={toggleShowPasswordRepeat}
+                                    >
+                                    {showPasswordRepeat ? (
+                                            <svg
+                                    viewBox="0 0 1024 1024"
+                                    fill="currentColor"
+                                    height="1em"
+                                    width="1em"
+                                    >
+                                    <path d="M942.2 486.2Q889.47 375.11 816.7 305l-50.88 50.88C807.31 395.53 843.45 447.4 874.7 512 791.5 684.2 673.4 766 512 766q-72.67 0-133.87-22.38L323 798.75Q408 838 512 838q288.3 0 430.2-300.3a60.29 60.29 0 000-51.5zm-63.57-320.64L836 122.88a8 8 0 00-11.32 0L715.31 232.2Q624.86 186 512 186q-288.3 0-430.2 300.3a60.3 60.3 0 000 51.5q56.69 119.4 136.5 191.41L112.48 835a8 8 0 000 11.31L155.17 889a8 8 0 0011.31 0l712.15-712.12a8 8 0 000-11.32zM149.3 512C232.6 339.8 350.7 258 512 258c54.54 0 104.13 9.36 149.12 28.39l-70.3 70.3a176 176 0 00-238.13 238.13l-83.42 83.42C223.1 637.49 183.3 582.28 149.3 512zm246.7 0a112.11 112.11 0 01146.2-106.69L401.31 546.2A112 112 0 01396 512z" />
+                                    <path d="M508 624c-3.46 0-6.87-.16-10.25-.47l-52.82 52.82a176.09 176.09 0 00227.42-227.42l-52.82 52.82c.31 3.38.47 6.79.47 10.25a111.94 111.94 0 01-112 112z" />
+                                    </svg>
+                                    ) : (
+                                        <svg
+                                    viewBox="0 0 1024 1024"
+                                    fill="currentColor"
+                                    height="1em"
+                                    width="1em"
+
+                                    >
+                                    <path d="M942.2 486.2C847.4 286.5 704.1 186 512 186c-192.2 0-335.4 100.5-430.2 300.3a60.3 60.3 0 000 51.5C176.6 737.5 319.9 838 512 838c192.2 0 335.4-100.5 430.2-300.3 7.7-16.2 7.7-35 0-51.5zM512 766c-161.3 0-279.4-81.8-362.7-254C232.6 339.8 350.7 258 512 258c161.3 0 279.4 81.8 362.7 254C791.5 684.2 673.4 766 512 766zm-4-430c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm0 288c-61.9 0-112-50.1-112-112s50.1-112 112-112 112 50.1 112 112-50.1 112-112 112z" />
+                                    </svg>
+                                    )}
+                                    </button>
+                                </div>
+                                </div>
+                    <div className="mb-4 flex items-center space-x-4">
                         <input
-                            type="password"
-                            name="password"
-                            value={formData.password}
-                            onChange={handleChange}
+                            placeholder='Nhập mã xác nhận gửi về gmail'
+                            type="text"
+                            name="inputCode"
+                            value={inputCode}
+                            onChange={(e) => setInputCode(e.target.value)}
                             required
-                            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
+                            className="border border-gray-300 rounded-md p-2 w-60 focus:outline-none"
                         />
+                        <button
+                            type="button"
+                            onClick={handleGetMailCode}
+                            className={`text-red-700 transition duration-200 ${loading || timer > 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            disabled={formData.email === '' || loading || timer > 0}
+                        >
+                            {timer > 0 ? `Gửi lại sau ${timer}s` : 'Lấy mã xác nhận'}
+                        </button>
                     </div>
-                    <div className="mb-4">
-                        <label className="block text-gray-700">Xác nhận mật khẩu</label>
-                        <input
-                            type="password"
-                            name="confirmPassword"
-                            value={formData.confirmPassword}
-                            onChange={handleChange}
-                            required
-                            className="mt-1 block w-full border border-gray-300 rounded-md p-2"
-                        />
-                    </div>
-
-<button
-    type="submit"
-    className={`w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
-    disabled={loading}
->
-    {loading ? (
-        <div className="flex items-center justify-center">
-            <svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0c4.418 0 8 3.582 8 8s-3.582 8-8 8v-4H4zm2 5v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1H7a1 1 0 00-1 1zm2-9a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1V8z"></path>
-            </svg>
-            Đang xử lý...
-        </div>
-    ) : (
-        'Đăng ký'
-    )}
-</button>
-
-
+                    <button
+                        type="submit"
+                        className={`w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                        disabled={loading}
+                    >
+                        Đăng ký tài khoản
+                    </button>
                 </form>
-
             </div>
         </div>
     );
 };
 
 export default RegistrationForm;
-

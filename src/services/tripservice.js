@@ -13,19 +13,29 @@ const apiClient = axios.create({
 const timGhe = async (chuyenId) => {
   try {
     const response = await apiClient.get(`/dat-ve/${chuyenId}`);
-    // console.log(response.data.data)
     return response.data.result;
   } catch (error) {
     console.error('Error fetching seat labels:', error);
     throw error;
   }
 };
-
+// /dat-ve/{tripId}/{departureDate}/getSeat
+const timGheBooked = async (tripId,dateTrip) => {
+  try {
+    const response = await apiClient.get(`/dat-ve/${tripId}/${dateTrip}/getSeat`);
+    console.log(response.data.result)
+    return response.data.result;
+  } catch (error) {
+    throw error;
+  }
+};
 const timChuyen = async (searchParams) => {
   try {
     const response = await apiClient.get('/dat-ve', {
       params: searchParams,
     });
+        console.log(response.data.result)
+
     return response.data.result;
   } catch (error) {
     console.error('Error searching trips:', error);
@@ -35,7 +45,7 @@ const timChuyen = async (searchParams) => {
 
 const apiService = {
   timGhe,
-  timChuyen
+  timChuyen,timGheBooked
   // Có thể thêm các hàm khác ở đây
 };
 

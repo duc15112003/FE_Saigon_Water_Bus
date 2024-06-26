@@ -1,125 +1,142 @@
 import {axios} from 'axios';
 import React, { useState,useEffect } from 'react';
+import apiService from '../../../services/tripservice';
 
-
-const SeatingChart = ({ clickedSeats,setClickedSeats,seatLabels}) => {
-// call api
-
-
-  //thong bao qua so luong ge
+const SeatingChart = ({ chuyenTau, clickedSeats, setClickedSeats, seatLabels }) => {
+  const [listSeatBooked, setListSeatBooked] = useState([]);
   const [notification, setNotification] = useState('');
 
- const handleSeatClick = (seat) => {
-     console.log(seat)
-  setClickedSeats((prevClickedSeats) => {
-    if (prevClickedSeats.length >= 6 && !prevClickedSeats.includes(seat)) {
-      return prevClickedSeats;
-    } else {
+  useEffect(() => {
+    const fetchBookedSeats = async () => {
+      try {
+        const response = await apiService.timGheBooked(chuyenTau.id, chuyenTau.departureDate);
+        setListSeatBooked(response); // Save the booked seats to state if needed
+      } catch (error) {
+        console.error("Error fetching booked seats", error);
+      }
+    };
+
+    fetchBookedSeats();
+  }, [chuyenTau.id, chuyenTau.departureDate]);
+
+  const handleSeatClick = (seat) => {
+    setClickedSeats((prevClickedSeats) => {
+      if (prevClickedSeats.length >= 6 && !prevClickedSeats.includes(seat)) {
+        return prevClickedSeats;
+      } else {
         if (prevClickedSeats.includes(seat)) {
-            // Nếu ghế đã được chọn trước đó, loại bỏ ghế đó khỏi danh sách
-            return prevClickedSeats.filter(clickedSeat => clickedSeat !== seat);
+          return prevClickedSeats.filter((clickedSeat) => clickedSeat !== seat);
         } else {
-            // Nếu ghế chưa được chọn trước đó, thêm ghế vào danh sách
-            return [...prevClickedSeats, seat];
+          return [...prevClickedSeats, seat];
         }
-    }
-  });
-};
+      }
+    });
+  };
 
-useEffect(() => {
+  useEffect(() => {
     localStorage.setItem('seatData', JSON.stringify(clickedSeats));
-  if (clickedSeats.length >= 6) {
+    if (clickedSeats.length >= 6) {
+      setNotification('Bạn chỉ có thể chọn tối đa 6 ghế.');
+    } else {
+      setNotification('');
+    }
+  }, [clickedSeats, setNotification]);
 
-    setNotification('Bạn chỉ có thể chọn tối đa 6 ghế.');
-  } else {
-    setNotification('');
-  }
-}, [clickedSeats, setNotification]);
+  const renderSeat = (seat) => {
+    const isSelected = clickedSeats.includes(seat);
+    const isBooked = listSeatBooked.some(bookedSeat => bookedSeat.seatName === seat.seatName);
 
-
-  // Phần JSX còn lại của component SeatingChart
- const renderSeat = (seat) => {
-  const isSelected = clickedSeats.includes(seat);
-  return (
-<div className=''>
-<div className={`seat-item available z-max  ${isSelected ? 'selected-seat' : ''} ${seat.status==='Notyet' ? '' : 'seat-type-info disabled unavailable'}`} key={seat} style={{ fontSize: '10px' }}>
-        <div className={`relative `}>
-          <div
-            className="flex items-center justify-center h-12 w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
-            onClick={() => seat.status==='Notyet' && handleSeatClick(seat)}>
-        <span className={`relative cursor-pointer text-gray-500 font-semibold   ${seat.status!=='Notyet' ? 'text-transparent' : ''} ${isSelected ? 'text-transparent' : ''}`} style={{fontSize:'10px',lineHeight:'32px',letterSpacing:'0.3px'}}>{seat.seatName}</span>
+    return (
+      <div className=''>
+        <div
+          className={`seat-item available z-max ${isSelected ? 'selected-seat' : ''} ${seat.status === 'ACTIVE' && !isBooked ? '' : 'seat-type-info disabled unavailable'}`}
+          key={seat.seatName}
+          style={{ fontSize: '10px' }}
+        >
+          <div className={`relative`}>
+            <div
+              className="flex items-center justify-center h-12 w-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+              onClick={() => seat.status === 'ACTIVE' && !isBooked && handleSeatClick(seat)}
+            >
+              <span
+                className={`relative cursor-pointer text-gray-500 font-semibold ${seat.status !== 'ACTIVE' || isBooked ? 'text-transparent' : ''} ${isSelected ? 'text-transparent' : ''}`}
+                style={{ fontSize: '10px', lineHeight: '32px', letterSpacing: '0.3px' }}
+              >
+                {seat.seatName}
+              </span>
+            </div>
+            <div className={`${isSelected ? 'seat-type-info selected' : ''}`} color="#B8B8B8">
+              <svg
+                width={40}
+                height={32}
+                viewBox="0 0 40 32"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <rect
+                  x="8.75"
+                  y="2.75"
+                  width="22.5"
+                  height="26.5"
+                  rx="2.25"
+                  fill="#FFFFFF"
+                  stroke="#B8B8B8"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <rect
+                  x="10.25"
+                  y="11.75"
+                  width="14.5"
+                  height="5.5"
+                  rx="2.25"
+                  transform="rotate(90 10.25 11.75)"
+                  fill="#FFFFFF"
+                  stroke="#B8B8B8"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <rect
+                  x="35.25"
+                  y="11.75"
+                  width="14.5"
+                  height="5.5"
+                  rx="2.25"
+                  transform="rotate(90 35.25 11.75)"
+                  fill="#FFFFFF"
+                  stroke="#B8B8B8"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <rect
+                  x="8.75"
+                  y="22.75"
+                  width="22.5"
+                  height="6.5"
+                  rx="2.25"
+                  fill="#FFFFFF"
+                  stroke="#B8B8B8"
+                  strokeWidth="1.5"
+                  strokeLinejoin="round"
+                />
+                <path
+                  className="icon-selected"
+                  d="M20.0002 6.33337C16.3202 6.33337 13.3335 9.32004 13.3335 13C13.3335 16.68 16.3202 19.6667 20.0002 19.6667C23.6802 19.6667 26.6668 16.68 26.6668 13C26.6668 9.32004 23.6802 6.33337 20.0002 6.33337ZM18.6668 16.3334L15.3335 13L16.2735 12.06L18.6668 14.4467L23.7268 9.38671L24.6668 10.3334L18.6668 16.3334Z"
+                  fill="transparent"
+                />
+                <path
+                  className="icon-disabled"
+                  d="M24.96 9.45992L23.54 8.03992L20 11.5899L16.46 8.03992L15.04 9.45992L18.59 12.9999L15.04 16.5399L16.46 17.9599L20 14.4099L23.54 17.9599L24.96 16.5399L21.41 12.9999L24.96 9.45992Z"
+                  fill="transparent"
+                />
+              </svg>
+            </div>
           </div>
-              <div className={`${isSelected ? 'seat-type-info selected ' : ''}`} color="#B8B8B8">
-                <svg
-                  width={40}
-                  height={32}
-                  viewBox="0 0 40 32"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="8.75"
-                    y="2.75"
-                    width="22.5"
-                    height="26.5"
-                    rx="2.25"
-                    fill="#FFFFFF"
-                    stroke="#B8B8B8"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                  />
-                  <rect
-                    x="10.25"
-                    y="11.75"
-                    width="14.5"
-                    height="5.5"
-                    rx="2.25"
-                    transform="rotate(90 10.25 11.75)"
-                    fill="#FFFFFF"
-                    stroke="#B8B8B8"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                  />
-                  <rect
-                    x="35.25"
-                    y="11.75"
-                    width="14.5"
-                    height="5.5"
-                    rx="2.25"
-                    transform="rotate(90 35.25 11.75)"
-                    fill="#FFFFFF"
-                    stroke="#B8B8B8"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                  />
-                  <rect
-                    x="8.75"
-                    y="22.75"
-                    width="22.5"
-                    height="6.5"
-                    rx="2.25"
-                    fill="#FFFFFF"
-                    stroke="#B8B8B8"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    className="icon-selected"
-                    d="M20.0002 6.33337C16.3202 6.33337 13.3335 9.32004 13.3335 13C13.3335 16.68 16.3202 19.6667 20.0002 19.6667C23.6802 19.6667 26.6668 16.68 26.6668 13C26.6668 9.32004 23.6802 6.33337 20.0002 6.33337ZM18.6668 16.3334L15.3335 13L16.2735 12.06L18.6668 14.4467L23.7268 9.38671L24.6668 10.3334L18.6668 16.3334Z"
-                    fill="transparent"
-                  />
-                  <path
-                    className="icon-disabled"
-                    d="M24.96 9.45992L23.54 8.03992L20 11.5899L16.46 8.03992L15.04 9.45992L18.59 12.9999L15.04 16.5399L16.46 17.9599L20 14.4099L23.54 17.9599L24.96 16.5399L21.41 12.9999L24.96 9.45992Z"
-                    fill="transparent"
-                  />
-                </svg>
-              </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
+
 const chunkSize = 6;
 const seatChunks = [];
 for (let i = 0; i < seatLabels.length; i += chunkSize) {
