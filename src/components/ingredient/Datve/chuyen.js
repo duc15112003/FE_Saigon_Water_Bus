@@ -11,14 +11,11 @@ function ChuyenTau() {
 const [seatLabels,setSeatLabels]= useState([])
 
 const timGhe = async (event, chuyenId) => {
-    console.log("concac",chuyenId)
     if (event) {
         event.preventDefault();
     }
-
     try {
         const responseData = await apiService.timGhe(chuyenId);
-
         setSeatLabels(responseData)
     } catch (error) {
 
@@ -256,7 +253,7 @@ const sortedChuyen = useMemo(() => {
                 <div className="gap-1">
                     <div className="flex items-center cursor-pointer">
                         <span className="font-medium px-2">Thông tin chi tiết</span>
-<button onClick={() => {setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }));setOpenSeat(false);}}>                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+<button onClick={() => {setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }));setOpenSeat(false);}}> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
                         </svg>
                             </button>
