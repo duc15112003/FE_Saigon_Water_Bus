@@ -10,7 +10,6 @@ function Header() {
 
             const username = localStorage.getItem('us');
             // console.log(sessionStorage.getItem('us'))
-
     return (
         <div className="Header  bg-white w-full z-50">
             <section className="relative mx-auto">
@@ -23,16 +22,18 @@ function Header() {
                         </div>
                         
                         <div className="w-6/12">
-                                <ul className="hidden md:flex px-4 mx-auto lg:gap-8 font-semibold font-heading space-x-12 justify-center">
+                                <ul className="hidden md:flex px-1 mx-auto text-base lg:gap-2 font-semibold font-heading space-x-12 justify-center">
                                     <li>
                                         <a className="hover:text-gray-200" href="/">Trang Chủ</a>
                                     </li>
                                     <li>
                                         <a className="hover:text-gray-200" href="/ben-tau">Bến Tàu</a>
                                     </li>
+
                                     <li>
                                         <a className="hover:text-gray-200" href="/lich">Lịch khởi hành</a>
                                     </li>
+
                                     <li>
                                         <a className="hover:text-gray-200" href="/dat-ve">Đặt Vé</a>
                                     </li>
@@ -62,7 +63,6 @@ function Header() {
             className="flex items-center hover:text-gray-200 ml-4"
             onClick={logout}
           >
- 
             Đăng xuất
                                <svg
                     fill="none"
@@ -88,7 +88,7 @@ function Header() {
           Đăng nhập
         </a>
       )}
-                        </div>
+         </div>
                     </div>
                     <a className="xl:hidden flex mr-6 items-center" href="#">
                         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 hover:text-gray-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
