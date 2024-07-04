@@ -46,7 +46,14 @@ const tabData = [
   },
   {
     label: 'Tiện Ích',
-    content: <p>This is content for Tab 2.</p>,
+    content:
+<div className='flex flex-col items-center'>
+  {/* <p className='text-center'>Tiện ích ăn uống</p> */}
+  <img className='w-6/12' alt='' src='https://globalopentour.com/wp-content/content/images/du-thuyen-Paradise-vinh-ha-long-2.jpg'/>
+</div>
+
+  
+    
   },
   {
     label: 'Phí huỷ',

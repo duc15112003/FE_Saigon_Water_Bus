@@ -118,11 +118,11 @@ const sortedChuyen = useMemo(() => {
                         ref={fromRef} // Giá trị mặc định của select, có thể thay đổi tùy theo nhu cầu của bạn
                          >
                     <option value="nơi đến" selected disabled hidden>Nhập nơi đi</option>
-                        <option value="1">Bạch đằng</option> 
-                            <option value="2">Bình an</option>
-                        <option value="3">Thanh đa</option>
-                            <option value="4">Hiệp Bình Chánh</option>
-                        <option value="5">Linh Đông</option>
+                        <option value="1">Bến tàu Bạch đằng</option> 
+                            <option value="2">Bến tàu Bình an</option>
+                        <option value="3">Bến tàu Thanh đa</option>
+                            <option value="4">Bến tàu Hiệp Bình Chánh</option>
+                        <option value="5">Bến tàu Linh Đông</option>
                     </select>
                     <img
                         decoding="async"
@@ -153,11 +153,11 @@ const sortedChuyen = useMemo(() => {
                     id="inputTo"
                     ref={toRef}>
                         <option value="nơi đến" selected disabled hidden>Nhập nơi đến</option>
-                        <option value="1" name='bạch đằng'>Bạch đằng</option>
-                            <option value="2" name='bình an'>Bình an</option>
-                        <option value="3" name='thanh đa'>Thanh đa</option>
-                            <option value="4" name='hệp bình chánh'>Hiệp Bình Chánh</option>
-                        <option value="5" name='linh đông'>Linh Đông</option>
+                        <option value="1" name='bạch đằng'>Bến tàu Bạch đằng</option>
+                            <option value="2" name='bình an'>Bến tàu Bình an</option>
+                        <option value="3" name='thanh đa'>Bến tàu Thanh đa</option>
+                            <option value="4" name='hệp bình chánh'>Bến tàu Hiệp Bình Chánh</option>
+                        <option value="5" name='linh đông'>Bến tàu Linh Đông</option>
                     </select>
                     <img
                         decoding="async"
