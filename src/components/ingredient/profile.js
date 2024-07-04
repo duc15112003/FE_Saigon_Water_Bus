@@ -261,7 +261,7 @@ const UserDetailsPage = () => {
         </div>
       )}
 
-      <Popup message={popupMessage} onClose={() => setPopupMessage("Đăng ký thành công")} />
+      <Popup message={popupMessage} />
     </div>
   );
 };

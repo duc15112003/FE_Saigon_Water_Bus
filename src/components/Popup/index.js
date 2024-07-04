@@ -1,7 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Popup = ({ message, onClose }) => {
-  if (!message) return null;
+const Popup = ({ message }) => {
+  const [isVisible, setIsVisible] = useState(true);
+
+  if (!isVisible || !message) return null;
+
+  const handleClose = () => {
+    setIsVisible(false);
+  };
 
   return (
     <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
@@ -9,7 +15,7 @@ const Popup = ({ message, onClose }) => {
         <h2 className="text-2xl font-bold mb-4">{message}</h2>
         <div className="flex justify-end">
           <button
-            onClick={onClose}
+            onClick={handleClose}
             className="px-4 py-2 bg-blue-600 text-white rounded-lg"
           >
             Đóng
