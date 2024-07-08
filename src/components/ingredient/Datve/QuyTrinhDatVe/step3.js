@@ -92,7 +92,7 @@ const Step3 = ({ prevStep }) => {
     <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; background-color: #87CEEB;">
         <img src="https://saigonwaterbus.com/wp-content/uploads/2022/06/logo-swb-v-white.png" alt="" style="width: 200px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
         <h2 style="color: #007bff; margin-bottom: 20px; font-size: 24px;">Thông tin vé Saigonwaterbus</h2>
-        <p style="font-size: 18px;"><strong>Ngày khởi hành:</strong> ${formatDate(chuyenData.departureDate)}</p>
+        <p style="font-size: 18px;"><strong>Thời gian khởi hành:</strong>${chuyenData.departureTime} ngày ${formatDate(chuyenData.departureDate)}</p>
         <p style="font-size: 18px;"><strong>Bến khởi hành:</strong> ${chuyenData.startTerminal}</p>
         <p style="font-size: 18px;"><strong>Bến kết thúc:</strong> ${chuyenData.endTerminal}</p>
         <p style="font-size: 18px;"><strong>Thời gian khởi hành:</strong> ${chuyenData.departureTime}</p>

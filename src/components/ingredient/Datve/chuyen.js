@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useRef} from "react";
+import React, { useState, useMemo, useRef, useEffect} from "react";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import ChiTietChuyen from "./tabthongtinchitiet";
@@ -64,9 +64,6 @@ try {
 
 //tab chit iet chuyen
 const [openTab,setOpenTab]= useState(false);
-
-
-
     const [selectedOption, setSelectedOption] = useState('Giờ đi sớm nhất');
     const [openSeat, setOpenSeat] = useState({});
 
@@ -111,6 +108,25 @@ const sortedChuyen = useMemo(() => {
         to: '',
         departDate: '2024-07-05' // Ví dụ về ngày đi
     });
+  const [bookedSeats, setBookedSeats] = useState({}); // State to store booked seats for each trip
+
+useEffect(() => {
+  const fetchBookedSeats = async (id, departureDate) => {
+    if (!id || !departureDate) return; // Check if id and departureDate are valid
+
+    try {
+      const response = await apiService.timGheBooked(id, departureDate);
+      const length = response.length; // Assuming response is an array
+      setBookedSeats(prev => ({ ...prev, [id]: length }));
+    } catch (error) {
+      console.error("Error fetching booked seats", error);
+    }
+  };
+
+  sortedChuyen.forEach(chuyen => {
+    fetchBookedSeats(chuyen.id, chuyen.departureDate);
+  });
+}, [sortedChuyen]);
 
 
    const handleButtonClick = (event) => {
@@ -124,9 +140,9 @@ const sortedChuyen = useMemo(() => {
     const handleChangeTo = () => {
         setToValue(toRef.current.value);
     };
+
     return (
         <div className="mx-auto container p-4">
-        {/* form tim chuyen */}
 <div className="flex justify-center content-center">
     <span className="font-bold text-3xl p-4"> {message1}</span>
         </div>
@@ -256,13 +272,11 @@ const sortedChuyen = useMemo(() => {
 
   {sortedChuyen.map(chuyen => {
         const now = new Date();
-        console.log(now)
                 const departureDate = new Date(chuyen.departureDate);
                 const departureTime = new Date(`${chuyen.departureDate}T${chuyen.departureTime}`);
                 const shouldShowAllSeats = departureDate.toDateString() === now.toDateString() && 
-                                           ( departureTime -now) <= 15*60*1000; // chuyển đổi phút sang mili giây
-        console.log(now - departureTime)
-                console.log("truef",shouldShowAllSeats)
+               ( departureTime -now) <= 15*60*1000; // chuyển đổi phút sang mili giây
+
 
                 return (
                     <div key={chuyen.id} className="block border rounded-lg border-b border-gray-300 shadow-lg mb-2 p-2">
@@ -300,14 +314,16 @@ const sortedChuyen = useMemo(() => {
                                     </div>
                                     <div className="flex flex-col items-end justify-between mt-2 p-4">
                                         <span className="text-xl font-bold text-blue-600">15,000đ/ vé</span>
-                                        <span className="text-lg mb-2">Còn {chuyen.availableSeats} chỗ trống</span>
+
                                         {shouldShowAllSeats ? (
                                             <div>
                                                 <span className=" font-bold text-red-500  py-2 px-4 rounded transition text-sm lg:text-xl">Hết vé !</span>
                                             </div>
 
                                         ) : (
-                                            <button
+                                            <div className="contents">
+                                        Số ghế còn trống: {chuyen.availableSeats - (bookedSeats[chuyen.id] || 0)}
+                                           <button
                                                 onClick={(event) => {
                                                     setSeatLabels([]);
                                                     timGhe(event, chuyen.id);
@@ -316,8 +332,11 @@ const sortedChuyen = useMemo(() => {
                                                 }}
                                                 className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition"
                                             >
+
                                                 {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
                                             </button>
+                                            </div>
+ 
                                         )}
                                     </div>
                                 </div>

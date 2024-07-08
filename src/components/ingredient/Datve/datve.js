@@ -8,7 +8,7 @@ const DatVe = () => {
             <div class="qodef-m-inner">
                     <div className="flex items-center justify-center bg-stone-200 h-64">
                         <div className="container mx-auto">
-                            <h1 className="qodef-m-title entry-title text-xl font-bold ">
+                            <h1 className="qodef-m-title entry-title text-sm lg:text-5xl text-center font-bold ">
                                 Đặt vé trực tuyến
                             </h1>
                         </div>

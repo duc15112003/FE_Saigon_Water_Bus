@@ -10,7 +10,7 @@ const SeatingChart = ({ chuyenTau, clickedSeats, setClickedSeats, seatLabels }) 
     const fetchBookedSeats = async () => {
       try {
         const response = await apiService.timGheBooked(chuyenTau.id, chuyenTau.departureDate);
-        setListSeatBooked(response); // Save the booked seats to state if needed
+        setListSeatBooked(response);
       } catch (error) {
         console.error("Error fetching booked seats", error);
       }

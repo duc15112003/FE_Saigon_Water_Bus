@@ -12,17 +12,17 @@ const apiClient = axios.create({
 
 const timGhe = async (chuyenId) => {
   try {
-    const response = await apiClient.get(`/dat-ve/${chuyenId}`);
+    const response = await apiClient.get(`/booking-ticket/${chuyenId}`);
     return response.data.result;
   } catch (error) {
     console.error('Error fetching seat labels:', error);
     throw error;
   }
 };
-// /dat-ve/{tripId}/{departureDate}/getSeat
+// /booking-ticket/{tripId}/{departureDate}/getSeat
 const timGheBooked = async (tripId,dateTrip) => {
   try {
-    const response = await apiClient.get(`/dat-ve/${tripId}/${dateTrip}/getSeat`);
+    const response = await apiClient.get(`/booking-ticket/${tripId}/${dateTrip}/getSeat`);
     console.log(response.data.result)
     return response.data.result;
   } catch (error) {
@@ -31,7 +31,7 @@ const timGheBooked = async (tripId,dateTrip) => {
 };
 const timChuyen = async (searchParams) => {
   try {
-    const response = await apiClient.get('/dat-ve', {
+    const response = await apiClient.get('/booking-ticket', {
       params: searchParams,
     });
         console.log(response.data.result)

@@ -3,14 +3,12 @@ import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
 
 const formatDateTime = (dateTimeString) => {
     const dateObj = new Date(dateTimeString);
-    const hours = dateObj.getHours().toString().padStart(2, '0');
-    const minutes = dateObj.getMinutes().toString().padStart(2, '0');
-    const seconds = dateObj.getSeconds().toString().padStart(2, '0');
+
     const day = dateObj.getDate().toString().padStart(2, '0');
     const month = (dateObj.getMonth() + 1).toString().padStart(2, '0');
     const year = dateObj.getFullYear();
 
-    return `${hours}:${minutes}:${seconds} ${day}/${month}/${year}`;
+    return ` ${day}/${month}/${year}`;
 };
 
 const LichSuDatVe = () => {
@@ -31,7 +29,7 @@ const LichSuDatVe = () => {
                 }
             };
 
-            const response = await fetch('http://localhost:8080/api/saigonwaterbus/lichsuve', requestOptions);
+            const response = await fetch('http://localhost:8080/api/saigonwaterbus/booking-history', requestOptions);
             const jsonData = await response.json();
             setData(jsonData.result);
         } catch (error) {
@@ -63,8 +61,8 @@ const LichSuDatVe = () => {
             {data && data.length > 0 ? (
                 <div className="container mx-auto px-4">
                     <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-lg">
-                        <thead>
-                            <tr className="bg-gray-100">
+                        <thead className=''>
+                            <tr className="bg-blue-400">
                                 <th className="px-4 py-2 border-b text-left font-medium text-gray-600">STT</th>
                                 <th className="px-4 py-2 border-b text-left font-medium text-gray-600">Tên tuyến đi</th>
                                 <th className="px-4 py-2 border-b text-left font-medium text-gray-600">Tên ghế</th>
