@@ -6,7 +6,7 @@ import DatVe from "../components/ingredient/Datve/datve.js";
 import Login from "../components/ingredient/login";
 import Port from "../components/ingredient/port";
 import HistoryTicket from "../components/ingredient/lichsudatve";
-import Forsefl from "../components/ingredient/thongtintk";
+import Forsefl from "../components/ingredient/profile";
 import Register from "../components/ingredient/dangky";
 import ThanhToanThanhCong from "../components/ingredient/thanhtoanthanhcong.js";
 import UserDetailsPage from "../components/ingredient/profile.js";

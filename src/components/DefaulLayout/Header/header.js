@@ -104,16 +104,16 @@ function Header() {
                     {isLoggedIn ? (
         <div className="flex items-center">
           <a className="flex items-center hover:text-gray-200" href="/profile">
-            <img src="/img/icon/user.png" alt="" className="px-2"/>
-           <label className="font-bold">{username}</label>
+            <img src="/img/icon/user.png" alt="" className="px-1"/>
+           <label className="font-bold  font-bold text-sm">{username}</label>
           </a>
           <button
             className="flex items-center hover:text-gray-200 ml-4"
             onClick={logout}
           >
             
-                   <img src="/img/icon/logout.png" alt="" className="px-2"/>
-                              <label className=" font-bold">Đăng xuất</label>
+                   <img src="/img/icon/logout.png" alt="" className="px-1"/>
+                              <label className=" font-bold text-sm">Đăng xuất</label>
 
 
           </button>
