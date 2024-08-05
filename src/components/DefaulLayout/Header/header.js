@@ -31,8 +31,10 @@ const Navbar = () => {
                     <div className="flex flex-col items-start py-4 bg-white w-full lg:hidden">
                         {isLoggedIn ? (
                             <div className="ml-4">
+                        
                                 <img src="https://th.bing.com/th/id/OIP.HHVUf3TYqncgpJXyCMmxyAHaHa?pid=ImgDet&w=185&h=185&c=7" alt="User" className="rounded-full w-20 h-20 mb-2" />
-                                <h3 className="text-black text-lg">{username}</h3>
+                                
+                               <a href='/profile' alt='thong tin ca nhan'><h3 className="text-black text-lg">{username}</h3></a>
                                 <div className="flex">
                                     <a className="mt-2 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none flex w-auto" href='/profile'>
                                     <div className='mt-1'>
@@ -87,8 +89,10 @@ const Navbar = () => {
                 {isLoggedIn ? (
                     <div className="hidden lg:flex items-center space-x-4 lg:space-x-6">
                         <div className="text-black flex items-center">
-                            <UserIcon className="h-6 w-6 inline-block mr-2 bold" />
-                            <span>{username}</span>
+                            <a href='/profile' alt='thong tin ca nhan'>
+                             <UserIcon className="h-6 w-6 inline-block mr-2 bold" />
+                            <span>{username}</span> 
+                            </a>
                         </div>
                         <button onClick={logout} className="text-black hover:text-green focus:outline-none flex ">
                         <div className='mt-1'>
