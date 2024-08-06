@@ -18,38 +18,8 @@ const Home = () => {
     // const [startDate, setStartDate] = useState(new Date());
     const [selectedStation, setSelectedStation] = useState(stations[0]);
     return (
-        <div>
+        <div className='text-sm lg:text-base'>
             <div className="qodef-m-inner">
-                <div className="flex items-center justify-center bg-stone-200 h-40">
-                    <div className=" flex ">
-                        <h1 className="text-center text-4xl  font-bold ">
-                            Saigon Waterbus
-                        </h1>
-                    </div>
-                </div>
-                <div>
-                    {/* <section className=" bg-gray-100">
-                        <div className="container mx-auto py-8 px-4">
-                            <div className="bg-white p-6 rounded-lg shadow-lg">
-                                <div className="mb-6">
-                                    <style
-                                        dangerouslySetInnerHTML={{
-                                            __html:
-                                                '\n.vxr-search-ticket-box .search-box-container .button-container button {\n    background-color: #F7C600 !important;\n}\n.vxr-search-ticket-box .search-box-container.ver5 .button-container button span {\n    color: #1B1B1B;\n}\n.vxr-search-ticket-box .search-box-content .swap-section img { \n    content: url("https://saigonwaterbus.com/wp-content/uploads/2023/07/swb-swap.png");\n}\n',
-                                        }}
-                                    />
-                                    <div className="vxr-search-ticket-box">
-                                        <div className="search-box-container ver5">
-                                            <div id="Info" className="text-yellow-600 hidden"/>
-                                            <ChuyenTau/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </section> */}
-                </div>
             </div>
             <div className='BookingSteps'>
                 <div className="flex flex-col space-y-8 container mx-auto px-4 py-8">
@@ -136,7 +106,7 @@ const Home = () => {
             <div className='Station'>
                 <div className="container mx-auto px-4 py-8">
                     <h1 className="text-2xl font-bold mb-4">Hệ thống bến tàu Saigon Waterbus</h1>
-                    <div className="flex space-x-4 mb-4 border-b border-gray-300">
+                    <div className="flex space-x-2 mb-4 border-b border-gray-300">
                         {stations.map((station, index) => (
                             <button
                                 key={index}
@@ -147,18 +117,21 @@ const Home = () => {
                             </button>
                         ))}
                     </div>
-                    <div className="flex space-x-8 ">
-                        <img src={selectedStation.image} alt={selectedStation.name}
-                             className="w-1/2 rounded-lg shadow-lg"/>
-                        <div className="w-1/2">
-                            <h2 className="text-xl font-bold mb-2">{selectedStation.name}</h2>
-                            <p className="mb-4">{selectedStation.description}</p>
-                            <button className="flex items-center space-x-2 text-yellow-500 font-semibold">
-                                <PlusCircleIcon className="w-6 h-6"/>
-                                <span>Xem chi tiết và chỉ đường</span>
-                            </button>
+                        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                            <img
+                                src={selectedStation.image}
+                                alt={selectedStation.name}
+                                className="w-full h-full md:w-1/2  max-w-full max-h-full rounded-lg shadow-lg object-cover"
+                            />
+                            <div className="w-full md:w-1/2">
+                                <h2 className="text-xl font-bold mb-2">{selectedStation.name}</h2>
+                                <p className="mb-4">{selectedStation.description}</p>
+                                <button className="flex items-center space-x-2 text-yellow-500 font-semibold">
+                                    <PlusCircleIcon className="w-6 h-6" />
+                                    <span>Xem chi tiết và chỉ đường</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div className='Reviewer'>

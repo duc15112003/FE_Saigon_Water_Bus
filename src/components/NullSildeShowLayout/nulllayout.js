@@ -8,10 +8,10 @@ const NullLayout = ({ children }) => {
         'https://cdn.anvui.vn/upload/web/2021/10/15/1634318654_w2.jpg.jpg',
     ];
     return (
-        <div>
+        <div className='flex flex-col min-h-screen'>
             <Header/>
 
-            <div>{children}</div>
+            <div className='py-2'>{children}</div>
             <Footer/>
         </div>
     );

@@ -4,7 +4,7 @@ import './datve.css'
 import ChuyenTau from './chuyen';
 const DatVe = () => {
     return (
-        <div>
+        <div className=' px-4'>
             <div class="qodef-m-inner">
                     <div className="flex items-center justify-center bg-stone-200 h-64">
                         <div className="container mx-auto">

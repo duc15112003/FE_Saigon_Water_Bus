@@ -3,30 +3,30 @@ import React from 'react';
 const Contact = () => {
     return (
 <>
-<section className="bg-gray-100 py-10">
-  <div className="container mx-auto px-4 lg:px-20">
+<section className="bg-gray-100 py-10 rounded-md">
+  <div className="container mx-auto px-4 lg:px-20 ">
     <div className="flex flex-wrap mt-12  ">
       <div className="w-full lg:w-1/2 px-4 py-3">
-        <div className="bg-white p-6 rounded-lg shadow-md">
+        <div className="bg-white p-6 rounded-lg shadow-md  text-sm md:text-base">
           <div className="mb-6">
-            <h2 className="text-2xl font-bold mb-4">Liên hệ</h2>
-            <p className="text-lg">CÔNG TY TNHH THƯỜNG NHẬT (SAIGON WATERBUS)</p>
+            <h2 className=" font-bold mb-4">Liên hệ</h2>
+            <p className="">CÔNG TY TNHH THƯỜNG NHẬT (SAIGON WATERBUS)</p>
           </div>
           <div className="space-y-6">
             <div className="space-y-2">
-              <h6 className="text-xl font-semibold">Tổng đài hỗ trợ</h6>
-              <h2 className="text-3xl font-bold text-blue-600">
+              <h6 className=" font-semibold">Tổng đài hỗ trợ</h6>
+              <h2 className=" font-bold text-blue-600">
                 <a href="tel:1900636830">1900636830</a>
               </h2>
             </div>
             <div className="space-y-4">
               <div>
-                <h6 className="text-xl font-semibold">Địa chỉ văn phòng</h6>
+                <h6 className=" font-semibold">Địa chỉ văn phòng</h6>
                 <h5 className="text-lg">6 Phan Kế Bính, Phường Đa Kao, Quận 1, TP.HCM</h5>
               </div>
               <div>
-                <h6 className="text-xl font-semibold">Email</h6>
-                <h5 className="text-lg">
+                <h6 className=" font-semibold">Email</h6>
+                <h5 className="">
                   <a href="mailto:info@saigonwaterbus.com">info@saigonwaterbus.com</a>
                 </h5>
               </div>
@@ -35,9 +35,12 @@ const Contact = () => {
         </div>
       </div>
       <div className="w-full lg:w-1/2 px-4 py-3">
+
         <div className="bg-white p-6 rounded-lg shadow-md">
+                          <h2 className=" font-bold mb-4">Liên hệ hỗ trợ</h2>
+
           <form className="space-y-6">
-            {/* Name input */}
+        
             <div className="form-outline mb-4">
               <input type="text" id="form4Example1" className="form-control w-full border rounded p-2" />
               <label className="form-label block text-gray-700 mt-2" htmlFor="form4Example1">Tên</label>

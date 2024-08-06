@@ -4,6 +4,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import ChiTietChuyen from "./tabthongtinchitiet";
 import MultiStepForm from "./QuyTrinhDatVe/allstep";
 import apiService from "../../../services/tripservice";
+import './custom-datepicker.css';
 
 const selectChuyen = [];
 function ChuyenTau() {
@@ -142,127 +143,120 @@ useEffect(() => {
     };
 
     return (
-        <div className="mx-auto container p-4">
+        <div className="mx-auto container p-0">
 <div className="flex justify-center content-center">
-    <span className="font-bold text-3xl p-4"> {message1}</span>
+    <span className="font-bold text-sm md:text-3xl text-red-500 "> {message1}</span>
         </div>
-        <form
-              autoComplete="off"
-              className="w-full"
-            onSubmit={timChuyen}
+    <form 
+      autoComplete="off"
+      className="w-full text-sm md:text-base mt-2"
+      onSubmit={timChuyen}
+    >
+      <div className="search-box-content flex flex-wrap gap-1 md:gap-4 items-end">
+        <div className="flex-1 flex flex-col w-full md:w-auto relative">
+          <label className="block text-gray-700">Nơi đi</label>
+          <div className="flex items-center relative">
+            <select
+              className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
+              id="inputFrom"
+              ref={fromRef}
+              onChange={handleChangeFrom}
             >
-              <div className="search-box-content flex flex-wrap gap-4 items-end">
-                <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                  <label className="block text-gray-700">Nơi đi</label>
-                <div className="flex items-center relative">
-                <select
-                        className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
-                        id="inputFrom"
-                        ref={fromRef} // Giá trị mặc định của select, có thể thay đổi tùy theo nhu cầu của bạn
-                                            onChange={handleChangeFrom}
-
-                         >
-                    <option value="nơi đến" selected disabled hidden>Nhập nơi đi</option>
-                    <option value="1">Bến tàu Bạch đằng</option> 
-                    <option value="2">Bến tàu Bình an</option>
-                        <option value="3">Bến tàu Thanh đa</option>
-                            <option value="4">Bến tàu Hiệp Bình Chánh</option>
-                        <option value="5">Bến tàu Linh Đông</option>
-                    </select>
-                    <img
-                        decoding="async"
-                        src="//static.vexere.com/webnx/prod/img/from-v5.svg"
-                        alt=""
-                        className="h-8 absolute right-3"
-                    />
-                    </div>
-
-                </div>
-                {/* button chuyen qua lai ngay di noi di den */}
-                <button onClick={handleButtonClick}>
-                <img class="swap-area" decoding="async" src="//static.vexere.com/webnx/prod/img/swap-v3.svg" alt=""></img>
-                </button>
-                <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                  <label className="block text-gray-700">Nơi đến</label>
-                <div className="relative">
-                <select
-                    className="appearance-none w-full p-2 border border-gray-300 rounded pr-10" // Thêm pr-10 để tạo khoảng trống bên phải cho icon
-                    id="inputTo"
-                    ref={toRef}
-                    onChange={handleChangeTo}>
-                        <option value="nơi đến" selected disabled hidden>Nhập nơi đến</option>
-                        <option value="1" name='bạch đằng'>Bến tàu Bạch đằng</option>
-                            <option value="2" name='bình an'>Bến tàu Bình an</option>
-                        <option value="3" name='thanh đa'>Bến tàu Thanh đa</option>
-                            <option value="4" name='hệp bình chánh'>Bến tàu Hiệp Bình Chánh</option>
-                        <option value="5" name='linh đông'>Bến tàu Linh Đông</option>
-                    </select>
-                    <img
-                        decoding="async"
-                        src="//static.vexere.com/webnx/prod/img/to-v5.svg"
-                        alt=""
-                        className="h-8 absolute right-3 top-1/2 transform -translate-y-1/2 cursor-pointer"
-                    />
-                    </div>
-                  <input id="to" name="to" type="hidden" defaultValue="" />
-                  <input id="nameTo" name="nameTo" type="hidden" />
-                  <input
-                    id="dropoffPointDistrict"
-                    name="dropoffPointDistrict"
-                    type="hidden"
-                  />
-                  <input id="dropoffPointName" name="dropoffPointName" type="hidden" />
-                  <input id="toLabel" name="toLabel" type="hidden" />
-                </div>
-            <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                <label className="block text-gray-700">Ngày khởi hành</label>
-                <div className="flex items-center w-full">
-                        <DatePicker
-                            className="p-2 border border-gray-300 rounded mr-2 w-96"
-                            name="departDate"
-                            minDate={new Date()}
-                            selected={startDate}
-                            onChange={(date) => setStartDate(date)}
-                            dateFormat="dd/MM/yyyy"
-                            
-                            style={{ width: '199%' }} 
-                        />
-                            <img
-                decoding="async"
-                src="//static.vexere.com/webnx/prod/img/date-v5.svg"
-                alt=""
-                className="h-8 absolute right-14"
-              /> 
-            </div>
- 
+              <option value="nơi đi" selected disabled hidden>Nhập nơi đi</option>
+              <option value="1"> Bạch đằng</option> 
+              <option value="2"> Bình an</option>
+              <option value="3"> Thanh đa</option>
+              <option value="4"> Hiệp Bình Chánh</option>
+              <option value="5"> Linh Đông</option>
+            </select>
+            <img
+              decoding="async"
+              src="//static.vexere.com/webnx/prod/img/from-v5.svg"
+              alt=""
+              className="h-8 absolute right-3 pointer-events-none hidden md:flex"
+            />
           </div>
-                <div className="flex w-full md:w-auto">
-                      <button
-                        className="bg-yellow-500 text-black py-2 px-4 rounded hover:bg-yellow-600"
-                        type="submit">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                          className="w-6 h-6 inline-block mr-2">
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-                          />
-                        </svg>
-                        <span className="inline-block">Tìm vé</span>
-                      </button>
-                </div>
-              </div>
-            </form>
+        </div>
+
+        <button onClick={handleButtonClick} className="flex-shrink-0">
+          <img className="swap-area" decoding="async" src="//static.vexere.com/webnx/prod/img/swap-v3.svg" alt="" />
+        </button>
+
+        <div className="flex-1 flex flex-col w-full md:w-auto relative">
+          <label className="block text-gray-700">Nơi đến</label>
+          <div className="flex items-center relative">
+            <select
+              className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
+              id="inputTo"
+              ref={toRef}
+              onChange={handleChangeTo}
+            >
+              <option value="nơi đến" selected disabled hidden>Nhập nơi đến</option>
+              <option value="1"> Bạch đằng</option>
+              <option value="2"> Bình an</option>
+              <option value="3"> Thanh đa</option>
+              <option value="4"> Hiệp Bình Chánh</option>
+              <option value="5"> Linh Đông</option>
+            </select>
+            <img
+              decoding="async"
+              src="//static.vexere.com/webnx/prod/img/to-v5.svg"
+              alt=""
+              className="h-8 absolute right-3 pointer-events-none hidden md:flex" 
+            />
+          </div>
+        </div>
+
+        <div className="flex-1 flex flex-col w-full relative ">
+  <label className="block text-gray-700 md:hidden">Ngày KH</label>
+  <label className="hidden text-gray-700 md:block">Ngày khởi hành</label>          <div className="relative w-full  border rounded border-gray-300">
+          <DatePicker
+              selected={startDate}
+              onChange={(date) => setStartDate(date)}
+              className="p-2 w-full"
+              dateFormat="dd/MM/yyyy"
+            //   minDate={new Date()}
+               popperPlacement="top-end" 
+                popperClassName="z-10" 
+            />
+            <img
+              decoding="async"
+              src="//static.vexere.com/webnx/prod/img/date-v5.svg"
+              alt=""
+              className="h-6 absolute right-2 top-2  hidden md:flex"
+            />
+          </div>
+        </div>
+
+        <div className="flex w-full md:w-auto">
+          <button
+            className="bg-yellow-500 text-black p-1  md:py-2 md:px-4 rounded hover:bg-yellow-600 flex items-center"
+            type="submit"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              className="w-6 h-6 mr-2"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
+            </svg>
+            <span>Tìm vé</span>
+          </button>
+        </div>
+      </div>
+    </form>
             <div className="flex items-center space-x-4 my-4">
                 <span className="font-semibold">Sắp xếp theo:</span>
                 {listChuyen&&options.map(option => (
                     <button
                         key={option}
-                        className={`px-4 py-2 rounded transition ${selectedOption === option ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                        className={`md:px-4 md:py-2 rounded transition ${selectedOption === option ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
                         onClick={() => setSelectedOption(option)}
                     >
                         {option}
@@ -279,74 +273,69 @@ useEffect(() => {
 
 
                 return (
-                    <div key={chuyen.id} className="block border rounded-lg border-b border-gray-300 shadow-lg mb-2 p-2">
-                        <div className="bg-white w-full pageChuyen gap-2 flex container mx-auto mb-4">
-                            <div className="w-3/12">
-                                <img className="w-full h-full object-cover rounded-lg max-h-44 p-1" alt="" src="/img/chuyentau.jpeg" />
-                            </div>
-                            <div className="w-full">
-                                <div className="flex w-full justify-between">
-                                    <div className="px-4">
-                                        <h1 className="text-lg font-bold mb-2">Ghế ngồi 75 chỗ</h1>
-                                        <div className="flex items-center mb-2">
-                                            <div className="ghe1 px-2">
-                                                <svg className="TicketPC__LocationRouteSVG-sc-1mxgwjh-4 dSQflF" xmlns="http://www.w3.org/2000/svg" width="14" height="74" viewBox="0 0 14 74"><path fill="none" stroke="#787878" stroke-linecap="round" stroke-width="2" stroke-dasharray="0 7" d="M7 13.5v46"></path><g fill="none" stroke="#484848" stroke-width="3"><circle cx="7" cy="7" r="7" stroke="none"></circle><circle cx="7" cy="7" r="5.5"></circle></g><path d="M7 58a5.953 5.953 0 0 0-6 5.891 5.657 5.657 0 0 0 .525 2.4 37.124 37.124 0 0 0 5.222 7.591.338.338 0 0 0 .506 0 37.142 37.142 0 0 0 5.222-7.582A5.655 5.655 0 0 0 13 63.9 5.953 5.953 0 0 0 7 58zm0 8.95a3.092 3.092 0 0 1-3.117-3.06 3.117 3.117 0 0 1 6.234 0A3.092 3.092 0 0 1 7 66.95z" fill="#787878"></path></svg>
-                                            </div>
-                                            <div className="chuyen">
-                                                <h1 className="font-medium">{chuyen.departureTime} ● {chuyen.startTerminal}</h1>
-                                                <span className="text-xs text-gray-500">32 phút</span>
-                                                <h1 className="font-medium">{chuyen.arrivalTime} ● {chuyen.endTerminal}</h1>
-                                            </div>
-                                        </div>
-                                        <div className="gap-1">
-                                            <div className="flex items-center cursor-pointer">
-                                                <span className="font-medium px-2">Thông tin chi tiết</span>
-                                                <button onClick={() => { setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] })); setOpenSeat(false); }}>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                                                    </svg>
-                                                </button>
+                   <div key={chuyen.id} className="block border rounded-lg border-b border-gray-300 shadow-lg mb-2 p-2">
+  <div className="bg-white w-full pageChuyen gap-2 flex flex-col lg:flex-row container mx-auto mb-4">
+    <div className="w-full lg:w-3/12">
+      <img className="w-full h-full object-cover rounded-lg max-h-44 p-1" alt="" src="/img/chuyentau.jpeg" />
+    </div>
+    <div className="w-full lg:w-9/12">
+      <div className="flex flex-col lg:flex-row w-full justify-between">
+        <div className="px-4 w-full">
+          <h1 className="text-lg font-bold mb-2">Ghế ngồi 75 chỗ</h1>
+          <div className="flex items-center mb-2">
+            <div className="ghe1 px-2">
+              <svg className="TicketPC__LocationRouteSVG-sc-1mxgwjh-4 dSQflF" xmlns="http://www.w3.org/2000/svg" width="14" height="74" viewBox="0 0 14 74"><path fill="none" stroke="#787878" stroke-linecap="round" stroke-width="2" stroke-dasharray="0 7" d="M7 13.5v46"></path><g fill="none" stroke="#484848" stroke-width="3"><circle cx="7" cy="7" r="7" stroke="none"></circle><circle cx="7" cy="7" r="5.5"></circle></g><path d="M7 58a5.953 5.953 0 0 0-6 5.891 5.657 5.657 0 0 0 .525 2.4 37.124 37.124 0 0 0 5.222 7.591.338.338 0 0 0 .506 0 37.142 37.142 0 0 0 5.222-7.582A5.655 5.655 0 0 0 13 63.9 5.953 5.953 0 0 0 7 58zm0 8.95a3.092 3.092 0 0 1-3.117-3.06 3.117 3.117 0 0 1 6.234 0A3.092 3.092 0 0 1 7 66.95z" fill="#787878"></path></svg>
+            </div>
+            <div className="chuyen">
+              <h1 className="font-medium">{chuyen.departureTime} ● {chuyen.startTerminal}</h1>
+              <span className="text-xs text-gray-500">32 phút</span>
+              <h1 className="font-medium">{chuyen.arrivalTime} ● {chuyen.endTerminal}</h1>
+            </div>
+          </div>
+          <div className="gap-1">
+            <div className="flex items-center cursor-pointer">
+              <span className="font-medium px-2">Thông tin chi tiết</span>
+              <button onClick={() => { setOpenTab(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] })); setOpenSeat(false); }}>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-6">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+            </div>
+            <h1 className="text-sm text-gray-600">Vé chặng thuộc chuyến {chuyen.departureDate} {chuyen.fromTerminal} - {chuyen.toTerminal}</h1>
+          </div>
+        </div>
+        <div className="flex flex-col md:items-end justify-between mt-2 p-4 w-full lg:w-auto">
+          <span className="text-xl font-bold text-blue-600">15,000đ/ vé</span>
+          {shouldShowAllSeats ? (
+            <div>
+              <span className="font-bold text-red-500 py-2 px-4 rounded transition text-sm lg:text-xl">Hết vé !</span>
+            </div>
+          ) : (
+            <div className="contents">
+              Số ghế còn trống: {chuyen.availableSeats - (bookedSeats[chuyen.id] || 0)}
+              <button
+                onClick={(event) => {
+                  setSeatLabels([]);
+                  timGhe(event, chuyen.id);
+                  setOpenTab(false);
+                  setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }));
+                }}
+                className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition mt-2 lg:mt-0"
+              >
+                {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+  {openSeat[chuyen.id] && <MultiStepForm chuyenTau={chuyen} seatLabels={seatLabels} />}
+  <div className="bg-white">
+    {openTab[chuyen.id] && <ChiTietChuyen />}
+  </div>
+</div>
 
-                                            </div>
-                                            <h1 className="text-sm text-gray-600">Vé chặng thuộc chuyến {chuyen.departureDate} {chuyen.fromTerminal} - {chuyen.toTerminal}</h1>
-
-                                        </div>
-                                    </div>
-                                    <div className="flex flex-col items-end justify-between mt-2 p-4">
-                                        <span className="text-xl font-bold text-blue-600">15,000đ/ vé</span>
-
-                                        {shouldShowAllSeats ? (
-                                            <div>
-                                                <span className=" font-bold text-red-500  py-2 px-4 rounded transition text-sm lg:text-xl">Hết vé !</span>
-                                            </div>
-
-                                        ) : (
-                                            <div className="contents">
-                                        Số ghế còn trống: {chuyen.availableSeats - (bookedSeats[chuyen.id] || 0)}
-                                           <button
-                                                onClick={(event) => {
-                                                    setSeatLabels([]);
-                                                    timGhe(event, chuyen.id);
-                                                    setOpenTab(false);
-                                                    setOpenSeat(prevState => ({ ...prevState, [chuyen.id]: !prevState[chuyen.id] }));
-                                                }}
-                                                className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition"
-                                            >
-
-                                                {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
-                                            </button>
-                                            </div>
- 
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {openSeat[chuyen.id] && <MultiStepForm chuyenTau={chuyen} seatLabels={seatLabels} />}
-                        <div className="bg-white">
-                            {openTab[chuyen.id] && <ChiTietChuyen />}
-                        </div>
-                    </div>
                 );
             })}
 
