@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { CheckCircleIcon, XCircleIcon } from '@heroicons/react/24/solid';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const formatDateTime = (dateTimeString) => {
     const dateObj = new Date(dateTimeString);
@@ -29,7 +29,7 @@ const LichSuDatVe = () => {
                 }
             };
 
-            const response = await fetch('http://localhost:8080/api/saigonwaterbus/booking-history', requestOptions);
+            const response = await fetch(`${apiUrl}/booking-history`, requestOptions);
             const jsonData = await response.json();
             setData(jsonData.result);
         } catch (error) {
@@ -37,18 +37,8 @@ const LichSuDatVe = () => {
         }
     };
 
-    const getIcon = (type) => {
-        switch (type) {
-            case 'check':
-                return <CheckCircleIcon className="w-5 h-5 text-green-500" />;
-            case 'x':
-                return <XCircleIcon className="w-5 h-5 text-red-500" />;
-            default:
-                return null;
-        }
-    };
 
-    // Tính tổng tiền từ mảng data
+
     const totalAmount = data.reduce((acc, item) => acc + parseFloat(item[5]), 0);
 
     return (

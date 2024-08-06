@@ -22,14 +22,13 @@ const Home = () => {
             <div className="qodef-m-inner">
             </div>
             <div className='BookingSteps'>
-                <div className="flex flex-col space-y-8 container mx-auto px-4 py-8">
+                <div className="flex flex-col space-y-8 container mx-auto p-2">
               <div className='flex items-center'>
-                    <h1 className="text-2xl font-bold">Quy trình đặt vé trong 4 bước</h1>
-                    <button className='ml-auto text-xl font-bold bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500'>
+                    <h1 className="text-base md:text-2xl font-bold">Quy trình đặt vé trong 4 bước</h1>
+                    <a href='/dat-ve' alt='datve' className='ml-auto text-base md:text-2xl  font-bold bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500'>
                         Đặt vé ngay
-                    </button>
+                    </a>
                 </div>
-
                    
                     <div className="flex space-x-8 justify-center">
                         <div className="flex flex-col items-center space-y-4">
@@ -74,7 +73,7 @@ const Home = () => {
                 </div>
             </div>
             <div className='HighlightSection'>
-                <div className="bg-white p-8">
+                <div className="bg-white p-2">
                     <p className="text-blue-500 font-medium mb-4">
                         Lưu ý: Saigon Waterbus miễn phí vé cho người cao tuổi từ 70 và các bé dưới 1 tuổi, người khuyết
                         tật và thương binh.
@@ -134,7 +133,7 @@ const Home = () => {
                         </div>
                 </div>
             </div>
-            <div className='Reviewer'>
+            <div className='Reviewer p-2'>
                 <div className="max-w-full h-128">
                     <div className="relative bg-white shadow-lg rounded-lg overflow-hidden w-full ">
                         <img
