@@ -1,7 +1,7 @@
 // src/services/apiService.js
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/api/saigonwaterbus';
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -12,9 +12,9 @@ const apiClient = axios.create({
 const sendMailCode = async (email) => {
     // console.log("sending email to", 'http://localhost:8080/api/saigonwaterbus/send-mail-code?emailAddress=${encodeURIComponent(emailAddress)}');
     
-    const url = `http://localhost:8080/api/saigonwaterbus/send-mailcode-forgetpass?email=${encodeURIComponent(email)}`;
+    const url = `/send-mailcode-forgetpass?email=${encodeURIComponent(email)}`;
     
-    const response = await axios.get(url,{
+    const response = await apiClient.get(url,{
         headers: {
             'Content-Type': 'application/json',
         },
@@ -24,7 +24,7 @@ const sendMailCode = async (email) => {
 
 
 const resetPassword = async (inputCode, email, confirmPassword) => {
-    const url = `http://localhost:8080/api/saigonwaterbus/forgot-password?gmailForget=${encodeURIComponent(email)}&codeGmail=${encodeURIComponent(inputCode)}&newPass=${confirmPassword}`;
+    const url = `/forgot-password?gmailForget=${encodeURIComponent(email)}&codeGmail=${encodeURIComponent(inputCode)}&newPass=${confirmPassword}`;
 
   try {
     const response = await apiClient.post(url)

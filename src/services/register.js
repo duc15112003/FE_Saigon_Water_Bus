@@ -1,9 +1,10 @@
 import axios from 'axios';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const registerUser = async (formData,emailCode) => {
     console.log("data", formData);
 
-    const response = await axios.post(`http://localhost:8080/api/saigonwaterbus/register?codeGmailVerifyRegister=${emailCode}`, formData, {
+    const response = await axios.post(`${apiUrl}/register?codeGmailVerifyRegister=${emailCode}`, formData, {
         headers: {
             'Content-Type': 'application/json',
         },
@@ -13,7 +14,7 @@ const registerUser = async (formData,emailCode) => {
 const sendMailCode = async (email) => {
     // console.log("sending email to", 'http://localhost:8080/api/saigonwaterbus/send-mail-code?emailAddress=${encodeURIComponent(emailAddress)}');
     
-    const url = `http://localhost:8080/api/saigonwaterbus/send-mail-code?email=${encodeURIComponent(email)}`;
+    const url = `${apiUrl}/send-mail-code?email=${encodeURIComponent(email)}`;
     
     const response = await axios.post(url, null, {
         headers: {

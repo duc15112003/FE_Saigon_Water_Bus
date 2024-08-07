@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
+const apiUrl = process.env.REACT_APP_API_URL;
+
 const Step3 = ({ prevStep }) => {
   let paymentWindow = null;
   const [submitted, setSubmitted] = useState(false);
@@ -29,10 +31,10 @@ const Step3 = ({ prevStep }) => {
     localStorage.setItem('orderData', JSON.stringify(orderData)); // Lưu thông tin đơn hàng vào localStorage
 
     try {
-      const response = await axios.post('http://localhost:8080/api/saigonwaterus/payment/vnpay', {
+      const response = await axios.post(`${apiUrl}/payment/vnpay`, {
         orderId: new Date().getTime().toString(), // Sử dụng timestamp làm orderId
         amount: total,
-        returnUrl: 'http://localhost:8080/api/saigonwaterus/payment/vnpay/return'
+        returnUrl: `${apiUrl}/payment/vnpay/return`
       });
       // Mở cửa sổ popup khi nhận được URL từ server
       paymentWindow = window.open(response.data, 'Payment', 'width=600,height=600');
@@ -49,7 +51,7 @@ const Step3 = ({ prevStep }) => {
       localStorageData[key] = localStorage.getItem(key);
     }
     try {
-      await axios.post('http://localhost:8080/api/saigonwaterbus/saveLocalStorageData', { localStorageData });
+      await axios.post(`${apiUrl}/saveLocalStorageData`, { localStorageData });
     } catch (error) {
       console.error('Error sending localStorage data to server:', error);
     }
@@ -111,19 +113,19 @@ const Step3 = ({ prevStep }) => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/api/saigonwaterbus/send-mail', emailData);
-      console.log(response.data); // Handle response data from the API if needed
+      const response = await axios.post(`${apiUrl}/send-mail`, emailData);
+      console.log(response.data); 
       sendLocalStorageToServer();
-      window.location.href = 'http://localhost:4141/dat-ve/thanh-toan-thanh-cong'; // Redirect after email is sent
+      window.location.href = 'https://saigonwaterbus.click/dat-ve/thanh-toan-thanh-cong'; 
     } catch (error) {
       console.error('Error calling the send-mail API:', error);
     } finally {
-      setIsLoading(false); // Hide loading indicator
+      setIsLoading(false); 
     }
   };
 
   const closePaymentPopup = () => {
-    // Đóng cửa sổ popup khi hoàn thành thanh toán hoặc người dùng hủy bỏ
+    
     if (paymentWindow) {
       paymentWindow.close();
     }

@@ -23,13 +23,13 @@ const Navbar = () => {
         </div>
         <div className="block lg:hidden">
             <button onClick={toggleMenu} className="hover:text-white focus:outline-none">
-                {isOpen ? <XMarkIcon className="h-6 w-6" /> : <Bars3Icon className="h-6 w-6" />}
+                {isOpen ? <img width="24" height="24" src="https://img.icons8.com/ios-filled/50/delete-sign--v1.png" alt="delete-sign--v1"/>:<img width="24" height="24" src="https://img.icons8.com/ios-filled/36/menu--v1.png" alt="menu--v1"/>}
             </button>
         </div>
         <div
-            className={`lg:flex lg:flex-row lg:items-center ${isOpen ? 'flex bg-slate-100' : 'hidden'} flex-col lg:static absolute top-16 left-0 lg:top-0 w-full lg:w-auto border-t lg:border-none`}
+            className={`lg:flex lg:flex-row lg:items-center ${isOpen ? 'flex bg-slate-300' : 'hidden'} flex-col lg:static absolute top-16 left-0 lg:top-0 w-full lg:w-auto border-t lg:border-none`}
         >
-            <div className="flex flex-col items-start py-4 w-full lg:hidden">
+            <div className="flex flex-col items-start py-2 w-full lg:hidden">
                 {isLoggedIn ? (
                     <div className="w-full">
                         <div className="flex flex-col items-center">
@@ -58,15 +58,15 @@ const Navbar = () => {
                         </div>
                     </div>
                 ) : (
-                    <a className="flex items-center hover:text-gray-600 ml-4" href="/login">
-                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <a className="flex w-full font-bold md:text-base justify-center hover:text-gray-600 gap-2" href="/login" >
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 " fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         Đăng nhập
                     </a>
                 )}
             </div>
-            <ul className="flex flex-col lg:flex-row lg:items-center lg:ml-auto w-full lg:w-auto lg:py-0 py-4 font-semibold">
+            <ul className="flex flex-col lg:flex-row lg:items-center lg:ml-auto w-full lg:w-auto lg:py-0 py-2 font-semibold">
                 <li className="lg:ml-4 ml-4">
                     <a href="/" className="block py-2 px-4 text-black hover:text-red">Trang Chủ</a>
                 </li>
