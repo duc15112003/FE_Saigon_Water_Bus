@@ -1,7 +1,8 @@
 import Footer from '../DefaulLayout/Footer/index.js';
 import Header from '../DefaulLayout/Header/header.js';
 import Carousel from '../DefaulLayout/Carosel/carosel.js';
-const NullLayout = ({ children }) => {
+
+const NullLayout = ({children}) => {
     const images = [
         'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-6.jpg',
         'https://www.thaiboatguide.com/wp-content/uploads/2023/07/EJjCifaUYAA3q2h.jpg',
