@@ -1,0 +1,13 @@
+{
+  "menu": {
+    "information": "Thông tin",
+    "logOut": "Đăng xuất",
+    "logIn": "Đăng nhập",
+    "home": "Trang chủ",
+    "wharf": "Bến tàu",
+    "departureSchedule": "Lịch khởi hành",
+    "bookTickets": "Đặt vé",
+    "contact": "Liên hệ",
+    "bookingHistory": "Lịch sử đặt vé"
+  }
+}

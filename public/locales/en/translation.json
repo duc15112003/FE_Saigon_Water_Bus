@@ -1,0 +1,13 @@
+{
+  "menu": {
+    "information": "Information",
+    "logOut": "Log Out",
+    "logIn": "Log In",
+    "home": "Home",
+    "wharf": "Wharf",
+    "departureSchedule": "Departure Schedule",
+    "bookTickets": "Book Tickets",
+    "contact": "Contact",
+    "bookingHistory": "Booking History"
+  }
+}
