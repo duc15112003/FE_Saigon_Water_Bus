@@ -9,8 +9,7 @@ const NullLayout = ({ children }) => {
     ];
     return (
         <div>
-            <Header/>
-
+            <Header/>   
             <div>{children}</div>
             <Footer/>
         </div>
