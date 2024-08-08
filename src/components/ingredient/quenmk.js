@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import forgetService from '../../services/forgetpass';
 import Popup from '../Popup';
+import { useTranslation } from 'react-i18next';
 
 const ForgotPassword = () => {
+    const { t } = useTranslation();
     const [email, setEmail] = useState('');
     const [inputCode, setInputCode] = useState('');
     const [newPassword, setNewPassword] = useState('');
@@ -11,7 +13,7 @@ const ForgotPassword = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
-    const [showPopup, setShowPopup] = useState(false); // State to manage Popup visibility
+    const [showPopup, setShowPopup] = useState(false);
 
     const handleGetMailCode = async () => {
         setError('');
@@ -20,8 +22,8 @@ const ForgotPassword = () => {
         try {
             const response = await forgetService.sendMailCode(email);
             if (response.data.code === 200) {
-                setSuccess('Đã gửi mã xác nhận');
-                setTimer(60); // Start a 60 seconds timer
+                setSuccess(t('successMessage'));
+                setTimer(60);
                 const interval = setInterval(() => {
                     setTimer(prev => {
                         if (prev === 1) clearInterval(interval);
@@ -33,7 +35,7 @@ const ForgotPassword = () => {
             }
         } catch (error) {
             console.error('Network Error:', error);
-            setError('Lỗi mạng. Vui lòng thử lại.');
+            setError(t('errorNetwork'));
         } finally {
             setLoading(false);
         }
@@ -45,17 +47,16 @@ const ForgotPassword = () => {
         setSuccess('');
 
         if (newPassword !== confirmPassword) {
-            setError('Passwords do not match!');
+            setError(t('errorPasswordsDoNotMatch'));
             return;
         }
         setLoading(true);
         try {
             const response = await forgetService.resetPassword(inputCode, email, newPassword);
             if (response.data.code === 200) {
-                setSuccess('Đổi mật khẩu thành công!');
-                setShowPopup(true); // Show Popup on success
+                setSuccess(t('successMessage'));
+                setShowPopup(true);
 
-                // Clear form fields
                 setInputCode('');
                 setNewPassword('');
                 setConfirmPassword('');
@@ -64,15 +65,15 @@ const ForgotPassword = () => {
             }
         } catch (error) {
             console.error('Network Error:', error);
-            setError('Lỗi mạng. Vui lòng thử lại.');
+            setError(t('errorNetwork'));
         } finally {
             setLoading(false);
         }
     };
 
     const handleClosePopup = () => {
-        setShowPopup(false); // Function to close Popup
-           window.location.href = '/login'; 
+        setShowPopup(false);
+        window.location.href = '/login';
     };
 
     return (
@@ -93,15 +94,15 @@ const ForgotPassword = () => {
                                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0c4.418 0 8 3.582 8 8s-3.582 8-8 8v-4H4zm2 5v2a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 00-1-1H7a1 1 0 00-1 1zm2-9a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1V8z"></path>
                             </svg>
-                            <p className="text-center text-gray-700">Đang xử lý...</p>
+                            <p className="text-center text-gray-700">{t('forgotPassword.loading')}</p>
                         </div>
                     </div>
                 )}
 
-                <h2 className="text-xl font-bold mb-6 text-center">Quên mật khẩu</h2>
+                <h2 className="text-xl font-bold mb-6 text-center">{t('forgotPassword.forgotPassword')}</h2>
                 <form onSubmit={handleChangePassword}>
                     <div className="mb-4">
-                        <label className="block text-gray-700">Email</label>
+                        <label className="block text-gray-700">{t('forgotPassword.email')}</label>
                         <input
                             type="email"
                             name="email"
@@ -113,7 +114,7 @@ const ForgotPassword = () => {
                     </div>
                     <div className="mb-4 flex items-center space-x-4">
                         <input
-                            placeholder='Nhập mã xác nhận gửi về email'
+                            placeholder={t('forgotPassword.inputCodePlaceholder')}
                             type="text"
                             name="inputCode"
                             value={inputCode}
@@ -127,11 +128,11 @@ const ForgotPassword = () => {
                             className={`text-red-700 transition duration-200 ${loading || timer > 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
                             disabled={email === '' || loading || timer > 0}
                         >
-                            {timer > 0 ? `Gửi lại sau ${timer}s` : 'Lấy mã xác nhận'}
+                            {timer > 0 ? t('resendCode', { timer }) : t('getMailCode')}
                         </button>
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700">Mật khẩu mới</label>
+                        <label className="block text-gray-700">{t('forgotPassword.newPassword')}</label>
                         <input
                             type="password"
                             name="newPassword"
@@ -142,7 +143,7 @@ const ForgotPassword = () => {
                         />
                     </div>
                     <div className="mb-4">
-                        <label className="block text-gray-700">Xác nhận mật khẩu mới</label>
+                        <label className="block text-gray-700">{t('forgotPassword.confirmPassword')}</label>
                         <input
                             type="password"
                             name="confirmPassword"
@@ -157,14 +158,13 @@ const ForgotPassword = () => {
                         className={`w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-200 ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
                         disabled={loading}
                     >
-                        Đặt lại mật khẩu
+                        {t('forgotPassword.resetPassword')}
                     </button>
                 </form>
                 <div className='text-center'>
-                    <a href='/login' className='text-blue-500 underline hover:text-blue-700 transition duration-300'>Quay lại đăng nhập</a>
+                    <a href='/login' className='text-blue-500 underline hover:text-blue-700 transition duration-300'>{t('forgotPassword.backToLogin')}</a>
                 </div>
-                {/* Render Popup if showPopup is true */}
-                {showPopup && <Popup message={"Đổi mật khẩu thành công!"} onClose={handleClosePopup} />}
+                {showPopup && <Popup message={t('forgotPassword.successMessage')} onClose={handleClosePopup} />}
             </div>
         </div>
     );

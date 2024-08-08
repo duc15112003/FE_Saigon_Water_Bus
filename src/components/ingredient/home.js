@@ -3,6 +3,7 @@ import { MagnifyingGlassIcon, UserIcon, CreditCardIcon, CheckBadgeIcon } from '@
 import 'react-datepicker/dist/react-datepicker.css';
 import { PlusCircleIcon } from '@heroicons/react/24/solid';
 import '../ingredient/Datve/datve.css';
+import {useTranslation} from "react-i18next";
 
 const stations = [
     { name: 'Bạch Đằng', description: 'Tọa lạc ngay trung tâm Thành phố (Q1) với công viên Bạch Đằng, phố đi bộ Nguyễn Huệ cùng nhiều địa điểm vui chơi, ăn uống khác đang chờ bạn.', image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-0-1-1536x880.jpg' },
@@ -13,53 +14,22 @@ const stations = [
 ];
 
 const Home = () => {
+    const {t}= useTranslation();
 
-    
     // const [startDate, setStartDate] = useState(new Date());
     const [selectedStation, setSelectedStation] = useState(stations[0]);
     return (
-        <div>
+        <div className='text-sm lg:text-base'>
             <div className="qodef-m-inner">
-                <div className="flex items-center justify-center bg-stone-200 h-40">
-                    <div className=" flex ">
-                        <h1 className="text-center text-4xl  font-bold ">
-                            Saigon Waterbus
-                        </h1>
-                    </div>
-                </div>
-                <div>
-                    {/* <section className=" bg-gray-100">
-                        <div className="container mx-auto py-8 px-4">
-                            <div className="bg-white p-6 rounded-lg shadow-lg">
-                                <div className="mb-6">
-                                    <style
-                                        dangerouslySetInnerHTML={{
-                                            __html:
-                                                '\n.vxr-search-ticket-box .search-box-container .button-container button {\n    background-color: #F7C600 !important;\n}\n.vxr-search-ticket-box .search-box-container.ver5 .button-container button span {\n    color: #1B1B1B;\n}\n.vxr-search-ticket-box .search-box-content .swap-section img { \n    content: url("https://saigonwaterbus.com/wp-content/uploads/2023/07/swb-swap.png");\n}\n',
-                                        }}
-                                    />
-                                    <div className="vxr-search-ticket-box">
-                                        <div className="search-box-container ver5">
-                                            <div id="Info" className="text-yellow-600 hidden"/>
-                                            <ChuyenTau/>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </section> */}
-                </div>
             </div>
             <div className='BookingSteps'>
-                <div className="flex flex-col space-y-8 container mx-auto px-4 py-8">
+                <div className="flex flex-col space-y-8 container mx-auto p-2">
               <div className='flex items-center'>
-                    <h1 className="text-2xl font-bold">Quy trình đặt vé trong 4 bước</h1>
-                    <button className='ml-auto text-xl font-bold bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500'>
-                        Đặt vé ngay
-                    </button>
+                    <h1 className="text-base md:text-2xl font-bold">{t('home.4step')}</h1>
+                    <a href='/dat-ve' alt='datve' className='ml-auto text-base md:text-2xl  font-bold bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500'>
+                        {t('home.bookTicketNow')}
+                    </a>
                 </div>
-
                    
                     <div className="flex space-x-8 justify-center">
                         <div className="flex flex-col items-center space-y-4">
@@ -67,8 +37,8 @@ const Home = () => {
                                 <MagnifyingGlassIcon className="w-8 h-8"/>
                             </div>
                             <div className="text-center">
-                                <h2 className="font-semibold">Tìm chuyến</h2>
-                                <p>Chọn thông tin hành trình và ấn Tìm chuyến</p>
+                                <h2 className="font-semibold">{t('home.findTrip')}</h2>
+                                <p>{t('home.findTripNote')}</p>
                             </div>
                         </div>
                         <div className="flex flex-col items-center space-y-4">
@@ -76,8 +46,8 @@ const Home = () => {
                                 <UserIcon className="w-8 h-8"/>
                             </div>
                             <div className="text-center">
-                                <h2 className="font-semibold">Chọn chỗ</h2>
-                                <p>Chọn chuyến, chỗ ngồi phù hợp, điền thông tin</p>
+                                <h2 className="font-semibold">{t('home.chooseSeat')}</h2>
+                                <p>{t('home.chooseSeatNote')}</p>
                             </div>
                         </div>
                         <div className="flex flex-col items-center space-y-4">
@@ -85,8 +55,8 @@ const Home = () => {
                                 <CreditCardIcon className="w-8 h-8"/>
                             </div>
                             <div className="text-center">
-                                <h2 className="font-semibold">Đặt chỗ</h2>
-                                <p>Tiến hành thanh toán online hoặc giữ chỗ</p>
+                                <h2 className="font-semibold">{t('home.reservation')}</h2>
+                                <p>{t('home.reservationNote')}</p>
                             </div>
                         </div>
                         <div className="flex flex-col items-center space-y-4">
@@ -94,8 +64,8 @@ const Home = () => {
                                 <CheckBadgeIcon className="w-8 h-8"/>
                             </div>
                             <div className="text-center">
-                                <h2 className="font-semibold">Lên tàu</h2>
-                                <p>Nhận mã, và xuất trình cho nhân viên khi lên tàu</p>
+                                <h2 className="font-semibold">{t('home.onShip')}</h2>
+                                <p>{t('home.onShipNote')}</p>
                             </div>
                         </div>
                     </div>
@@ -104,23 +74,21 @@ const Home = () => {
                 </div>
             </div>
             <div className='HighlightSection'>
-                <div className="bg-white p-8">
+                <div className="bg-white p-2">
                     <p className="text-blue-500 font-medium mb-4">
-                        Lưu ý: Saigon Waterbus miễn phí vé cho người cao tuổi từ 70 và các bé dưới 1 tuổi, người khuyết
-                        tật và thương binh.
+                        {t('note')}
                     </p>
                     <div className="flex">
                         <div className="w-1/2 pr-4">
                             <h2 className="text-2xl font-bold mb-4 leading-tight">
-                                Khám phá Sông Sài Gòn theo cách riêng của bạn
+                                {t('home.explore')}
                             </h2>
                             <p className="mb-4 text-gray-700">
-                                Chỉ với 30,000 cho vé đi và về là bạn sẽ ngay có một chuyến vi vu trên sông Sài Gòn bằng
-                                Saigon Waterbus để ngắm vẻ đẹp của Thành phố Hồ Chí Minh nhìn từ phía sông.
+                                {t('home.exploreDetail')}
                             </p>
                             <button className="flex items-center space-x-2 text-yellow-500 font-semibold">
                                 <PlusCircleIcon className="w-6 h-6"/>
-                                <span>Xem hướng dẫn, đặt vé và trải nghiệm ngay!</span>
+                                <span>{t('home.exploreAction')}</span>
                             </button>
                         </div>
                         <div className="w-1/2">
@@ -135,8 +103,8 @@ const Home = () => {
             </div>
             <div className='Station'>
                 <div className="container mx-auto px-4 py-8">
-                    <h1 className="text-2xl font-bold mb-4">Hệ thống bến tàu Saigon Waterbus</h1>
-                    <div className="flex space-x-4 mb-4 border-b border-gray-300">
+                    <h1 className="text-2xl font-bold mb-4">{t('home.systemWharf')}</h1>
+                    <div className="flex space-x-2 mb-4 border-b border-gray-300">
                         {stations.map((station, index) => (
                             <button
                                 key={index}
@@ -147,21 +115,24 @@ const Home = () => {
                             </button>
                         ))}
                     </div>
-                    <div className="flex space-x-8 ">
-                        <img src={selectedStation.image} alt={selectedStation.name}
-                             className="w-1/2 rounded-lg shadow-lg"/>
-                        <div className="w-1/2">
-                            <h2 className="text-xl font-bold mb-2">{selectedStation.name}</h2>
-                            <p className="mb-4">{selectedStation.description}</p>
-                            <button className="flex items-center space-x-2 text-yellow-500 font-semibold">
-                                <PlusCircleIcon className="w-6 h-6"/>
-                                <span>Xem chi tiết và chỉ đường</span>
-                            </button>
+                        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                            <img
+                                src={selectedStation.image}
+                                alt={selectedStation.name}
+                                className="w-full h-full md:w-1/2  max-w-full max-h-full rounded-lg shadow-lg object-cover"
+                            />
+                            <div className="w-full md:w-1/2">
+                                <h2 className="text-xl font-bold mb-2">{selectedStation.name}</h2>
+                                <p className="mb-4">{selectedStation.description}</p>
+                                <button className="flex items-center space-x-2 text-yellow-500 font-semibold">
+                                    <PlusCircleIcon className="w-6 h-6" />
+                                    <span>{t('home.subAction')}</span>
+                                </button>
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
-            <div className='Reviewer'>
+            <div className='Reviewer p-2'>
                 <div className="max-w-full h-128">
                     <div className="relative bg-white shadow-lg rounded-lg overflow-hidden w-full ">
                         <img
