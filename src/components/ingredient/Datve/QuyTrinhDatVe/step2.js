@@ -4,7 +4,9 @@ import { useTranslation } from 'react-i18next';
 const Step2 = ({ nextStep, prevStep, chuyenTau, clickedSeats }) => {
   const { t } = useTranslation();
   const totalCost = clickedSeats.length * 15000;
-
+  const formatCurrency = (amount) => {
+    return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+  };
   localStorage.setItem('total', totalCost.toString());
 
   return (
@@ -56,7 +58,7 @@ const Step2 = ({ nextStep, prevStep, chuyenTau, clickedSeats }) => {
             </svg>
             {t('back')}
           </button>
-          <span className="text-center">{t('totalCost', { amount: totalCost })}</span>
+          <span className="text-center">{t('totalCost', { amount: formatCurrency(totalCost) })}</span>
           <button
               className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center"
               onClick={nextStep}

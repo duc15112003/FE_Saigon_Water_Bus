@@ -1,36 +1,33 @@
-import React, {useState} from 'react';
-import { MagnifyingGlassIcon, UserIcon, CreditCardIcon, CheckBadgeIcon } from '@heroicons/react/24/solid';
+import React, { useState } from 'react';
+import { MagnifyingGlassIcon, UserIcon, CreditCardIcon, CheckBadgeIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import 'react-datepicker/dist/react-datepicker.css';
-import { PlusCircleIcon } from '@heroicons/react/24/solid';
 import '../ingredient/Datve/datve.css';
-import {useTranslation} from "react-i18next";
-
-const stations = [
-    { name: 'Bạch Đằng', description: 'Tọa lạc ngay trung tâm Thành phố (Q1) với công viên Bạch Đằng, phố đi bộ Nguyễn Huệ cùng nhiều địa điểm vui chơi, ăn uống khác đang chờ bạn.', image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-0-1-1536x880.jpg' },
-    { name: 'Bình An', description: 'Kết nối 2 thành phố: TP. Thủ Đức - TP. HCM. Đây là nơi ngắm tòa nhà Landmark 81, kết nối Vinhome Central Park, Tân Cảng, Chợ Thảo Điền và các điểm đến khác.', image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-3-1536x880.jpg' },
-    { name: 'Thanh Đa', description: 'Bán đảo Thanh Đa xanh mát, yên bình giữa lòng thành phố nhộn nhịp, sôi động. Dừng chân tại đây, đừng quên thưởng thức Cháo Vịt Thanh Đa trứ danh, Phong Cua hay dạo chơi KDL Bình Quới.', image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-6.jpg' },
-    { name: 'Hiệp Bình Chánh', description: 'Đúng với biệt danh “điểm hẹn của người Sài Gòn” Xung quanh ga tàu thủy Hiệp Bình Chánh rất nhiều nhà hàng, dịch vụ vui chơi ăn uống mà tiêu biểu là Giga Mall.', image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-1-1536x880.jpg' },
-    { name: 'Linh Đông', description: 'Tại đây bạn sẽ cảm nhận cảm giác thanh mát mộc mạc của làng quê yên bình. Đặc biệt, cạnh Ga tàu thủy Linh Đông có bến đò Bình Qưới để sang KDL Bình Quới 2.', image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-4-1536x880.jpg' },
-];
+import { useTranslation } from 'react-i18next';
 
 const Home = () => {
-    const {t}= useTranslation();
+    const { t } = useTranslation();
 
-    // const [startDate, setStartDate] = useState(new Date());
+    const stations = [
+        { name: 'Bach Đằng', description: t('home.subBachDang'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-0-1-1536x880.jpg' },
+        { name: 'Bình An', description: t('home.subBinhAn'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-3-1536x880.jpg' },
+        { name: 'Thanh Đa', description: t('home.subThanhDa'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-6.jpg' },
+        { name: 'Hiệp Bình Chánh', description: t('home.subHiepBinhChanh'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-1-1536x880.jpg' },
+        { name: 'Linh Đông', description: t('home.subLinhDong'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-4-1536x880.jpg' },
+    ];
+
     const [selectedStation, setSelectedStation] = useState(stations[0]);
+
     return (
         <div className='text-sm lg:text-base'>
-            <div className="qodef-m-inner">
-            </div>
+            <div className="qodef-m-inner"></div>
             <div className='BookingSteps'>
                 <div className="flex flex-col space-y-8 container mx-auto p-2">
-              <div className='flex items-center'>
-                    <h1 className="text-base md:text-2xl font-bold">{t('home.4step')}</h1>
-                    <a href='/dat-ve' alt='datve' className='ml-auto text-base md:text-2xl  font-bold bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500'>
-                        {t('home.bookTicketNow')}
-                    </a>
-                </div>
-                   
+                    <div className='flex items-center'>
+                        <h1 className="text-base md:text-2xl font-bold">{t('home.4step')}</h1>
+                        <a href='/dat-ve' alt='datve' className='ml-auto text-base md:text-2xl font-bold bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500'>
+                            {t('home.bookTicketNow')}
+                        </a>
+                    </div>
                     <div className="flex space-x-8 justify-center">
                         <div className="flex flex-col items-center space-y-4">
                             <div className="bg-yellow-400 p-4 rounded-full">
@@ -69,8 +66,6 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                                  
-
                 </div>
             </div>
             <div className='HighlightSection'>
@@ -93,7 +88,7 @@ const Home = () => {
                         </div>
                         <div className="w-1/2">
                             <img
-                                src="https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-1-1536x880.jpg" // Update this path to your actual image URL
+                                src="https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-1-1536x880.jpg"
                                 alt="Saigon Waterbus"
                                 className="rounded-lg shadow-lg"
                             />
@@ -115,21 +110,21 @@ const Home = () => {
                             </button>
                         ))}
                     </div>
-                        <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
-                            <img
-                                src={selectedStation.image}
-                                alt={selectedStation.name}
-                                className="w-full h-full md:w-1/2  max-w-full max-h-full rounded-lg shadow-lg object-cover"
-                            />
-                            <div className="w-full md:w-1/2">
-                                <h2 className="text-xl font-bold mb-2">{selectedStation.name}</h2>
-                                <p className="mb-4">{selectedStation.description}</p>
-                                <button className="flex items-center space-x-2 text-yellow-500 font-semibold">
-                                    <PlusCircleIcon className="w-6 h-6" />
-                                    <span>{t('home.subAction')}</span>
-                                </button>
-                            </div>
+                    <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
+                        <img
+                            src={selectedStation.image}
+                            alt={selectedStation.name}
+                            className="w-full h-full md:w-1/2 max-w-full max-h-full rounded-lg shadow-lg object-cover"
+                        />
+                        <div className="w-full md:w-1/2">
+                            <h2 className="text-xl font-bold mb-2">{selectedStation.name}</h2>
+                            <p className="mb-4">{selectedStation.description}</p>
+                            <button className="flex items-center space-x-2 text-yellow-500 font-semibold">
+                                <PlusCircleIcon className="w-6 h-6" />
+                                <span>{t('home.subAction')}</span>
+                            </button>
                         </div>
+                    </div>
                 </div>
             </div>
             <div className='Reviewer p-2'>
@@ -152,14 +147,9 @@ const Home = () => {
                                     <p className="text-white text-sm">Khách du lịch</p>
                                 </div>
                             </div>
-
                             <p className="lg:w-6/12 px-1 text-white text-2xl md:text-3xl lg:text-4xl leading-tight font-semibold">
-                                “Mình lên tàu khi trời vừa chập tối. Ngắm nhìn thành phố lên đèn, mặt sông lấp lánh
-                                ánh
-                                vàng, thật sự là một trải nghiệm khó quên.”
+                                “{t('home.reviewerQuote')}”
                             </p>
-
-
                         </div>
                     </div>
                 </div>
