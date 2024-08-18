@@ -93,7 +93,8 @@
     "signUp": "Đăng Ký",
     "errorLogin": "Tên đăng nhập hoặc mật khẩu không chính xác",
     "loginWithGoogle": "Đăng nhập bằng Google",
-    "newCustomer": "Khách hàng mới?"
+    "newCustomer": "Khách hàng mới?",
+    "loggingIn": "Đang đăng nhập"
   },
   "bookingHistory": {
     "title": "Lịch Sử Đặt Vé",

@@ -93,7 +93,8 @@
     "signUp": "Sign Up",
     "errorLogin": "Incorrect username or password",
     "loginWithGoogle": "Login with Google",
-    "newCustomer": "New customer?"
+    "newCustomer": "New customer?",
+    "loggingIn": "Logging in"
   },
   "bookingHistory": {
     "title": "Booking History",
