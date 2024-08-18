@@ -1,6 +1,5 @@
 // src/components/Navbar.js
 import React, {useState} from 'react';
-import {Bars3Icon, XMarkIcon} from '@heroicons/react/24/outline';
 import {useAuth} from "../../../AuthContext";
 import './style.css';
 import LanguageSwitcher from "../LanguageSwitcher";
@@ -120,7 +119,7 @@ const Navbar = () => {
                             <div className='text-black flex items-center'>
                                 <img src='/img/icon/log-out.png' className='inline-block' alt='user'></img>
                             </div>
-                            <p className='ml-2'>Đăng xuất</p>
+                            <p className='ml-2'> {t("menu.logOut")}</p>
                         </button>
                     </div>
                 ) : (

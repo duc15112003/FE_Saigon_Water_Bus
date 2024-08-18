@@ -5,11 +5,12 @@ import ChiTietChuyen from "./tabthongtinchitiet";
 import MultiStepForm from "./QuyTrinhDatVe/allstep";
 import apiService from "../../../services/tripservice";
 import './custom-datepicker.css';
+import {useTranslation} from "react-i18next";
 
 const selectChuyen = [];
 
 function ChuyenTau() {
-
+    const { t } = useTranslation();
     const [seatLabels, setSeatLabels] = useState([])
 
     const timGhe = async (event, chuyenId) => {
@@ -57,7 +58,7 @@ function ChuyenTau() {
             setMessage1('');
 
         } catch (error) {
-            setMessage1('Thông tin tìm kiếm không phù hợp vui lòng kiểm tra lại!');
+            setMessage1(t("chuyen.message1"));
             setListChuyen([]);
         }
     }
@@ -65,12 +66,12 @@ function ChuyenTau() {
 
 //tab chit iet chuyen
     const [openTab, setOpenTab] = useState(false);
-    const [selectedOption, setSelectedOption] = useState('Giờ đi sớm nhất');
+    const [selectedOption, setSelectedOption] = useState(t("chuyen.earliest") );
     const [openSeat, setOpenSeat] = useState({});
 
     const options = [
-        'Giờ đi sớm nhất',
-        'Giờ đi muộn nhất'
+        t("chuyen.earliest"),
+        t("chuyen.lastest")
 
     ];
 
@@ -154,7 +155,7 @@ function ChuyenTau() {
             >
                 <div className="search-box-content flex flex-wrap gap-1 md:gap-4 items-end">
                     <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                        <label className="block text-gray-700">Nơi đi</label>
+                        <label className="block text-gray-700">{t("chuyen.from")}</label>
                         <div className="flex items-center relative">
                             <select
                                 className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
@@ -162,7 +163,7 @@ function ChuyenTau() {
                                 ref={fromRef}
                                 onChange={handleChangeFrom}
                             >
-                                <option value="nơi đi" selected disabled hidden>Nhập nơi đi</option>
+                                <option value="nơi đi" selected disabled hidden>{t("chuyen.fromInput")}</option>
                                 <option value="1"> Bạch Đằng</option>
                                 <option value="2"> Bình An</option>
                                 <option value="3"> Thanh Đa</option>
@@ -184,7 +185,7 @@ function ChuyenTau() {
                     </button>
 
                     <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                        <label className="block text-gray-700">Nơi đến</label>
+                        <label className="block text-gray-700">{t("chuyen.to")}</label>
                         <div className="flex items-center relative">
                             <select
                                 className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
@@ -192,7 +193,7 @@ function ChuyenTau() {
                                 ref={toRef}
                                 onChange={handleChangeTo}
                             >
-                                <option value="nơi đến" selected disabled hidden>Nhập nơi đến</option>
+                                <option value="nơi đến" selected disabled hidden>{t("chuyen.toInput")}</option>
                                 <option value="1"> Bạch Đằng</option>
                                 <option value="2"> Bình An</option>
                                 <option value="3"> Thanh Đa</option>
@@ -210,7 +211,7 @@ function ChuyenTau() {
 
                     <div className="flex-1 flex flex-col w-full relative ">
                         <label className="block text-gray-700 md:hidden">Ngày KH</label>
-                        <label className="hidden text-gray-700 md:block">Ngày khởi hành</label>
+                        <label className="hidden text-gray-700 md:block">{t("chuyen.departureDate")}</label>
                         <div className="relative w-full  border rounded border-gray-300">
                             <DatePicker
                                 selected={startDate}
@@ -248,13 +249,13 @@ function ChuyenTau() {
                                     d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
                                 />
                             </svg>
-                            <span>Tìm vé</span>
+                            <span>{t("chuyen.findTicket")}</span>
                         </button>
                     </div>
                 </div>
             </form>
             <div className="flex items-center space-x-4 my-4">
-                <span className="font-semibold">Sắp xếp theo:</span>
+                <span className="font-semibold">{t("chuyen.orderBy")}:</span>
                 {listChuyen && options.map(option => (
                     <button
                         key={option}
@@ -286,7 +287,7 @@ function ChuyenTau() {
                             <div className="w-full lg:w-9/12">
                                 <div className="flex flex-col lg:flex-row w-full justify-between">
                                     <div className="px-4 w-full">
-                                        <h1 className="text-lg font-bold mb-2">Ghế ngồi 75 chỗ</h1>
+                                        <h1 className="text-lg font-bold mb-2">{t("chuyen.seat75")}</h1>
                                         <div className="flex items-center mb-2">
                                             <div className="ghe1 px-2">
                                                 <svg className="TicketPC__LocationRouteSVG-sc-1mxgwjh-4 dSQflF"
@@ -305,13 +306,13 @@ function ChuyenTau() {
                                             </div>
                                             <div className="chuyen">
                                                 <h1 className="font-medium">{chuyen.departureTime} ● {chuyen.startTerminal}</h1>
-                                                <span className="text-xs text-gray-500">32 phút</span>
+                                                <span className="text-xs text-gray-500">32 {t("chuyen.minute")}</span>
                                                 <h1 className="font-medium">{chuyen.arrivalTime} ● {chuyen.endTerminal}</h1>
                                             </div>
                                         </div>
                                         <div className="gap-1">
                                             <div className="flex items-center cursor-pointer">
-                                                <span className="font-medium px-2">Thông tin chi tiết</span>
+                                                <span className="font-medium px-2">{t("chuyen.detail")}</span>
                                                 <button onClick={() => {
                                                     setOpenTab(prevState => ({
                                                         ...prevState,
@@ -327,22 +328,20 @@ function ChuyenTau() {
                                                     </svg>
                                                 </button>
                                             </div>
-                                            <h1 className="text-sm text-gray-600">Vé chặng thuộc
-                                                chuyến {chuyen.departureDate} {chuyen.fromTerminal} - {chuyen.toTerminal}</h1>
+                                            <h1 className="text-sm text-gray-600">{t("chuyen.belongTo")} {chuyen.departureDate} {chuyen.fromTerminal} - {chuyen.toTerminal}</h1>
                                         </div>
                                     </div>
                                     <div
                                         className="flex flex-col md:items-end justify-between mt-2 p-4 w-full lg:w-auto">
-                                        <span className="text-xl font-bold text-blue-600">15,000đ/ vé</span>
+                                        <span className="text-xl font-bold text-blue-600">15,000đ/ {t("chuyen.ticket")}</span>
                                         {shouldShowAllSeats ? (
                                             <div>
                                                 <span
-                                                    className="font-bold text-red-500 py-2 px-4 rounded transition text-sm lg:text-xl">Hết vé !</span>
+                                                    className="font-bold text-red-500 py-2 px-4 rounded transition text-sm lg:text-xl">{t("chuyen.soldOut")}</span>
                                             </div>
                                         ) : (
                                             <div className="contents">
-                                                Số ghế còn
-                                                trống: {chuyen.availableSeats - (bookedSeats[chuyen.id] || 0)}
+                                                {t("chuyen.available")}: {chuyen.availableSeats - (bookedSeats[chuyen.id] || 0)}
                                                 <button
                                                     onClick={(event) => {
                                                         setSeatLabels([]);
@@ -355,7 +354,7 @@ function ChuyenTau() {
                                                     }}
                                                     className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition mt-2 lg:mt-0"
                                                 >
-                                                    {openSeat[chuyen.id] ? 'Đóng lại' : 'Chọn chỗ'}
+                                                    {openSeat[chuyen.id] ? t("chuyen.close") : t("chuyen.chooseSeat")}
                                                 </button>
                                             </div>
                                         )}

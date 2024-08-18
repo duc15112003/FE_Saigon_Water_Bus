@@ -1,11 +1,15 @@
 import {axios} from 'axios';
 import React, {useState, useEffect} from 'react';
 import apiService from '../../../services/tripservice';
+import {useTranslation} from "react-i18next";
 
 const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) => {
     const [listSeatBooked, setListSeatBooked] = useState([]);
     const [notification, setNotification] = useState('');
-
+    const {t} = useTranslation();
+    const formatCurrency = (amount) => {
+        return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    };
     useEffect(() => {
         const fetchBookedSeats = async () => {
             try {
@@ -36,7 +40,7 @@ const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) =>
     useEffect(() => {
         localStorage.setItem('seatData', JSON.stringify(clickedSeats));
         if (clickedSeats.length >= 6) {
-            setNotification('Bạn chỉ có thể chọn tối đa 6 ghế.');
+            setNotification(t("ghe.max"));
         } else {
             setNotification('');
         }
@@ -213,7 +217,7 @@ const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) =>
                                 />
                             </svg>
                         </div>
-                        <div className="seat-type-info-value">Còn trống</div>
+                        <div className="seat-type-info-value">{t("ghe.available")}</div>
                     </div>
                     <div className="seat-type-info unavailable">
                         <div className='flex content-center justify-center'>
@@ -283,7 +287,7 @@ const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) =>
                             </svg>
                         </div>
 
-                        <div className="seat-type-info-value">Ghế không bán</div>
+                        <div className="seat-type-info-value">{t("ghe.notSale")}</div>
                     </div>
                     <div class="seat-type-info selected">
                         <div className='flex content-center justify-center'>
@@ -307,7 +311,7 @@ const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) =>
                                       fill="transparent"></path>
                             </svg>
                         </div>
-                        <div class="seat-type-info-value">Đang chọn</div>
+                        <div class="seat-type-info-value">{t("ghe.selecting")}</div>
                     </div>
                 </div>
                 <div className="flex flex-wrap justify-center  bg-gray-200 " style={{
@@ -350,15 +354,14 @@ const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) =>
                 <div className="flex-grow">
 
 <span className='font-bold'>
-  {clickedSeats.length === 0 ? 'Vui lòng chọn ít nhất 1 chỗ ngồi' : `Số ghế: `}
+  {clickedSeats.length === 0 ? t("ghe.note") : t("ghe.seatNum")}
 </span>
                     {clickedSeats.map((seat, index) => (
                         <span key={seat.id}>{seat.seatName}{index !== clickedSeats.length - 1 && ', '}</span>
                     ))}
                 </div>
                 <div>
-                    Tổng tiền: {clickedSeats.length * 15000}đ
-
+                    {t("ghe.total")}: {formatCurrency(clickedSeats.length * 15000)}
                 </div>
             </div>
 

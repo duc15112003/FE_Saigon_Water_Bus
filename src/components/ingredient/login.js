@@ -135,7 +135,7 @@ function Login() {
                                     <input
                                         id="username"
                                         type="text"
-                                        placeholder={t('login.usernamePlaceholder')}
+                                        placeholder={t('login.username')}
                                         className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-2 text-gray-500"
                                         value={credentials.username}
                                         onChange={handleUsernameChange}
@@ -146,7 +146,7 @@ function Login() {
                                     <input
                                         id="password"
                                         type="password"
-                                        placeholder={t('login.passwordPlaceholder')}
+                                        placeholder={t('login.password')}
                                         className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-2 text-gray-500"
                                         value={credentials.password}
                                         onChange={handlePasswordChange}
