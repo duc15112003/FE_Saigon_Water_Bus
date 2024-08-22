@@ -24,7 +24,7 @@ const Contact = () => {
                                     </div>
                                     <div className="space-y-4">
                                         <div>
-                                            <h6 className="font-semibold">{t('contact.officeAddress')}</h6>
+                                            <h6 className="font-semibold">{t('contact.address')}</h6>
                                             <h5 className="text-lg">{t('contact.officeAddress')}</h5>
                                         </div>
                                         <div>

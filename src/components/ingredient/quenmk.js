@@ -133,7 +133,7 @@ const ForgotPassword = () => {
                             className={`text-red-700 transition duration-200 ${loading || timer > 0 ? 'opacity-50 cursor-not-allowed' : ''}`}
                             disabled={email === '' || loading || timer > 0}
                         >
-                            {timer > 0 ? t('resendCode', { timer }) : t('getMailCode')}
+                            {timer > 0 ? t('forgotPassword.resendCode', { timer }) : t('forgotPassword.getMailCode')}
                         </button>
                     </div>
                     <div className="mb-4">

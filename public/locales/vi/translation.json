@@ -55,6 +55,7 @@
     "companyName": "CÔNG TY TNHH THƯỜNG NHẬT (SAIGON WATERBUS)",
     "supportHotline": "Hotline Hỗ Trợ",
     "phone": "1900636830",
+    "address": "Địa chỉ",
     "officeAddress": "6 Phan Kế Bính, Phường Đa Kao, Quận 1, TP. Hồ Chí Minh",
     "email": "Email",
     "emailAddress": "info@saigonwaterbus.com",
@@ -94,7 +95,8 @@
     "errorLogin": "Tên đăng nhập hoặc mật khẩu không chính xác",
     "loginWithGoogle": "Đăng nhập bằng Google",
     "newCustomer": "Khách hàng mới?",
-    "loggingIn": "Đang đăng nhập"
+    "loggingIn": "Đang đăng nhập",
+    "backToLogin": "Quay trở lại trang đăng nhập"
   },
   "bookingHistory": {
     "title": "Lịch Sử Đặt Vé",
@@ -140,7 +142,8 @@
     "resetPassword": "Đặt Lại Mật Khẩu",
     "errorPasswordMismatch": "Mật khẩu mới và xác nhận không khớp",
     "resetSuccess": "Đặt lại mật khẩu thành công! Đang chuyển hướng đến trang đăng nhập...",
-    "resetFailure": "Đặt lại mật khẩu thất bại!"
+    "resetFailure": "Đặt lại mật khẩu thất bại!",
+    "backToLogin": "Quay trở lại trang đăng nhập"
   },
   "contactBooking": "Liên hệ đặt vé",
   "name": "Tên",

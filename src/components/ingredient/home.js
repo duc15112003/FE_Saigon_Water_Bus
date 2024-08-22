@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MagnifyingGlassIcon, UserIcon, CreditCardIcon, CheckBadgeIcon, PlusCircleIcon } from '@heroicons/react/24/solid';
 import 'react-datepicker/dist/react-datepicker.css';
 import '../ingredient/Datve/datve.css';
 import { useTranslation } from 'react-i18next';
-
+const removeVietnameseTones = (str) => {
+    return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/đ/g, 'd')
+        .replace(/Đ/g, 'D')
+        .replace(/\s/g, '')
+        .replace(/[^\w\s]/gi, '');
+};
 const Home = () => {
     const { t } = useTranslation();
 
     const stations = [
-        { name: 'Bach Đằng', description: t('home.subBachDang'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-0-1-1536x880.jpg' },
+        { name: 'Bạch Đằng', description: t('home.subBachDang'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-0-1-1536x880.jpg' },
         { name: 'Bình An', description: t('home.subBinhAn'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-3-1536x880.jpg' },
         { name: 'Thanh Đa', description: t('home.subThanhDa'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-6.jpg' },
         { name: 'Hiệp Bình Chánh', description: t('home.subHiepBinhChanh'), image: 'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-1-1536x880.jpg' },
@@ -16,6 +24,13 @@ const Home = () => {
     ];
 
     const [selectedStation, setSelectedStation] = useState(stations[0]);
+
+    useEffect(() => {
+        setSelectedStation({
+            ...stations[0],
+            description: t('home.subBachDang'),
+        });
+    }, [t]);
 
     return (
         <div className='text-sm lg:text-base'>
@@ -104,7 +119,9 @@ const Home = () => {
                             <button
                                 key={index}
                                 className={`py-2 px-4 ${selectedStation.name === station.name ? 'border-b-2 border-yellow-400 text-yellow-400' : 'text-gray-500'}`}
-                                onClick={() => setSelectedStation(station)}
+                                onClick={() => setSelectedStation({
+                                    ...station,
+                                    description: t(`home.sub${removeVietnameseTones(station.name)}`)                                })}
                             >
                                 {station.name}
                             </button>
