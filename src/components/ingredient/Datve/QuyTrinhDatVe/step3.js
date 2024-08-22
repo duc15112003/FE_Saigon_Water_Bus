@@ -37,7 +37,7 @@ const Step3 = ({ prevStep }) => {
       const response = await axios.post(`${apiUrl}/payment/vnpay`, {
         orderId: new Date().getTime().toString(), // Sử dụng timestamp làm orderId
         amount: total,
-        returnUrl: `${apiUrl}/payment/vnpay/return`
+        returnUrl: 'https://saigonwaterbus.click/api/saigonwaterbus/payment/vnpay/return'
       });
       // Mở cửa sổ popup khi nhận được URL từ server
       paymentWindow = window.open(response.data, 'Payment', 'width=600,height=600');
@@ -119,7 +119,7 @@ const Step3 = ({ prevStep }) => {
       const response = await axios.post(`${apiUrl}/send-mail`, emailData);
       console.log(response.data);
       sendLocalStorageToServer();
-      window.location.href = 'https://saigonwaterbus.click/dat-ve/thanh-toan-thanh-cong';
+      window.location.href = '/dat-ve/thanh-toan-thanh-cong';
     } catch (error) {
       console.error('Error calling the send-mail API:', error);
     } finally {

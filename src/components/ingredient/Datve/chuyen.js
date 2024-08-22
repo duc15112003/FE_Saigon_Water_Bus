@@ -155,10 +155,10 @@ function ChuyenTau() {
             >
                 <div className="search-box-content flex flex-wrap gap-1 md:gap-4 items-end">
                     <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                        <label className="block text-gray-700">{t("chuyen.from")}</label>
+                        <label className="block text-gray-700 font-bold md:text-start">{t("chuyen.from")}</label>
                         <div className="flex items-center relative">
                             <select
-                                className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
+                                className="appearance-none w-full p-2 border border-gray-300 rounded"
                                 id="inputFrom"
                                 ref={fromRef}
                                 onChange={handleChangeFrom}
@@ -180,15 +180,15 @@ function ChuyenTau() {
                     </div>
 
                     <button onClick={handleButtonClick} className="flex-shrink-0">
-                        <img className="swap-area" decoding="async" src="//static.vexere.com/webnx/prod/img/swap-v3.svg"
+                        <img className="swap-area w-9 md:w-auto" decoding="async" src="//static.vexere.com/webnx/prod/img/swap-v3.svg"
                              alt=""/>
                     </button>
 
                     <div className="flex-1 flex flex-col w-full md:w-auto relative">
-                        <label className="block text-gray-700">{t("chuyen.to")}</label>
+                        <label className="block text-gray-700 font-bold">{t("chuyen.to")}</label>
                         <div className="flex items-center relative">
                             <select
-                                className="appearance-none w-full p-2 border border-gray-300 rounded pr-10"
+                                className="appearance-none w-full p-2 border  border-gray-300 rounded"
                                 id="inputTo"
                                 ref={toRef}
                                 onChange={handleChangeTo}
@@ -210,15 +210,15 @@ function ChuyenTau() {
                     </div>
 
                     <div className="flex-1 flex flex-col w-full relative ">
-                        <label className="block text-gray-700 md:hidden">Ngày KH</label>
-                        <label className="hidden text-gray-700 md:block">{t("chuyen.departureDate")}</label>
-                        <div className="relative w-full  border rounded border-gray-300">
+                        <label className="block text-gray-700 md:hidden font-bold">Ngày KH</label>
+                        <label className="hidden text-gray-700 md:block font-bold">{t("chuyen.departureDate")}</label>
+                        <div className="relative w-full p-2   border rounded border-gray-300">
                             <DatePicker
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
-                                className="p-2 w-full"
+                                className="w-full datepicker-no-focus"
                                 dateFormat="dd/MM/yyyy"
-                                //   minDate={new Date()}
+                                minDate={new Date()}
                                 popperPlacement="top-end"
                                 popperClassName="z-10"
                             />
@@ -254,27 +254,24 @@ function ChuyenTau() {
                     </div>
                 </div>
             </form>
-            <div className="flex items-center space-x-4 my-4">
+            <div className="flex items-center space-x-4 my-2 text-sm md:text-base">
                 <span className="font-semibold">{t("chuyen.orderBy")}:</span>
                 {listChuyen && options.map(option => (
                     <button
                         key={option}
-                        className={`md:px-4 md:py-2 rounded transition ${selectedOption === option ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
+                        className={`md:p-4 p-1 rounded transition ${selectedOption === option ? 'bg-blue-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`}
                         onClick={() => setSelectedOption(option)}
                     >
                         {option}
                     </button>
                 ))}
             </div>
-
             {sortedChuyen.map(chuyen => {
                 const now = new Date();
                 const departureDate = new Date(chuyen.departureDate);
                 const departureTime = new Date(`${chuyen.departureDate}T${chuyen.departureTime}`);
                 const shouldShowAllSeats = departureDate.toDateString() === now.toDateString() &&
                     (departureTime - now) <= 15 * 60 * 1000; // chuyển đổi phút sang mili giây
-
-
                 return (
                     <div key={chuyen.id}
                          className="block border rounded-lg border-b border-gray-300 shadow-lg mb-2 p-2">
@@ -337,7 +334,7 @@ function ChuyenTau() {
                                         {shouldShowAllSeats ? (
                                             <div>
                                                 <span
-                                                    className="font-bold text-red-500 py-2 px-4 rounded transition text-sm lg:text-xl">{t("chuyen.soldOut")}</span>
+                                                    className="font-bold text-red-500 py-2 px-4 rounded transition text-base">{t("chuyen.soldOut")}</span>
                                             </div>
                                         ) : (
                                             <div className="contents">

@@ -1,6 +1,6 @@
 import Footer from '../DefaulLayout/Footer/index.js';
 import Header from '../DefaulLayout/Header/header.js';
-import Carousel from '../DefaulLayout/Carosel/carosel.js';
+
 
 const NullLayout = ({children}) => {
     const images = [
@@ -10,6 +10,7 @@ const NullLayout = ({children}) => {
     ];
     return (
         <div className='flex flex-col min-h-screen'>
+
             <Header/>
 
             <div className='py-2'>{children}</div>

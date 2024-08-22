@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import forgetService from '../../services/forgetpass';
 import Popup from '../Popup';
 import { useTranslation } from 'react-i18next';
+import LanguageSwitcher from "../DefaulLayout/LanguageSwitcher";
 
 const ForgotPassword = () => {
     const { t } = useTranslation();
@@ -78,13 +79,17 @@ const ForgotPassword = () => {
 
     return (
         <div
-            className="min-h-screen flex items-center justify-center"
+            className="min-h-screen flex items-center relative justify-center"
             style={{
                 backgroundImage: `url(https://secure3.vncdn.vn/ttnew/r/2021/04/01/waterbus5-1617259851.jpg)`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center'
             }}
         >
+                 <div className='absolute top-0 right-0'>
+                    <LanguageSwitcher />
+                 </div>
+
             <div className="max-w-md w-full mx-auto p-8 bg-white shadow-md rounded-md">
                 {error && <div className="mb-4 text-center text-red-500 font-bold">{error}</div>}
                 {loading && (

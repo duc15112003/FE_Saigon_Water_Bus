@@ -9,11 +9,11 @@ const LanguageSwitcher = () => {
     };
 
     return (
-        <div>
+        <div className='ml-2 content-center'>
             <select
                 value={i18n.language}
                 onChange={changeLanguage}
-                className="p-2 border rounded"
+                className="border rounded text-xs font-semibold bg-slate-200"
             >
                 <option value="vi">Tiếng Việt</option>
                 <option value="en">English</option>

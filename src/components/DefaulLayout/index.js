@@ -1,7 +1,7 @@
 import Footer from '../DefaulLayout/Footer/index.js';
 import Header from '../DefaulLayout/Header/header.js';
 import Carousel from '../DefaulLayout/Carosel/carosel.js';
-
+import ChatWidget from './Support/chatbox.js';
 const DefaultLayout = ({children}) => {
     const images = [
         'https://saigonwaterbus.com/wp-content/uploads/2022/06/home-slide-6.jpg',
@@ -24,7 +24,10 @@ const DefaultLayout = ({children}) => {
                 </div>
                 <div className="container mx-auto py-2">
                     {children}
+
                 </div>
+                                                <ChatWidget/>
+
             </div>
             <Footer/>
         </div>

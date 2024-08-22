@@ -8,7 +8,7 @@ const DatVe = () => {
     const { t } = useTranslation();
 
     return (
-        <div className=''>
+        <div className='p-1'>
             <div className="qodef-m-inner">
                 <div className="flex items-center justify-center bg-stone-200 h-64">
                     <div className="container mx-auto">
@@ -17,7 +17,7 @@ const DatVe = () => {
                         </h1>
                     </div>
                 </div>
-                <div className='p-2'>
+                <div className=''>
                     <section className=" bg-gray-100">
                         {/* Các phần khác của nội dung */}
                     </section>

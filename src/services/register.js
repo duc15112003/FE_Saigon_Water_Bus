@@ -12,7 +12,6 @@ const registerUser = async (formData,emailCode) => {
     return response;
 };
 const sendMailCode = async (email) => {
-    // console.log("sending email to", 'http://localhost:8080/api/saigonwaterbus/send-mail-code?emailAddress=${encodeURIComponent(emailAddress)}');
     
     const url = `${apiUrl}/send-mail-code?email=${encodeURIComponent(email)}`;
     

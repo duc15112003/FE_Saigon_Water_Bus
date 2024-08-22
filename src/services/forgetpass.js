@@ -9,9 +9,7 @@ const apiClient = axios.create({
     'Content-Type': 'application/json',
   },
 });
-const sendMailCode = async (email) => {
-    // console.log("sending email to", 'http://localhost:8080/api/saigonwaterbus/send-mail-code?emailAddress=${encodeURIComponent(emailAddress)}');
-    
+const sendMailCode = async (email) => {    
     const url = `/send-mailcode-forgetpass?email=${encodeURIComponent(email)}`;
     
     const response = await apiClient.get(url,{

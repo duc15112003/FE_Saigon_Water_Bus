@@ -4,7 +4,7 @@ import { useAuth } from '../../AuthContext';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import '../../i18n';
-
+import LanguageSwitcher from "../DefaulLayout/LanguageSwitcher";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 function Login() {
@@ -16,6 +16,11 @@ function Login() {
     });
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
     const [errorLogin, setErrorLogin] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
+    const toggleShowPassword = () => {
+        setShowPassword(!showPassword);
+    };
 
     useEffect(() => {
         const handleGoogleRedirect = async () => {
@@ -98,6 +103,7 @@ function Login() {
 
     return (
         <div className="LoginPage">
+
             {showSuccessMessage && (
                 <div
                     className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -116,7 +122,10 @@ function Login() {
                     </div>
                 </div>
             )}
+                                                <div className="justify-end flex" ><LanguageSwitcher /></div>
+
             <div className="flex flex-wrap min-h-screen w-full content-center justify-center py-10 px-4">
+
                 <div className="flex shadow-md w-full max-w-4xl">
                     <div
                         className="flex flex-wrap content-center justify-center rounded-l-md bg-white w-full lg:w-1/2 p-4">
@@ -124,7 +133,7 @@ function Login() {
                             <h1 className="text-xl text-center font-semibold mb-4">
                                 {t('login.welcome')}
                             </h1>
-                            <small className="text-gray-400 block mb-4">{t('login.login')}</small>
+                            <small className=" text-center text-blue-600 font-bold text-base block mb-4">{t('login.login')}</small>
                             <div className="text-center mt-2">
                                 {errorLogin &&
                                     <span className="font-bold text-xl text-red-500">{t('login.errorLogin')}</span>}
@@ -141,16 +150,24 @@ function Login() {
                                         onChange={handleUsernameChange}
                                     />
                                 </div>
-                                <div className="mb-3">
+                                <div className="mb-3 relative">
                                     <label htmlFor="password" className="block text-xs font-semibold mb-2">{t('login.password')}</label>
                                     <input
                                         id="password"
-                                        type="password"
+                                        type={showPassword?"text":"password"}
                                         placeholder={t('login.password')}
                                         className="block w-full rounded-md border border-gray-300 focus:border-purple-700 focus:outline-none focus:ring-1 focus:ring-purple-700 py-1 px-2 text-gray-500"
                                         value={credentials.password}
                                         onChange={handlePasswordChange}
                                     />
+                                    <button
+                                        type="button"
+                                        onClick={toggleShowPassword}
+                                        className="absolute inset-y-0 right-0 top-5 flex items-center pr-3"
+                                        >
+                                        {showPassword ? <img src='/img/icon/hide-password.png' alt='' className='h-5'/> : <img src='/img/icon/show-password.png' alt='' className='h-5'/>}
+                                    </button>
+
                                 </div>
                                 <div className="mb-3 flex items-center">
                                     <input
@@ -169,12 +186,16 @@ function Login() {
                                         {t('login.login')}
                                     </button>
                                 </div>
+                                <a href='/' className="text-center text-blue-600 text-base underline block mb-4">
+                                Quay lại trang chủ
+                                </a>
+
                             </form>
                             <form onSubmit={(e) => {
                                 e.preventDefault();
                                 handleLoginWithGoogle();
                             }}>
-                                <div className="mb-3 text-center flex items-center">
+                                <div className="mb-3 text-center bg-slate-100 border rounded flex items-center">
                                     <button
                                         type="submit"
                                         className="flex hover:bg-sky-200 text-base px-4 py-2 items-center gap-4 w-full"
@@ -185,6 +206,7 @@ function Login() {
                                     </button>
                                 </div>
                             </form>
+
                             <div className="text-center">
                                 <span className="text-xs text-gray-400 font-semibold block mb-2">{t('login.newCustomer')}</span>
                                 <a href="/dang-ky" className="text-xs font-semibold text-purple-700">{t('login.signUp')}</a>

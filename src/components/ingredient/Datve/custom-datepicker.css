@@ -12,3 +12,8 @@
 .react-datepicker__input-container {
   width: 100% !important;
 }
+.datepicker-no-focus:focus {
+  outline: none;
+  box-shadow: none;
+  width: 100%;
+}
