@@ -8,8 +8,8 @@ const RegistrationForm = () => {
     const { t } = useTranslation();
 
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        firstname: '',
+        lastname: '',
         email: '',
         phoneNumber: '',
         username: '',
@@ -73,6 +73,17 @@ const RegistrationForm = () => {
             setError(t('registration.errorPasswordMismatch'));
             return;
         }
+    const hasUpperCase = /[A-Z]/.test(formData.password);
+
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(formData.password);
+    const isValidLength = formData.password.length >= 6;
+
+    if (!hasUpperCase || !hasSpecialChar || !isValidLength) {
+        setError(t('registration.failPass'));
+        return;
+    } else {
+        setError('');
+    }
 
         setLoading(true);
         try {
@@ -94,12 +105,14 @@ const RegistrationForm = () => {
     };
 
     return (
-<div className="min-h-screen flex items-center justify-center"
+<div className="min-h-screen items-center justify-center"
      style={{
          backgroundImage: `url(https://secure3.vncdn.vn/ttnew/r/2021/04/01/waterbus5-1617259851.jpg)`,
          backgroundSize: 'cover',
          backgroundPosition: 'center'
      }}>
+         <div className='justify-end flex'><LanguageSwitcher/></div>
+
     <div className="max-w-md w-full mx-auto p-8 bg-white shadow-md rounded-md">
         {error && <div className="mb-4 text-center text-red-500 font-bold text-sm md:text-base lg:text-lg">{error}</div>}
         {success && (
@@ -120,11 +133,11 @@ const RegistrationForm = () => {
         <form onSubmit={handleRegisterAccount}>
             <div className="grid grid-cols-2 gap-4 mb-4">
                 <div>
-                    <label className="block text-gray-700 text-sm md:text-base lg:text-lg">{t('registration.firstName')}</label>
+                    <label className="block text-gray-700 text-sm md:text-base lg:text-lg">{t('registration.firstname')}</label>
                     <input
                         type="text"
-                        name="firstName"
-                        value={formData.firstName}
+                        name="firstname"
+                        value={formData.firstname}
                         onChange={handleChange}
                         required
                         className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm md:text-base lg:text-lg"
@@ -229,7 +242,7 @@ const RegistrationForm = () => {
                         type="button"
                         onClick={handleGetMailCode}
                         disabled={loading || timer > 0}
-                        className="ml-2 py-2 px-4 bg-blue-500 text-white rounded-md text-sm md:text-base lg:text-lg"
+                        className="ml-2 p-1 bg-blue-500 text-white rounded-md text-sm"
                     >
                         {timer > 0 ? `${t('registration.resendCodeButton', { timer })}` : t('registration.getCodeButton')}
                     </button>

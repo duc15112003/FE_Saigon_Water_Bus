@@ -133,7 +133,7 @@ const fetchBookedSeats = async (tripId, departureDate) => {
         const response = await axios.post(`${apiUrl}/payment/vnpay`, {
           orderId: new Date().getTime().toString(), // Sử dụng timestamp làm orderId
           amount: localStorage.getItem("total"),
-          returnUrl: `${apiUrl}/payment/vnpay/return`
+          returnUrl: 'https://saigonwaterbus.click/api/saigonwaterbus/payment/vnpay/return'
         });
         // Mở cửa sổ popup khi nhận được URL từ server
         paymentWindow = window.open(response.data, 'Payment', 'width=600,height=600');

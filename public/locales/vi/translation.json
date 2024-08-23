@@ -67,7 +67,7 @@
   },
   "registration": {
     "title": "Đăng Ký Tài Khoản SaiGonWaterBus",
-    "firstName": "Tên",
+    "firstname": "Tên",
     "lastName": "Họ",
     "email": "Email",
     "phoneNumber": "Số Điện Thoại",
@@ -82,7 +82,9 @@
     "errorSendingCode": "Gửi mã xác minh thất bại",
     "errorPasswordMismatch": "Mật khẩu và xác nhận không khớp",
     "errorGeneral": "Đã xảy ra lỗi",
-    "successMessage": "Đăng ký thành công! Đang chuyển hướng đến trang đăng nhập..."
+    "successMessage": "Đăng ký thành công! Đang chuyển hướng đến trang đăng nhập...",
+    "failPass": "Mật khẩu phải có ít nhất 6 ký tự, bao gồm ít nhất 1 ký tự viết hoa và 1 ký tự đặc biệt"
+
   },
   "login": {
     "welcome": "Chào mừng đến với Saigon Waterbus",

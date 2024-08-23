@@ -5,6 +5,7 @@ const AuthContext = createContext();
 
 // Tạo một Provider cho Context
 export const AuthProvider = ({children}) => {
+    
     const [isLoggedIn, setIsLoggedIn] = useState(() => {
         const savedIsLoggedIn = localStorage.getItem('isLoggedIn');
         return savedIsLoggedIn;
