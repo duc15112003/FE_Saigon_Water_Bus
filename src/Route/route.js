@@ -12,26 +12,22 @@ import ThanhToanThanhCong from "../components/ingredient/thanhtoanthanhcong.js";
 import UserDetailsPage from "../components/ingredient/profile.js";
 import LichSuDatVe from "../components/ingredient/lichsudatve";
 import ForgotPassword from "../components/ingredient/quenmk.js";
+
 const publicRoutes = [
-    { path: '/', component: Home },
-    { path: '/about', component: About },
-    { path: '/contact', component: Contact },
-    { path: '/lich', component: Lich},
-    { path: '/dat-ve', component: DatVe},
-    { path: '/login', component: Login},
-    { path: '/ben-tau', component: Port},
-    { path:'/lich-su',component:HistoryTicket},
-    { path:'/thong-tin',component:Forsefl},
-    { path:'/dang-ky',component:Register},
-    { path:'/profile',component:UserDetailsPage},
-     { path:'/lich-su-dat-ve',component:LichSuDatVe },
-        {path:'/quen-mat-khau',component:ForgotPassword
-},
-
-    {path: '/dat-ve/thanh-toan-thanh-cong',component:ThanhToanThanhCong}
-
-
-
+    {path: '/', component: Home},
+    {path: '/about', component: About},
+    {path: '/contact', component: Contact},
+    {path: '/lich', component: Lich},
+    {path: '/dat-ve', component: DatVe},
+    {path: '/login', component: Login},
+    {path: '/ben-tau', component: Port},
+    {path: '/lich-su', component: HistoryTicket},
+    {path: '/thong-tin', component: Forsefl},
+    {path: '/dang-ky', component: Register},
+    {path: '/profile', component: UserDetailsPage},
+    {path: '/lich-su-dat-ve', component: LichSuDatVe},
+    {path: '/quen-mat-khau', component: ForgotPassword},
+    {path: '/dat-ve/thanh-toan-thanh-cong', component: ThanhToanThanhCong}
 ];
 
-export { publicRoutes };
+export {publicRoutes};

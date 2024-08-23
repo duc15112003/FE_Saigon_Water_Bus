@@ -1,96 +1,68 @@
-import logoapp from "../../../image/logo.png";
-import './footer.css'
-function footer() {
-    return (
+import './footer.css';
+import {useTranslation} from 'react-i18next';
 
-        <div className="footer">
-            <hr className="my-6 border-blueGray-300"/>
+const Footer = () => {
+    const {t} = useTranslation();
+
+    return (<div className="footer text-sm lg:text-base bg-gray-100">
             <footer className="bg-black-200 pt-8 pb-6">
                 <div className="container mx-auto px-4">
                     <div className="flex flex-wrap text-left lg:text-left">
-                        <div className="w-full lg:w-6/12 px-4">
-                                <img
-                                    className="Style_Image"
-                                    alt=''
-                                    src={logoapp}
-                                />
-                            <div className="mt-6 lg:mb-0 mb-6">
-                                © 2022 CÔNG TY TNHH THƯỜNG NHẬT. Giấy CNĐK DN số: 0304354924 cấp ngày 05/05/2006 tại Sở
-                                Kế hoạch & đầu tư Tp. Hồ Chí Minh.
-                                Địa chỉ: 6 Phan Kế Bính, Phường Đa Kao, Quận 1, TP. Hồ Chí Minh.
+                        <div className="lg:w-6/12 px-4 justify-center">
+                            <div className="flex justify-center">
+                                <img className="Style_Image" alt="" src="/logo_footer.png"/>
+                            </div>
+                            <div className="justify-center md:justify-normal font-semibold">
+                                {t('footer.company_info')}
                             </div>
                         </div>
-                        <div className="w-full lg:w-6/12 px-4">
-                            <div className="flex flex-wrap items-top mb-6">
-                                <div className="w-full lg:w-3/12 px-4 ml-auto">
-                              <span className="block uppercase text-blueGray-500 text-sm font-bold mb-2">
-                                Thông tin
-                              </span>
+                        <div className="w-full lg:w-6/12 justify-center">
+                            <div className="flex flex-wrap justify-between mt-2">
+                                <div className="w-1/2 lg:w-3/12 px-4">
+                  <span className="block uppercase text-blueGray-500 text-sm font-bold mb-2">
+                    {t('footer.info')}
+                  </span>
                                     <ul className="list-unstyled">
-                                        <li>
-                                                Giới thiệu
-                                        </li>
-                                        <li>
-                                                Đối tác
-                                        </li>
-                                        <li>
-                                                Tuyển dụng
-                                        </li>
+                                        <li>{t('footer.about_us')}</li>
+                                        <li>{t('footer.partners')}</li>
+                                        <li>{t('footer.careers')}</li>
                                     </ul>
                                 </div>
-                                <div className="w-full lg:w-3/12 px-4 ml-auto">
-
-                              <span className="block uppercase text-blueGray-500 text-sm font-bold mb-2">
-                                Dịch vụ
-                              </span>
+                                <div className="w-1/2 lg:w-3/12 px-4 mb-4">
+                  <span className="block uppercase text-blueGray-500 text-sm font-bold mb-2">
+                    {t('footer.services')}
+                  </span>
                                     <ul className="list-unstyled">
-                                        <li>
-                                                Water bus
-                                        </li>
+                                        <li>{t('footer.water_bus')}</li>
                                     </ul>
                                 </div>
-                                <div className="w-full lg:w-3/12 px-4 ml-auto">
-
-                              <span className="block uppercase text-blueGray-500 text-sm font-bold mb-2">
-                                Chính sách
-                              </span>
+                                <div className="w-1/2 lg:w-3/12 px-4 mb-4">
+                  <span className="block uppercase text-blueGray-500 text-sm font-bold mb-2">
+                    {t('footer.policy')}
+                  </span>
                                     <ul className="list-unstyled">
-                                        <li>
-                                                Chính sách và quy định
-                                        </li>
-                                        <li>
-                                                Điều khoản sử dụng
-                                        </li>
-                                        <li>
-                                                Chính sách bảo mật
-                                        </li>
+                                        <li>{t('footer.terms_and_conditions')}</li>
+                                        <li>{t('footer.terms_of_use')}</li>
+                                        <li>{t('footer.privacy_policy')}</li>
                                     </ul>
                                 </div>
-                                <div className="w-full lg:w-3/12 px-4 ml-auto">
-              <span className="block uppercase text-blueGray-500 text-sm font-bold mb-2">
-                    Liên hệ
-              </span>
+                                <div className="w-1/2 lg:w-3/12 px-4 mb-4">
+                  <span className="block uppercase text-blueGray-500 text-sm font-bold mb-2">
+                    {t('footer.contact')}
+                  </span>
                                     <ul className="list-unstyled">
-                                        <li>
-
-                                                Văn phòng chính
-                                        </li>
-                                        <li>
-                                                Hợp tác bán hàng
-                                        </li>
-                                        <li>
-                                                Câu hỏi thường gặp
-                                        </li>
+                                        <li>{t('footer.main_office')}</li>
+                                        <li>{t('footer.sales_cooperation')}</li>
+                                        <li>{t('footer.faq')}</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <hr className="my-6 border-blueGray-300"/>
+                    <hr className="my-1 border-blueGray-300"/>
                 </div>
             </footer>
-        </div>
-    );
-}
+        </div>);
+};
 
-export default footer;
+export default Footer;

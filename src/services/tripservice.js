@@ -1,7 +1,7 @@
 // src/services/apiService.js
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:8080/api/saigonwaterbus';
+const API_BASE_URL = process.env.REACT_APP_API_URL;
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
@@ -19,7 +19,7 @@ const timGhe = async (chuyenId) => {
     throw error;
   }
 };
-// /booking-ticket/{tripId}/{departureDate}/getSeat
+
 const timGheBooked = async (tripId,dateTrip) => {
   try {
     const response = await apiClient.get(`/booking-ticket/${tripId}/${dateTrip}/getSeat`);
@@ -46,7 +46,6 @@ const timChuyen = async (searchParams) => {
 const apiService = {
   timGhe,
   timChuyen,timGheBooked
-  // Có thể thêm các hàm khác ở đây
 };
 
 export default apiService;

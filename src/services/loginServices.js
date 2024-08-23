@@ -1,10 +1,9 @@
 
 import axios from 'axios';
-import { param } from 'jquery';
-const API_BASE_URL = 'http://localhost:8080/api/saigonwaterbus';
+const apiUrl = process.env.REACT_APP_API_URL;
 
 const apiClient = axios.create({
-  baseURL: API_BASE_URL,
+  baseURL: apiUrl,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -14,7 +13,7 @@ const LoginProcess = async (username, password) => {
 
     try {
         // Gửi yêu cầu POST với body là một đối tượng JSON chứa thông tin đăng nhập
-        const response = await apiClient.post(`${API_BASE_URL}/login`, { username, password});
+        const response = await apiClient.post(`login`, { username, password});
     
         const responseDataUsername = response.data.result.username;
         localStorage.setItem('token', response.data.result.token);
@@ -31,7 +30,7 @@ const LoginProcess = async (username, password) => {
 
 const LoginGoogle= async (code) =>{
     try {
-    const response = await axios.get(`http://localhost:8080/api/saigonwaterbus/accesstoken?code=${code}`);
+    const response = await apiClient.get(`/accesstoken?code=${code}`);
         localStorage.setItem('token', response.data.token);
          localStorage.setItem('us', response.data.username);
   console.log("data"+response.data)
