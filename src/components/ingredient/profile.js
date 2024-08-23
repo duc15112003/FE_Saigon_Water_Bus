@@ -51,10 +51,10 @@ const UserDetailsPage = () => {
       );
       setUserDetail(editData);
       setIsEditPopupOpen(false);
-      setPopupMessage(t('updateSuccess'));
+      setPopupMessage(t('profile.updateSuccess'));
     } catch (error) {
       console.error("Error updating user detail:", error);
-      setPopupMessage(t('updateFailure'));
+      setPopupMessage(t('profile.updateFailure'));
     }
   };
 
@@ -79,11 +79,11 @@ const UserDetailsPage = () => {
           lastname: updateData.lastname,
         }));
         setIsEditPopupOpen(false);
-        setPopupMessage(t('updateSuccess'));
+        setPopupMessage(t('profile.updateSuccess'));
       }
     } catch (error) {
       console.error("Error updating profile name:", error);
-      setPopupMessage(t('updateFailure'));
+      setPopupMessage(t('profile.updateFailure'));
     }
   };
 

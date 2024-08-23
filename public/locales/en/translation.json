@@ -55,6 +55,7 @@
     "companyName": "CÔNG TY TNHH THƯỜNG NHẬT (SAIGON WATERBUS)",
     "supportHotline": "Support Hotline",
     "phone": "1900636830",
+    "address": "Address",
     "officeAddress": "6 Phan Kế Bính, Ward Đa Kao, District 1, Ho Chi Minh City",
     "email": "Email",
     "emailAddress": "info@saigonwaterbus.com",
@@ -94,7 +95,8 @@
     "errorLogin": "Incorrect username or password",
     "loginWithGoogle": "Login with Google",
     "newCustomer": "New customer?",
-    "loggingIn": "Logging in"
+    "loggingIn": "Logging in",
+    "backToLogin": "Back to Login"
   },
   "bookingHistory": {
     "title": "Booking History",
