@@ -3,6 +3,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 const ChatWidget = () => {
 const apiUrl = process.env.REACT_APP_API_URL;
+// const apiUrl = "http://localhost:8080/api/saigonwaterbus";
   const [isChatOpen, setIsChatOpen] = useState(false);
   const glowAnimation = {
     animation: 'glow 2s infinite',
@@ -24,7 +25,7 @@ const apiUrl = process.env.REACT_APP_API_URL;
   const [trips, setTrips] = useState([]);
   const [seats, setSeats] = useState([]);
   const [selectedTrip, setSelectedTrip] = useState(null);
-
+    const [userDetail,setUserdetail] = useState([])
   const token = localStorage.getItem("token");
   const [email, setEmail] = useState(''); 
   const [selectedSeats, setSelectedSeats] = useState([]);
@@ -224,7 +225,8 @@ const fetchBookedSeats = async (tripId, departureDate) => {
                 Authorization:`Bearer ${token}`
             }
         })
-        chuyenMail = response.data.result[0].email;
+        chuyenMail = response.data.result.email;
+        console.log(chuyenMail)
     }
     // const chuyenMail = JSON.parse(localStorage.getItem('orderData'));
     const chuyenData = JSON.parse(localStorage.getItem('chuyenData'));
