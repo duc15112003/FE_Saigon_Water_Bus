@@ -99,15 +99,18 @@ const Navbar = () => {
                 {isLoggedIn ? (
                             <div className="hidden lg:flex items-center relative mx-2">
                                     <div className="text-black flex items-center relative group">
-                                        <a href='/profile' alt='thong tin ca nhan' className="flex items-center">
-                                            <img src='/img/icon/userheader.png' className='inline-block' alt='user'></img>
-                                            <span className=' ml-2 text-base md:text-xs lg:text-xs xl:text-xs 2xl:text-base font-semibold'>{username}</span>
-                                        </a>
+                                <a href='/profile' alt='thong tin ca nhan' className="flex items-center">
+                                    <img src='/img/icon/userheader.png' className='inline-block' alt='user'></img>
+                                    <span className='ml-2 text-sm md:text-xs lg:text-xs xl:text-xs 2xl:text-base font-semibold truncate max-w-[100px] lg:max-w-[150px] xl:max-w-[200px]'>
+                                        {username}
+                                    </span>
+                                </a>
+
                                         <div className='p-6 w-64 absolute top-full left-0  opacity-0 invisible group-hover:opacity-100 group-hover:visible  transition-opacity duration-300  bg-slate-100 shadow-lg rounded  z-10'>
                                             <a href='/profile' 
                                                 className="text-black hover:text-green focus:outline-none flex items-center mb-2">
                                                 <img src='/img/icon/account.png' className='inline-block w-5 h-4 mr-2' alt='account'></img>
-                                                <span className='font-semibold '>Tài khoản</span>
+                                                <span className='font-semibold '>{t("menu.information")}</span>
                                             </a>
                                      {isLoggedIn && (                                       
                                         <button className="text-black hover:text-red focus:outline-none flex items-center mb-2">

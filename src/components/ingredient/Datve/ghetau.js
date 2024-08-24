@@ -151,9 +151,9 @@ const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) =>
 // render seet
     return (
         <div className="container max-w-xl mx-auto border-t border-solid border-gray-300">
-            <div className="flex flex-col items-center">
+            <div className="flex flex-col items-center text-sm">
                 <div className='flex gap-20 py-2'>
-                    <div className="seat-type-info available content-center justify-center">
+                    <div className="seat-type-info available content-center justify-center  ">
                         <div className='flex content-center justify-center'>
                             <svg
                                 width={40}
@@ -287,9 +287,9 @@ const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) =>
                             </svg>
                         </div>
 
-                        <div className="seat-type-info-value">{t("ghe.notSale")}</div>
+                        <div className="seat-type-info-value text-center">{t("ghe.notSale")}</div>
                     </div>
-                    <div class="seat-type-info selected">
+                    <div class="seat-type-info selected ">
                         <div className='flex content-center justify-center'>
                             <svg width="40" height="32" viewBox="0 0 40 32" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -352,16 +352,15 @@ const SeatingChart = ({chuyenTau, clickedSeats, setClickedSeats, seatLabels}) =>
 
 
                 <div className="flex-grow">
-
-<span className='font-bold'>
-  {clickedSeats.length === 0 ? t("ghe.note") : t("ghe.seatNum")}
-</span>
+                    <span className='font-semibold text-sm 2xl:text-base'>
+                    {clickedSeats.length === 0 ? t("ghe.note") : t("ghe.seatNum")}
+                    </span>
                     {clickedSeats.map((seat, index) => (
-                        <span key={seat.id}>{seat.seatName}{index !== clickedSeats.length - 1 && ', '}</span>
+                        <span className='text-sm' key={seat.id}>{seat.seatName}{index !== clickedSeats.length - 1 && ', '}</span>
                     ))}
                 </div>
-                <div>
-                    {t("ghe.total")}: {formatCurrency(clickedSeats.length * 15000)}
+                <div className='text-sm 2xl:text-base'>
+                    <span className='font-semibold '>{t("ghe.total")}</span> <span className='font-semibold '>: {formatCurrency(clickedSeats.length * 15000)}</span>
                 </div>
             </div>
 
