@@ -6,18 +6,19 @@ function Lich() {
     const { t } = useTranslation();
 
     return (
-        <div>
-            <section className="lkh2 px-4">
-                <div className="daily">
-                    <h2 className="text-xl font-bold">{t('dailyTrips')}</h2>
-                    <p>{t('tripsDescription')}</p>
-                </div>
-            </section>
+        <div className='text-sm 2xl:text-base'>
+                    <section className="p-4 ">
+                        <div className="daily space-y-2 sm:space-y-4">
+                            <h2 className="text-sm sm:text-base lg:text-lg font-bold">{t('dailyTrips')}</h2>
+                            <span className="text-sm sm:text-sm lg:text-base">{t('tripsDescription')}</span>
+                        </div>
+                    </section>
+
             <section className="px-4">
                 <div className="container mx-auto">
                     <div className="flex flex-wrap">
-                        <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
-                            <div className="nenxanh bg-green-100 p-4 rounded-md">
+                        <div className="w-full sm:w-1/2 mt-2">
+                            <div className="nenxanh bg-green-100 p-2 rounded-md sm:mr-2">
                                 <div className="ld mb-4">
                                     <h4 className="text-lg font-semibold flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -25,10 +26,10 @@ function Lich() {
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                   d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"/>
                                         </svg>
-                                        <span className="text">{t('outboundTrip')}</span>
+                                        <span className="text text-sm sm:text-sm lg:text-base">{t('outboundTrip')}</span>
                                     </h4>
                                 </div>
-                                <table className="min-w-full bg-white border border-gray-200 ">
+                                <table className="min-w-full bg-white border border-gray-200 text-sm sm:text-sm lg:text-base">
                                     <thead>
                                     <tr className="bg-gray-200">
                                         <th className="px-2 md:px-4 py-2">Bạch Đằng</th>
@@ -71,8 +72,8 @@ function Lich() {
                                 </table>
                             </div>
                         </div>
-                        <div className="w-full sm:w-1/2 mt-4 md:mt-0">
-                            <div className="nenhong bg-pink-100 p-4 rounded-md">
+                        <div className="w-full sm:w-1/2 mt-2 ">
+                            <div className="nenhong bg-pink-100 p-2 rounded-md">
                                 <div className="ld mb-4">
                                     <h4 className="text-lg font-semibold flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -81,10 +82,10 @@ function Lich() {
                       25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"/>
                                         </svg>
 
-                                        <span className="text">{t('returnTrip')}</span>
+                                        <span className="text text-sm sm:text-sm lg:text-base">{t('returnTrip')}</span>
                                     </h4>
                                 </div>
-                                <table className="table-auto w-full">
+                                <table className="min-w-full bg-white border border-gray-200 text-sm sm:text-sm lg:text-base">
                                     <thead>
                                     <tr className="bg-gray-200">
                                         <th className="px-2 md:px-4 py-2">Linh Đông</th>
@@ -130,14 +131,14 @@ function Lich() {
                     </div>
                 </div>
             </section>
-            <section className="px-4">
+            <section className="p-4">
                 <div className="">
-                    <h2 className="text-xl font-bold">{t('binhAnTrip')}</h2>
+                    <h2 className="text-sm sm:text-sm  lg:text-base font-bold">{t('binhAnTrip')}</h2>
                     <p>{t('binhAnTripDescription')}</p>
                 </div>
                 <div className="ly">
                     <div className="luuy">
-                        <p className="text-red-600 font-semibold">
+                        <p className="text-red-600 font-semibold text-sm sm:text-sm lg:text-base">
                             <strong>{t('noteLich')}</strong>
                         </p>
                     </div>
@@ -147,7 +148,7 @@ function Lich() {
                 <div className="container mx-auto">
                     <div className="flex flex-wrap">
                         <div className="w-full sm:w-1/2">
-                            <div className="bg-blue-100 p-4 rounded-md">
+                            <div className="bg-blue-100 p-2 rounded-md sm:mr-2">
                                 <div className="flex items-center mb-4">
                                     <h4 className="text-lg font-semibold flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -155,10 +156,10 @@ function Lich() {
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                   d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"/>
                                         </svg>
-                                        <span className="text">{t('outboundTrip')}</span>
+                                        <span className="text text-sm sm:text-sm lg:text-base">{t('outboundTrip')}</span>
                                     </h4>
                                 </div>
-                                <table className="min-w-full bg-white border border-gray-200">
+                                <table className="min-w-full bg-white border border-gray-200 text-sm sm:text-sm lg:text-base">
                                     <thead>
                                     <tr className="bg-gray-200">
                                         <th className="px-2 md:px-4 py-2" style={{width: '192.292px'}}>Mã chuyến</th>
@@ -247,7 +248,7 @@ function Lich() {
                             </div>
                         </div>
                         <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
-                            <div className="bg-pink-100 p-4 rounded-md">
+                            <div className="bg-pink-100 p-2 rounded-md">
                                 <div className="flex items-center mb-4">
                                     <h4 className="text-lg font-semibold flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -255,10 +256,10 @@ function Lich() {
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                   d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"/>
                                         </svg>
-                                        <span className="text">{t('returnTrip')}</span>
+                                        <span className="text text-sm sm:text-sm lg:text-base">{t('returnTrip')}</span>
                                     </h4>
                                 </div>
-                                <table className="min-w-full bg-white border border-gray-200 ">
+                                <table className="min-w-full bg-white border border-gray-200 text-sm sm:text-sm lg:text-base">
                                     <thead className="">
                                     <tr className="bg-gray-200">
                                         <th className="px-2 md:px-4 py-2" style={{width: '192.292px'}}>Mã chuyến</th>
@@ -349,9 +350,9 @@ function Lich() {
                     </div>
                 </div>
             </section>
-            <section className="px-4">
+            <section className="p-4">
                 <div className="">
-                    <h2 className="text-xl font-bold">{t('enhancedTrips')}</h2>
+                    <h2 className="text-sm sm:text-sm lg:text-base font-bold">{t('enhancedTrips')}</h2>
                     <p>{t('enhancedTripsDescription')}</p>
                 </div>
             </section>
@@ -359,7 +360,7 @@ function Lich() {
                 <div className="container mx-auto">
                     <div className="flex flex-wrap">
                         <div className="w-full sm:w-1/2">
-                            <div className="bg-blue-100 p-4 rounded-md">
+                            <div className="bg-blue-100 p-2 rounded-md sm:mr-2">
                                 <div className="flex items-center mb-4">
                                     <h4 className="text-lg font-semibold flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -367,10 +368,10 @@ function Lich() {
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                   d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"/>
                                         </svg>
-                                        <span className="text">{t('outboundTrip')}</span>
+                                        <span className="text text-sm sm:text-sm lg:text-base">{t('outboundTrip')}</span>
                                     </h4>
                                 </div>
-                                <table className="min-w-full bg-white border border-gray-200">
+                                <table className="min-w-full bg-white border border-gray-200 text-sm sm:text-sm lg:text-base">
                                     <thead>
                                     <tr className="bg-gray-200">
                                         <th className="px-2 md:px-4 py-2" style={{width: '64.1458px'}}></th>
@@ -421,7 +422,7 @@ function Lich() {
                             </div>
                         </div>
                         <div className="w-full sm:w-1/2 mt-4 sm:mt-0">
-                            <div className="bg-pink-100 p-4 rounded-md">
+                            <div className="bg-pink-100 p-2 rounded-md">
                                 <div className="flex items-center mb-4">
                                     <h4 className="text-lg font-semibold flex items-center">
                                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -429,7 +430,7 @@ function Lich() {
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                   d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 7.5v11.25m-18 0A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75m-18 0v-7.5A2.25 2.25 0 0 1 5.25 9h13.5A2.25 2.25 0 0 1 21 11.25v7.5m-9-6h.008v.008H12v-.008ZM12 15h.008v.008H12V15Zm0 2.25h.008v.008H12v-.008ZM9.75 15h.008v.008H9.75V15Zm0 2.25h.008v.008H9.75v-.008ZM7.5 15h.008v.008H7.5V15Zm0 2.25h.008v.008H7.5v-.008Zm6.75-4.5h.008v.008h-.008v-.008Zm0 2.25h.008v.008h-.008V15Zm0 2.25h.008v.008h-.008v-.008Zm2.25-4.5h.008v.008H16.5v-.008Zm0 2.25h.008v.008H16.5V15Z"/>
                                         </svg>
-                                        <span className="text">{t('returnTrip')}</span>
+                                        <span className="text text-sm sm:text-sm lg:text-base">{t('returnTrip')}</span>
                                     </h4>
                                 </div>
                                 <table className="table-auto w-full text-left">
@@ -487,8 +488,8 @@ function Lich() {
             </section>
             <section className="px-4">
                 <div className="">
-                    <h2 className="text-xl font-bold">{t('freeFareNote')}</h2>
-                    <p>{t('freeFareNote')}</p>
+                    <h2 className="font-bold text-sm sm:text-sm lg:text-base">{t('freeFareNote')}</h2>
+                    {/* <p>{t('freeFareNote')}</p> */}
                 </div>
             </section>
         </div>

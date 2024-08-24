@@ -274,17 +274,17 @@ function ChuyenTau() {
                     (departureTime - now) <= 15 * 60 * 1000; // chuyển đổi phút sang mili giây
                 return (
                     <div key={chuyen.id}
-                         className="block border rounded-lg border-b border-gray-300 shadow-lg mb-2 p-2">
+                         className="block border rounded-lg border-b border-gray-300 shadow-lg mb-2 p-2 text-sm 2xl:text-base">
                         <div
                             className="bg-white w-full pageChuyen gap-2 flex flex-col lg:flex-row container mx-auto mb-4">
                             <div className="w-full lg:w-3/12">
                                 <img className="w-full h-full object-cover rounded-lg max-h-44 p-1" alt=""
                                      src="/img/chuyentau.jpeg"/>
                             </div>
-                            <div className="w-full lg:w-9/12">
+                            <div className="w-full lg:w-9/12  ">
                                 <div className="flex flex-col lg:flex-row w-full justify-between">
                                     <div className="px-4 w-full">
-                                        <h1 className="text-lg font-bold mb-2">{t("chuyen.seat75")}</h1>
+                                        <span className="font-bold text-blue-700">{t("chuyen.seat75")}</span>
                                         <div className="flex items-center mb-2">
                                             <div className="ghe1 px-2">
                                                 <svg className="TicketPC__LocationRouteSVG-sc-1mxgwjh-4 dSQflF"
@@ -329,15 +329,15 @@ function ChuyenTau() {
                                         </div>
                                     </div>
                                     <div
-                                        className="flex flex-col md:items-end justify-between mt-2 p-4 w-full lg:w-auto">
-                                        <span className="text-xl font-bold text-blue-600">15,000đ/ {t("chuyen.ticket")}</span>
+                                        className="flex flex-col md:items-end justify-between p-2 w-full ">
+                                        <span className="text-base 2xl:text-base font-bold text-blue-600">15,000đ/ {t("chuyen.ticket")}</span>
                                         {shouldShowAllSeats ? (
                                             <div>
                                                 <span
-                                                    className="font-bold text-red-500 py-2 px-4 rounded transition text-base">{t("chuyen.soldOut")}</span>
+                                                    className="font-bold flex text-red-500 rounded transition text-sm">{t("chuyen.soldOut")}</span>
                                             </div>
                                         ) : (
-                                            <div className="contents">
+                                            <div className="contents text-sm 2xl:text-base">
                                                 {t("chuyen.available")}: {chuyen.availableSeats - (bookedSeats[chuyen.id] || 0)}
                                                 <button
                                                     onClick={(event) => {
@@ -349,7 +349,7 @@ function ChuyenTau() {
                                                             [chuyen.id]: !prevState[chuyen.id]
                                                         }));
                                                     }}
-                                                    className="bg-blue-500 hover:bg-blue-700 w-28 text-white font-bold py-2 px-4 rounded transition mt-2 lg:mt-0"
+                                                    className="bg-blue-500 hover:bg-blue-700 w-auto text-white font-bold p-2 rounded transition mt-2 lg:mt-0"
                                                 >
                                                     {openSeat[chuyen.id] ? t("chuyen.close") : t("chuyen.chooseSeat")}
                                                 </button>

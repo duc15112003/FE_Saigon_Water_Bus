@@ -18,7 +18,48 @@ const Step3 = ({ prevStep }) => {
     seat: JSON.parse(localStorage.getItem('seatData')) || [],
     total: localStorage.getItem('total')
   });
+    const [userDetails1, setUserDetails1] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+        trip: JSON.parse(localStorage.getItem('chuyenData')) || {},
+    seat: JSON.parse(localStorage.getItem('seatData')) || [],
+    total: localStorage.getItem('total')
+  });
+  useEffect(() => {
+  
+    const fetchUserDetail = async () => {
+              const token = localStorage.getItem("token");
+if(token!==null){
+        try {
+        const headers = { Authorization: `Bearer ${token}` };
+        const response = await axios.get(
+            `${apiUrl}/profile`,
+            { headers }
+        );
+        const firstname = response.data.result.firstname || "";
+        const lastname = response.data.result.lastname || "";
+        userDetails1.name = firstname + (firstname && lastname ? " " : "") + lastname;
+        userDetails1.email=response.data.result.email;
+        const phoneNumber = response.data.result.phoneNumber;
+        if (phoneNumber && !phoneNumber.startsWith("Not")) {
+            userDetails1.phone = phoneNumber;
+        } else {
+            userDetails1.phone = ""; // Hoặc không gán gì nếu bạn muốn bỏ qua hoàn toàn
+        }
 
+        setUserDetails(userDetails1);
+      } catch (error) {
+        console.error("Error fetching user detail:", error);
+      }
+}
+
+    };
+
+    fetchUserDetail();
+  }, []);
+  // const data1= 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserDetails((prevUserDetails) => ({
@@ -37,7 +78,9 @@ const Step3 = ({ prevStep }) => {
       const response = await axios.post(`${apiUrl}/payment/vnpay`, {
         orderId: new Date().getTime().toString(), // Sử dụng timestamp làm orderId
         amount: total,
-        returnUrl: 'https://saigonwaterbus.click/api/saigonwaterbus/payment/vnpay/return'
+        // returnUrl: `${apiUrl}/payment/vnpay/return`
+                returnUrl: 'https://saigonwaterbus.click/api/saigonwaterbus/payment/vnpay/return'
+
       });
       // Mở cửa sổ popup khi nhận được URL từ server
       paymentWindow = window.open(response.data, 'Payment', 'width=600,height=600');
@@ -86,7 +129,7 @@ const Step3 = ({ prevStep }) => {
     const seatData = JSON.parse(localStorage.getItem('seatData'));
     if (!seatData) {
       console.error('Seat data is not available');
-      setIsLoading(false); // Hide loading indicator if seat data is not available
+      setIsLoading(false);
       return;
     }
 
@@ -148,9 +191,9 @@ const Step3 = ({ prevStep }) => {
             </div>
         )}
         <h2 className="text-2xl font-bold text-center">{t('contactBooking')}</h2>
-        <form className="mt-8" onSubmit={handleSubmit}>
+        <form className="mt-8 text-sm 2xl:text-base " onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">{t('name')} *</label>
+            <label className="block font-semibold  text-gray-700 mb-2">{t('name')} *</label>
             <input
                 type="text"
                 name="name"
@@ -162,7 +205,7 @@ const Step3 = ({ prevStep }) => {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">{t('phone')}</label>
+            <label className="block font-semibold text-gray-700 mb-2">{t('phone')}</label>
             <input
                 type="tel"
                 name="phone"
@@ -172,7 +215,7 @@ const Step3 = ({ prevStep }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">{t('email')} *</label>
+            <label className="block text-gray-700 mb-2 font-semibold">{t('email')} *</label>
             <input
                 type="email"
                 name="email"
@@ -183,7 +226,7 @@ const Step3 = ({ prevStep }) => {
             />
           </div>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2">{t('message')}</label>
+            <label className="block text-gray-700 mb-2 font-semibold">{t('message')}</label>
             <textarea
                 name="message"
                 value={userDetails.message}
@@ -195,7 +238,7 @@ const Step3 = ({ prevStep }) => {
 
           <div className="mt-4 flex justify-between">
             <button
-                className="button bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center"
+                className="button bg-green-500 hover:bg-green-700 text-white font-bold p-2 text-sm 2xl:text-base rounded flex items-center"
                 onClick={prevStep}>
               <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -211,7 +254,7 @@ const Step3 = ({ prevStep }) => {
             </button>
             <button
                 type="submit"
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-500 focus:ring-2"
+                className="px-4 text-sm 2xl:text-base font-bold  bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-blue-500 focus:ring-2"
             >
               {t('pay')}
             </button>

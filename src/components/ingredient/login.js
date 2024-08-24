@@ -187,7 +187,7 @@ function Login() {
                                     </button>
                                 </div>
                                 <a href='/' className="text-center text-blue-600 text-base underline block mb-4">
-                                Quay lại trang chủ
+                                    {t('login.backToLogin')}
                                 </a>
 
                             </form>

@@ -55,6 +55,7 @@
     "companyName": "CÔNG TY TNHH THƯỜNG NHẬT (SAIGON WATERBUS)",
     "supportHotline": "Hotline Hỗ Trợ",
     "phone": "1900636830",
+    "address": "Địa chỉ",
     "officeAddress": "6 Phan Kế Bính, Phường Đa Kao, Quận 1, TP. Hồ Chí Minh",
     "email": "Email",
     "emailAddress": "info@saigonwaterbus.com",
@@ -66,7 +67,7 @@
   },
   "registration": {
     "title": "Đăng Ký Tài Khoản SaiGonWaterBus",
-    "firstName": "Tên",
+    "firstname": "Tên",
     "lastName": "Họ",
     "email": "Email",
     "phoneNumber": "Số Điện Thoại",
@@ -81,7 +82,9 @@
     "errorSendingCode": "Gửi mã xác minh thất bại",
     "errorPasswordMismatch": "Mật khẩu và xác nhận không khớp",
     "errorGeneral": "Đã xảy ra lỗi",
-    "successMessage": "Đăng ký thành công! Đang chuyển hướng đến trang đăng nhập..."
+    "successMessage": "Đăng ký thành công! Đang chuyển hướng đến trang đăng nhập...",
+    "failPass": "Mật khẩu phải có ít nhất 6 ký tự, bao gồm ít nhất 1 ký tự viết hoa và 1 ký tự đặc biệt"
+
   },
   "login": {
     "welcome": "Chào mừng đến với Saigon Waterbus",
@@ -94,7 +97,8 @@
     "errorLogin": "Tên đăng nhập hoặc mật khẩu không chính xác",
     "loginWithGoogle": "Đăng nhập bằng Google",
     "newCustomer": "Khách hàng mới?",
-    "loggingIn": "Đang đăng nhập"
+    "loggingIn": "Đang đăng nhập",
+    "backToLogin": "Quay trở lại trang đăng nhập"
   },
   "bookingHistory": {
     "title": "Lịch Sử Đặt Vé",
@@ -140,7 +144,8 @@
     "resetPassword": "Đặt Lại Mật Khẩu",
     "errorPasswordMismatch": "Mật khẩu mới và xác nhận không khớp",
     "resetSuccess": "Đặt lại mật khẩu thành công! Đang chuyển hướng đến trang đăng nhập...",
-    "resetFailure": "Đặt lại mật khẩu thất bại!"
+    "resetFailure": "Đặt lại mật khẩu thất bại!",
+    "backToLogin": "Quay trở lại trang đăng nhập"
   },
   "contactBooking": "Liên hệ đặt vé",
   "name": "Tên",
@@ -263,13 +268,13 @@
     "orderBy": "Sắp xếp theo",
     "earliest": "Giờ đi sớm nhất",
     "lastest": "Giờ đi muộn nhất",
-    "seat75": "Ghế ngồi 75 chỗ",
+    "seat75": "Ghế ngồi 73 chỗ",
     "minute": "Phút",
     "detail": "Thông tin chi tiết",
     "belongTo": "Vé chặng thuộc chuyến",
     "ticket": "Vé",
     "soldOut": "Hết vé !",
-    "available": "Số ghế còn trống",
+    "available": "Số ghế trống",
     "close": "Đóng lại",
     "chooseSeat": "Chọn chỗ",
     "message1": "Thông tin tìm kiếm không phù hợp vui lòng kiểm tra lại!"

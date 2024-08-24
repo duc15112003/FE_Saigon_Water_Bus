@@ -50,7 +50,7 @@ const MultiStepForm = ({ chuyenTau, dateTrip, seatLabels }) => {
           {stepTitles.map((title, index) => (
               <div
                   key={index}
-                  className={`mx-2 px-4 py-2 ${step === index + 1 ? 'font-bold text-blue-500 border-b-2 border-blue-500' : ''}`}
+                  className={`mx-2 px-4 py-2 text-sm 2xl:text-base ${step === index + 1 ? 'font-bold text-blue-500 border-b-2 border-blue-500' : ''}`}
               >
                 {completedSteps.includes(index + 1) ? <span className="mr-1">&#10004;</span> :
                     <span className="mr-1">{index + 1}.</span>}

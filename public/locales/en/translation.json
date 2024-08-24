@@ -55,6 +55,7 @@
     "companyName": "CÔNG TY TNHH THƯỜNG NHẬT (SAIGON WATERBUS)",
     "supportHotline": "Support Hotline",
     "phone": "1900636830",
+    "address": "Address",
     "officeAddress": "6 Phan Kế Bính, Ward Đa Kao, District 1, Ho Chi Minh City",
     "email": "Email",
     "emailAddress": "info@saigonwaterbus.com",
@@ -66,7 +67,7 @@
   },
   "registration": {
     "title": "Register for SaiGonWaterBus Account",
-    "firstName": "First Name",
+    "firstname": "First Name",
     "lastName": "Last Name",
     "email": "Email",
     "phoneNumber": "Phone Number",
@@ -81,7 +82,9 @@
     "errorSendingCode": "Failed to send verification code",
     "errorPasswordMismatch": "Password and confirmation do not match",
     "errorGeneral": "An error occurred",
-    "successMessage": "Registration successful! Redirecting to login..."
+    "successMessage": "Registration successful! Redirecting to login...",
+    "failPass": "The password must be at least 6 characters, including at least 1 uppercase character and 1 special character"
+
   },
   "login": {
     "welcome": "Welcome to Saigon Waterbus",
@@ -94,7 +97,8 @@
     "errorLogin": "Incorrect username or password",
     "loginWithGoogle": "Login with Google",
     "newCustomer": "New customer?",
-    "loggingIn": "Logging in"
+    "loggingIn": "Logging in",
+    "backToLogin": "Back to Login"
   },
   "bookingHistory": {
     "title": "Booking History",
@@ -265,7 +269,7 @@
     "orderBy": "Order by",
     "earliest": "Earliest departure time",
     "lastest": "Latest departure time",
-    "seat75": "75 - seat",
+    "seat75": "73 - seats",
     "minute": "Minute",
     "detail": "Detailed information",
     "belongTo": "Segment ticket of the trip",
