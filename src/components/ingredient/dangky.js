@@ -147,8 +147,8 @@ const RegistrationForm = () => {
                     <label className="block text-gray-700 text-sm md:text-base lg:text-lg">{t('registration.lastName')}</label>
                     <input
                         type="text"
-                        name="lastName"
-                        value={formData.lastName}
+                        name="lastname"
+                        value={formData.lastname}
                         onChange={handleChange}
                         required
                         className="mt-1 block w-full border border-gray-300 rounded-md p-2 text-sm md:text-base lg:text-lg"

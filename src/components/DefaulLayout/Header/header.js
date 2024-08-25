@@ -16,21 +16,23 @@ const Navbar = () => {
 
     return (
         <nav className="bg-white p-4 navbar-responsive  relative z-50">
-
             <div className=" mx-auto flex items-center w-full">
-                <div className="text-black text-lg font-bold flex w-8/12 lg:w-3/12 lg:justify-start">
-                    <div className='mt-2'>
-                        <img className="h-10 w-15" alt='' src="/img/logo_footer.png"/>
+              
+                    <div className="text-black text-lg font-bold flex w-8/12 lg:w-3/12 lg:justify-start">
+                        <div className='mt-2'>
+                            <a href='/' alt='home'>
+                            <img className="h-10 w-15" alt='' src="/img/logo_footer.png"/>
+                            </a>
+                        </div>
+                        <div className="flex justify-center items-center">
+                          <a href='/' alt='home'>
+                            <p className='ml-1 lg:text-2xl lg:mx-4 text-base text-center'>Saigon Waterbus</p>
+                               </a>
+                        </div>
                     </div>
-                    <div className="flex justify-center items-center">
-                        <p className='ml-1 lg:text-2xl lg:mx-4 text-base text-center'>Saigon Waterbus</p>
-                    </div>
-                </div>
-
+             
                 <div 
-                    className={`lg:flex lg:flex-row lg:w-6/12 lg:justify-center lg:items-center ${isOpen ? 'flex bg-slate-300' : 'hidden'} flex-col lg:static absolute top-16 md:content-center left-0 lg:top-0 w-full  border-t lg:border-none`}
-                
-                >
+                    className={`lg:flex lg:flex-row lg:w-6/12 lg:justify-center lg:items-center ${isOpen ? 'flex bg-slate-300' : 'hidden'} flex-col lg:static absolute top-16 md:content-center left-0 lg:top-0 w-full  border-t lg:border-none`}>
  <div className="flex flex-col items-start py-2 w-full lg:hidden">
     {isLoggedIn ? (
         <div className="w-full">
@@ -51,7 +53,6 @@ const Navbar = () => {
                     </div>
                     {t("menu.information")}
                 </a>
-                
                 <button onClick={logout} className="flex items-center bg-blue-500 text-white rounded text-xs font-bold p-2 hover:bg-blue-600 focus:outline-none ">
                     <div className='mr-2'>
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="w-4 h-4">
@@ -91,6 +92,9 @@ const Navbar = () => {
                 </li>
                 <li className="">
                     <a href="/contact" className="block py-2 text-black hover:text-red">{t("menu.contact")}</a>
+                </li>
+                 <li className="">
+                    <a href="/kiem-tra-ve" className="block py-2 text-black hover:text-red">Check ticket</a>
                 </li>
             </ul>
         </div>

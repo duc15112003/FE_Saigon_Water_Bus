@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-
+import PopupDone from '../../../../utils/popup/popupDone';
+import usePopup from '../../../../utils/popup/usePopup';
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const Step3 = ({ prevStep }) => {
+      const { isOpen, message1, type, showPopup, closePopup } = usePopup();
+
+
   let paymentWindow = null;
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
@@ -23,43 +27,51 @@ const Step3 = ({ prevStep }) => {
     email: '',
     phone: '',
     message: '',
-        trip: JSON.parse(localStorage.getItem('chuyenData')) || {},
+    trip: JSON.parse(localStorage.getItem('chuyenData')) || {},
     seat: JSON.parse(localStorage.getItem('seatData')) || [],
     total: localStorage.getItem('total')
   });
   useEffect(() => {
-  
+          const isLoggedIn = localStorage.getItem("isLoggedIn")|| "";
+      const token = localStorage.getItem("token");
+
     const fetchUserDetail = async () => {
-              const token = localStorage.getItem("token");
-if(token!==null){
+       
+
+      if (isLoggedIn !== "") {
+        console.log("đã vào")
         try {
-        const headers = { Authorization: `Bearer ${token}` };
-        const response = await axios.get(
-            `${apiUrl}/profile`,
-            { headers }
-        );
-        const firstname = response.data.result.firstname || "";
-        const lastname = response.data.result.lastname || "";
-        userDetails1.name = firstname + (firstname && lastname ? " " : "") + lastname;
-        userDetails1.email=response.data.result.email;
-        const phoneNumber = response.data.result.phoneNumber;
-        if (phoneNumber && !phoneNumber.startsWith("Not")) {
-            userDetails1.phone = phoneNumber;
-        } else {
-            userDetails1.phone = ""; // Hoặc không gán gì nếu bạn muốn bỏ qua hoàn toàn
+          const headers = { Authorization: `Bearer ${token}` };
+          const response = await axios.get(`${apiUrl}/profile`, { headers });
+          const firstname = response.data.result.firstname || "";
+          const lastname = response.data.result.lastname || "";
+          const phoneNumber = response.data.result.phoneNumber;
+
+          const updatedUserDetails = {
+            name: firstname + (firstname && lastname ? " " : "") + lastname,
+            email: response.data.result.email,
+            phone: (phoneNumber && !phoneNumber.startsWith("Not")) ? phoneNumber : ""
+          };
+
+          setUserDetails(updatedUserDetails);
+        } catch (error) {
+          console.error("Error fetching user detail:", error);
         }
-
-        setUserDetails(userDetails1);
-      } catch (error) {
-        console.error("Error fetching user detail:", error);
       }
-}
-
     };
 
-    fetchUserDetail();
+
+    if (isLoggedIn !== "") {
+      fetchUserDetail();
+    }
   }, []);
-  // const data1= 
+
+
+
+    const { name, email, message, phone, trip, seat, total } = userDetails;
+    const orderData = { name, email, message, phone, trip, seat, total };
+    localStorage.setItem('orderData', JSON.stringify(orderData)); // Lưu thông tin đơn hàng vào localStorage
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserDetails((prevUserDetails) => ({
@@ -70,10 +82,48 @@ if(token!==null){
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const { name, email, message, phone, trip, seat, total } = userDetails;
-    const orderData = { name, email, message, phone, trip, seat, total };
-    localStorage.setItem('orderData', JSON.stringify(orderData)); // Lưu thông tin đơn hàng vào localStorage
 
+    // Lấy dữ liệu từ localStorage và đảm bảo là danh sách đối tượng
+    const seatData = JSON.parse(localStorage.getItem('seatData')) || [];
+    const chuyenData=JSON.parse(localStorage.getItem('chuyenData')) || [];
+    // Gửi yêu cầu POST với dữ liệu JSON
+ try {
+        const response = await axios.post(`${apiUrl}/check-ticket`, seatData, {
+            params: {
+                departureDate: chuyenData.departureDate
+            }
+        });
+
+        if (response.data.code === 500) {
+             showPopup('Danh sách ghế đã thay đổi ,vui lòng tìm và chọn lại ghế', 'fail');
+            return;
+        }else{
+          console.log("data", localStorage.getItem('orderData'))
+          const localStorageData = {
+            total: localStorage.getItem('total'),
+            chuyenData: localStorage.getItem('chuyenData'),
+            seatData: localStorage.getItem('seatData'),
+            orderData: localStorage.getItem('orderData')
+          };
+            const now = new Date();
+            localStorage.setItem('paymentStatus', 'inProgress');
+            const expirationTime = new Date(now.getTime() + 12 * 60 * 1000);
+            const expirationTimeString = expirationTime.toISOString();
+            localStorage.setItem('expirationTime', expirationTimeString);
+
+            try {
+            const response= await axios.post(`${apiUrl}/hold-ticket`, { localStorageData });
+              localStorage.setItem('idHd',response.data)
+            } catch (error) {
+              console.error('Error sending localStorage data to server:', error);
+            }
+
+        }
+              window.location.href = '/dopayment';
+
+    } catch (error) {
+        console.error('Error:', error);
+    }
     try {
       const response = await axios.post(`${apiUrl}/payment/vnpay`, {
         orderId: new Date().getTime().toString(), // Sử dụng timestamp làm orderId
@@ -82,7 +132,6 @@ if(token!==null){
                 returnUrl: 'https://saigonwaterbus.click/api/saigonwaterbus/payment/vnpay/return'
 
       });
-      // Mở cửa sổ popup khi nhận được URL từ server
       paymentWindow = window.open(response.data, 'Payment', 'width=600,height=600');
       setSubmitted(true);
     } catch (error) {
@@ -90,94 +139,15 @@ if(token!==null){
     }
   };
 
-  const sendLocalStorageToServer = async () => {
-    const localStorageData = {};
-    for (let i = 0; i < localStorage.length; i++) {
-      const key = localStorage.key(i);
-      localStorageData[key] = localStorage.getItem(key);
-    }
-    try {
-      await axios.post(`${apiUrl}/saveLocalStorageData`, { localStorageData });
-    } catch (error) {
-      console.error('Error sending localStorage data to server:', error);
-    }
-  };
-
-  useEffect(() => {
-    const handlePaymentMessage = (event) => {
-      if (event.data === 'payment_success') {
-        closePaymentPopup();
-        sendEmail();
-      }
-    };
-
-    window.addEventListener('message', handlePaymentMessage);
-    return () => {
-      window.removeEventListener('message', handlePaymentMessage);
-    };
-  }, []);
-
   function formatDate(dateString) {
     const [year, month, day] = dateString.split('-');
     return `${day}-${month}-${year}`;
   }
 
-  const sendEmail = async () => {
-    setIsLoading(true); // Show loading indicator
-    const chuyenMail = JSON.parse(localStorage.getItem('orderData'));
-    const chuyenData = JSON.parse(localStorage.getItem('chuyenData'));
-    const seatData = JSON.parse(localStorage.getItem('seatData'));
-    if (!seatData) {
-      console.error('Seat data is not available');
-      setIsLoading(false);
-      return;
-    }
-
-    const seatNames = seatData.map(seat => seat.seatName).join(', ');
-    const to = chuyenMail.email;
-    const subject = "Thanh toán thành công đặt vé Saigonwaterbus";
-    const body = `
-    <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; background-color: #87CEEB;">
-        <img src="https://saigonwaterbus.com/wp-content/uploads/2022/06/logo-swb-v-white.png" alt="" style="width: 200px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
-        <h2 style="color: #007bff; margin-bottom: 20px; font-size: 24px;">Thông tin vé Saigonwaterbus</h2>
-        <p style="font-size: 18px;"><strong>Thời gian khởi hành:</strong>${chuyenData.departureTime} ngày ${formatDate(chuyenData.departureDate)}</p>
-        <p style="font-size: 18px;"><strong>Bến khởi hành:</strong> ${chuyenData.startTerminal}</p>
-        <p style="font-size: 18px;"><strong>Bến kết thúc:</strong> ${chuyenData.endTerminal}</p>
-        <p style="font-size: 18px;"><strong>Thời gian khởi hành:</strong> ${chuyenData.departureTime}</p>
-        <p style="font-size: 18px;"><strong>Số ghế đã đặt:</strong> ${seatNames}</p>
-        <hr style="border-top: 1px solid #ddd; margin-top: 20px; margin-bottom: 20px;">
-        <p style="font-size: 16px; color: #FF3300;">Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Vui lòng giữ mã QR này lại khi tới bến.</p>
-    </div>
-    `;
-    const emailContent = `Ngày khởi hành: ${chuyenData.departureDate} \nBến khởi hành: ${chuyenData.startTerminal} \nBến kết thúc: ${chuyenData.endTerminal} \nThời gian khởi hành: ${chuyenData.departureTime} \nSố ghế: ${seatNames}`;
-
-    const emailData = {
-      to: to,
-      subject: subject,
-      body: body,
-      contentForQR: emailContent
-    };
-
-    try {
-      const response = await axios.post(`${apiUrl}/send-mail`, emailData);
-      console.log(response.data);
-      sendLocalStorageToServer();
-      window.location.href = '/dat-ve/thanh-toan-thanh-cong';
-    } catch (error) {
-      console.error('Error calling the send-mail API:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const closePaymentPopup = () => {
-    if (paymentWindow) {
-      paymentWindow.close();
-    }
-  };
-
   return (
       <div className="container mx-auto max-w-md mt-10">
+                   <PopupDone isOpen={isOpen} message1={message1} type={type} onClose={closePopup} />
+
         {isLoading && (
             <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
               <div className="flex items-center space-x-2 text-white text-lg">
@@ -259,10 +229,6 @@ if(token!==null){
               {t('pay')}
             </button>
           </div>
-
-          {submitted && (
-              <div className="mt-4 text-green-500">{t('paymentSuccessMessage')}</div>
-          )}
         </form>
       </div>
   );

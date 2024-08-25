@@ -49,8 +49,6 @@ function ChuyenTau() {
             to: toRef.current.value,
             departDate: formattedDate
         };
-
-
         try {
             const data = await apiService.timChuyen(searchParams);
             selectChuyen.push(data)
@@ -315,7 +313,7 @@ function ChuyenTau() {
                                                         ...prevState,
                                                         [chuyen.id]: !prevState[chuyen.id]
                                                     }));
-                                                    setOpenSeat(false);
+                                                    // handleClearStorage();
                                                 }}>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                          viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"
@@ -341,6 +339,7 @@ function ChuyenTau() {
                                                 {t("chuyen.available")}: {chuyen.availableSeats - (bookedSeats[chuyen.id] || 0)}
                                                 <button
                                                     onClick={(event) => {
+                                                        // localStorage.clear();
                                                         setSeatLabels([]);
                                                         timGhe(event, chuyen.id);
                                                         setOpenTab(false);
@@ -348,6 +347,7 @@ function ChuyenTau() {
                                                             ...prevState,
                                                             [chuyen.id]: !prevState[chuyen.id]
                                                         }));
+                    
                                                     }}
                                                     className="bg-blue-500 hover:bg-blue-700 w-auto text-white font-bold p-2 rounded transition mt-2 lg:mt-0"
                                                 >

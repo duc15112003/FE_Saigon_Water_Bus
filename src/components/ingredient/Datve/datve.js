@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import 'react-datepicker/dist/react-datepicker.css';
 import './datve.css';
@@ -7,8 +7,47 @@ import ChuyenTau from './chuyen';
 const DatVe = () => {
     const { t } = useTranslation();
 
+const [showPopup, setShowPopup] = useState(false);
+
+    useEffect(() => {
+        const expirationTime = localStorage.getItem('expirationTime');
+        const paymentStatus = localStorage.getItem('paymentStatus');
+
+        if (paymentStatus === 'inProgress') {
+            const currentTime = new Date().getTime();
+            const expirationTimeMillis = new Date(expirationTime).getTime();
+
+            if (expirationTimeMillis > currentTime) {
+                setShowPopup(true);
+            } else {
+            }
+        }
+    }, []);
+
+    const handleRedirect = () => {
+        window.location.href = '/dopayment'; // Đổi '/payment' thành đường dẫn trang thanh toán của bạn
+    };
+
+
+
     return (
         <div className='p-1'>
+        <>
+            {showPopup && (
+                <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded-lg shadow-lg text-center">
+                        <h2 className="text-2xl font-semibold mb-4">Yêu cầu thanh toán</h2>
+                        <p className="mb-6">Bạn cần phải thanh toán đơn hành trước khi đặt vé mới hoặc chờ đến khi đơn hàng hết hạn !</p>
+                        <button
+                            onClick={handleRedirect}
+                            className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
+                        >
+                            Đến trang thanh toán
+                        </button>
+                    </div>
+                </div>
+            )}
+        </>
             <div className="qodef-m-inner">
                 <div className="flex items-center justify-center bg-stone-200 h-64">
                     <div className="container mx-auto">
