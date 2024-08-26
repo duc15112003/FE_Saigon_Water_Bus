@@ -295,5 +295,76 @@
     "notAllow": "Không cho phép hủy",
     "note": "Ghi chú",
     "notDetail": "Vé không hoàn, không hủy. Quý khách xem kỹ trước khi thanh toán vé"
+  },
+  "checkTicket": {
+    "checkTicket": "Kiểm tra vé",
+    "checkInfo": "Kiểm tra thông tin vé",
+    "idTicket": "Mã vé",
+    "inputIdTicket": "Nhập mã vé",
+    "email": "Email",
+    "inputEmail": "Nhập email đặt vé",
+    "buttonCheck": "Kiểm tra vé",
+    "step1": "Bước 1. Nhập thông tin vé",
+    "step2": "Bước 2. Kiểm tra vé",
+    "infoTicket": "Thông tin vé",
+    "successPayment": "Thanh toán thành công",
+    "sendMail": "Chúng tôi đã gửi thông tin vé đến email",
+    "note": "15 phút sau khi thanh toán thành công, nếu quý khách vẫn chưa nhận được email, vui lòng liên hệ chúng tôi qua số điện thoại",
+    "instructions": "Hướng dẫn lên tàu",
+    "detail": "Quý khách vui lòng đến điểm đón trước ít nhất 15 PHÚT (đối với ngày thường) hoặc 30-45 PHÚT (đối với ngày Lễ Tết) để in vé giấy/đổi vé giấy (nếu có) và làm thủ tục lên tàu.",
+    "pickUp": "Điểm đón",
+    "wharf": "Bến tàu",
+    "pickUpTime": " Đón lúc",
+    "return": "Điểm trả",
+    "returnTime": "Trả lúc",
+    "cancelTicket": "Hướng dẫn đổi trả / hủy vé",
+    "detailCancel": "Quý khách vui lòng tham khảo qua chính sách hủy vé trên website của chúng tôi.",
+    "ticketDetail": "Chi tiết vé",
+    "seat": "Ghế ngồi",
+    "ticketPrice": "Giá vé"
+  },
+  "doPayment": {
+    "ticketPayment": "Thanh toán đặt vé",
+    "remainingTime": "Thời gian thanh toán còn lại",
+    "tripInfo": "Thông tin chuyến đi",
+    "totalAmount": "Tổng tiền",
+    "info": "Thông tin toàn chuyến",
+    "departureDate": "Ngày khởi hành",
+    "totalSeat": "Ghế ngồi 73 chỗ",
+    "customerInfo": "Thông tin hành khách",
+    "wharf": "Bến tàu",
+    "idNumber": "Số ghế",
+    "contactInfo": "Thông tin liên hệ",
+    "idTicket": "Mã vé",
+    "name": "Họ tên",
+    "contact": "Số điện thoại",
+    "email": "Email",
+    "meno": "Ghi chú",
+    "makePayment": "Tiến hành thanh toán với VNPay"
+  },
+  "emailSend": {
+    "header": {
+      "thankYouMessage": "Cảm ơn quý khách ${chuyenMail.name} !",
+      "serviceThanks": "Cảm ơn quý khách đã tin tưởng sử dụng dịch vụ của",
+      "saigonWaterbusLink": "https://saigonwaterbus.click",
+      "saigonWaterbusName": "Saigon Waterbus"
+    },
+    "instructions": {
+      "boardingStepsTitle": "Hướng dẫn các bước nhận vé và lên tàu",
+      "boardingStepsList": [
+        "Quý khách vui lòng đến điểm đón <b>trước ít nhất 15 PHÚT</b> (đối với ngày thường) hoặc <b>30-45 PHÚT</b> (đối với ngày Lễ Tết) <b>để in vé giấy/đổi vé giấy (nếu có) và làm thủ tục lên tàu</b>.",
+        "Quý khách vui lòng <b>cung cấp số điện thoại chính xác</b> và <b>giữ điện thoại luôn mở</b> để nhân viên có thể liên lạc được."
+      ]
+    },
+    "orderDetails": {
+      "orderInformationTitle": "Thông tin đơn hàng",
+      "startTerminal": "Bến khởi hành:",
+      "endTerminal": "Bến kết thúc:",
+      "departureTime": "Thời gian khởi hành:",
+      "bookedSeats": "Số ghế đã đặt:"
+    },
+    "footer": {
+      "qrCodeMessage": "Một lần nữa xin cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Vui lòng giữ mã QR đính kèm trong email khi tới bến."
+    }
   }
 }

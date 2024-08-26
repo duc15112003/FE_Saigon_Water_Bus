@@ -296,5 +296,76 @@
     "notAllow": "Cancellation is not allowed",
     "note": "Note",
     "notDetail": "Tickets are non-refundable and non-cancelable. Please review carefully before paying for the ticket."
+  },
+  "checkTicket": {
+    "checkTicket": "Check ticket",
+    "checkInfo": "Check ticket information",
+    "idTicket": "Ticket code",
+    "inputIdTicket": "Enter ticket code",
+    "email": "Email",
+    "inputEmail": "Enter email to book ticket",
+    "buttonCheck": "Check ticket",
+    "step1": "Step 1. Enter ticket information",
+    "step2": "Step 2. Check ticket",
+    "infoTicket": "Ticket Information",
+    "successPayment": "Payment Successful",
+    "sendMail": "We have sent ticket information to email",
+    "note": "If you have not received the email within 15 minutes after successful payment, please contact us by phone",
+    "instructions": "Boarding Instructions",
+    "detail": "Please arrive at the pick-up point at least 15 MINUTES (for weekdays) or 30-45 MINUTES (for holidays) to print/exchange paper tickets (if any) and check-in.",
+    "pickUp": "Pick-up Point",
+    "wharf": "Wharf",
+    "pickUpTime": "Pick-up at",
+    "return": "Return at",
+    "returnTime": "Return at",
+    "cancelTicket": "Instructions for changing/cancelling tickets",
+    "detailCancel": "Please refer to our cancellation policy on our website.",
+    "ticketDetail": "Ticket Details",
+    "seat": "Seat",
+    "ticketPrice": "Ticket Price"
+  },
+  "doPayment": {
+    "ticketPayment": "Ticket Payment",
+    "remainingTime": "Remaining Payment Time",
+    "tripInfo": "Trip Information",
+    "totalAmount": "Total Amount",
+    "info": "Total Trip Information",
+    "departureDate": "Departure Date",
+    "totalSeat": "73 Seats",
+    "customerInfo": "Passenger Information",
+    "wharf": "Wharf",
+    "idNumber": "Seat Number",
+    "contactInfo": "Contact Information",
+    "idTicket": "Ticket Code",
+    "name": "Full Name",
+    "contact": "Phone Number",
+    "email": "Email",
+    "meno": "Notes",
+    "makePayment": "Make payment with VNPay"
+  },
+  "emailSend": {
+    "header": {
+      "thankYouMessage": "Thank you, ${chuyenMail.name}!",
+      "serviceThanks": "Thank you for choosing",
+      "saigonWaterbusLink": "https://saigonwaterbus.click",
+      "saigonWaterbusName": "Saigon Waterbus"
+    },
+    "instructions": {
+      "boardingStepsTitle": "Boarding Instructions",
+      "boardingStepsList": [
+        "Please arrive at the boarding point <b>at least 15 MINUTES</b> (on regular days) or <b>30-45 MINUTES</b> (on holidays) <b>to print/ exchange paper tickets (if any) and complete boarding procedures</b>.",
+        "Please <b>provide accurate phone number</b> and <b>keep your phone on</b> so our staff can contact you."
+      ]
+    },
+    "orderDetails": {
+      "orderInformationTitle": "Order Information",
+      "startTerminal": "Departure Terminal:",
+      "endTerminal": "Arrival Terminal:",
+      "departureTime": "Departure Time:",
+      "bookedSeats": "Booked Seats:"
+    },
+    "footer": {
+      "qrCodeMessage": "Thank you once again for using our service. Please keep the QR code attached in the email when arriving at the terminal."
+    }
   }
 }
