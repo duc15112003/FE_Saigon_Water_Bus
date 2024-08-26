@@ -14,6 +14,7 @@ import LichSuDatVe from "../components/ingredient/lichsudatve";
 import ForgotPassword from "../components/ingredient/quenmk.js";
 import CheckTicket from "../components/ingredient/checkve.js";
 import Dopayment from "../components/ingredient/dopayment.js";
+import DoiMk from "../components/ingredient/doimk.js";
 
 const publicRoutes = [
     {path: '/', component: Home},
@@ -32,6 +33,8 @@ const publicRoutes = [
     {path: '/dat-ve/thanh-toan-thanh-cong', component: ThanhToanThanhCong},
      {path: '/kiem-tra-ve', component: CheckTicket},
           {path: '/dopayment', component: Dopayment},
+                    {path: '/doi-mat-khau', component: DoiMk}
+
 
 
     

@@ -47,6 +47,7 @@ localStorage.getItem('idHd')
   }, []);
 
 
+
 const handleUpdateBookingComplete = async (email) => {
     try {
       const response = await axios.put(`${apiUrl}/save-booking-complete/${email}`);
@@ -58,7 +59,9 @@ const handleUpdateBookingComplete = async (email) => {
 };
 
   const sendEmail = async () => {
+               
     setIsLoading(true); // Show loading indicator
+
     if (!seatData) {
       setIsLoading(false);
       return;
@@ -279,7 +282,7 @@ const seatNames = seatData ? seatData.map(seat => seat.seatName).join(', ') : ''
                    <div className="flex items-center justify-center bg-stone-200 h-64">
                     <div className="container mx-auto">
                         <h1 className="qodef-m-title entry-title text-sm lg:text-5xl text-center font-bold ">
-                            {t("doPayment.ticketPayment")}
+                            Thanh toán đặt vé
                         </h1>
                     </div>
                 </div>
@@ -298,7 +301,7 @@ const seatNames = seatData ? seatData.map(seat => seat.seatName).join(', ') : ''
         )}
         <div className="bg-gray-100 p-4 rounded-lg shadow-md max-w-sm mx-auto">
             <div className="text-center mb-4 text-lg font-semibold text-gray-800">
-                {t("doPayment.remainingTime")}
+                Thời gian thanh toán còn lại
             </div>
             <div className="flex items-center justify-center space-x-4">
                 <div className="flex items-center justify-center">
@@ -321,22 +324,22 @@ const seatNames = seatData ? seatData.map(seat => seat.seatName).join(', ') : ''
 
   <div className="space-y-4 p-4 sm:p-6 md:p-8">
     <div className="justify-end flex ">
-    <h2 className="text-lg font-semibold mx-2">{t("doPayment.totalAmount")}</h2>
+    <h2 className="text-lg font-semibold mx-2">Tổng tiền</h2>
     <div className="text-xl font-bold  text-blue-500">{formatCurrencyVND(localStorage.getItem('total'))}</div>
   </div>
-  <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">{t("doPayment.tripInfo")}</h2>
+  <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Thông tin chuyến đi</h2>
   <div className="border border-gray-300 rounded p-4 sm:p-6 md:p-8 space-y-2">
     <div>
-      <div className="font-semibold text-base sm:text-lg text-center">{t("doPayment.info")}</div>
+      <div className="font-semibold text-base sm:text-lg text-center">Thông tin toàn chuyến</div>
       <div className="text-gray-700 text-sm sm:text-base">
-        <span className="font-medium text-black">{t("doPayment.departureDate")}: {formatDate(chuyenData.departureDate)}</span>
+        <span className="font-medium text-black">Ngày khởi hành: {formatDate(chuyenData.departureDate)}</span>
         <br />
-          {t("doPayment.totalSeat")}
+        Ghế ngồi 73 chỗ
       </div>
       <hr className="my-2" />
       <div className="space-y-2">
         <div className="flex justify-between">
-          <div className="font-semibold text-sm sm:text-base">{t("doPayment.customerInfo")}</div>
+          <div className="font-semibold text-sm sm:text-base">Thông tin hành khách</div>
           {/* <div className="font-semibold">1 người</div> */}
         </div>
         <div className="border border-gray-200 rounded p-2 sm:p-4 space-y-2">
@@ -357,7 +360,7 @@ const seatNames = seatData ? seatData.map(seat => seat.seatName).join(', ') : ''
                 src="https://static.vexere.com/webnx/prod/widget/images/from-icon.svg"
               />
               <span className="text-sm sm:text-base">08:30</span>
-              <div className="text-gray-700 text-sm sm:text-base">{t("doPayment.wharf")} Bạch Đằng</div>
+              <div className="text-gray-700 text-sm sm:text-base">Bến tàu Bạch Đằng</div>
             </div>
             <div className="flex items-center space-x-2">
               <img
@@ -365,36 +368,36 @@ const seatNames = seatData ? seatData.map(seat => seat.seatName).join(', ') : ''
                 src="https://static.vexere.com/webnx/prod/widget/images/to-icon.svg"
               />
               <span className="text-sm sm:text-base">09:22</span>
-              <div className="text-gray-700 text-sm sm:text-base">{t("doPayment.wharf")} Linh Đông</div>
+              <div className="text-gray-700 text-sm sm:text-base">Bến tàu Linh Đông</div>
             </div>
           </div>
           <div>
-            <div className="font-semibold text-sm sm:text-base">{t("doPayment.idNumber")} : {seatNames}</div>
+            <div className="font-semibold text-sm sm:text-base">Số ghế : {seatNames}</div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">{t("doPayment.contactInfo")}</h2>
+  <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Thông tin liên hệ</h2>
   <div className="border border-gray-300 rounded p-4 sm:p-6 md:p-8 space-y-2">
 
     <div className="flex justify-between">
-      <div className="font-medium text-sm sm:text-base">{t("doPayment.idTicket")}</div>
+      <div className="font-medium text-sm sm:text-base">Mã vé</div>
       <div className="font-bold text-sm sm:text-base">{localStorage.getItem('idHd')}</div>
     </div>
     <hr className="my-2" />
     <div className="flex justify-between">
-      <div className="font-medium text-sm sm:text-base">{t("doPayment.name")}</div>
+      <div className="font-medium text-sm sm:text-base">Họ tên</div>
       <div className="text-sm sm:text-base">{chuyenMail.name}</div>
     </div>
     <hr className="my-2" />
     <div className="flex justify-between">
-      <div className="font-medium text-sm sm:text-base">{t("doPayment.contact")}</div>
+      <div className="font-medium text-sm sm:text-base">Số điện thoại</div>
       <div className="text-sm sm:text-base">{chuyenMail.phone}</div>
     </div>
     <hr className="my-2" />
 <div className="flex justify-between">
-  <div className="font-medium text-sm sm:text-base">{t("doPayment.email")}</div>
+  <div className="font-medium text-sm sm:text-base">Email</div>
   <div className="text-sm sm:text-base max-w-full truncate text-right">
     {chuyenMail.email}
   </div>
@@ -403,7 +406,7 @@ const seatNames = seatData ? seatData.map(seat => seat.seatName).join(', ') : ''
 
     <hr className="my-2" />
     <div className="flex justify-between">
-      <div className="font-medium text-sm sm:text-base">{t("doPayment.meno")}</div>
+      <div className="font-medium text-sm sm:text-base">Ghi chú</div>
       <div className="text-sm sm:text-base">{chuyenMail.message}</div>
     </div>
   </div>
@@ -417,7 +420,7 @@ const seatNames = seatData ? seatData.map(seat => seat.seatName).join(', ') : ''
   />
 <form onSubmit={handleSubmit}>
       <button className="bg-blue-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50 transition duration-300">
-          {t("doPayment.makePayment")}
+    Tiến hành thanh toán với VNPay
   </button>
 </form>
 

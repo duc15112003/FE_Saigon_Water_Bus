@@ -6,9 +6,7 @@ import usePopup from '../../../../utils/popup/usePopup';
 const apiUrl = process.env.REACT_APP_API_URL;
 
 const Step3 = ({ prevStep }) => {
-      const { isOpen, message1, type, showPopup, closePopup } = usePopup();
-
-
+ const { isOpen, message1, type, showPopup, closePopup } = usePopup();
   let paymentWindow = null;
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
@@ -34,10 +32,7 @@ const Step3 = ({ prevStep }) => {
   useEffect(() => {
       const isLoggedIn = localStorage.getItem("isLoggedIn")|| "";
       const token = localStorage.getItem("token");
-
     const fetchUserDetail = async () => {
-       
-
       if (isLoggedIn !== "") {
         try {
           const headers = { Authorization: `Bearer ${token}` };
@@ -85,7 +80,6 @@ const Step3 = ({ prevStep }) => {
     // Lấy dữ liệu từ localStorage và đảm bảo là danh sách đối tượng
     const seatData = JSON.parse(localStorage.getItem('seatData')) || [];
     const chuyenData=JSON.parse(localStorage.getItem('chuyenData')) || [];
-    // Gửi yêu cầu POST với dữ liệu JSON
  try {
         const response = await axios.post(`${apiUrl}/check-ticket`, seatData, {
             params: {
@@ -97,7 +91,6 @@ const Step3 = ({ prevStep }) => {
              showPopup('Danh sách ghế đã thay đổi ,vui lòng tìm và chọn lại ghế', 'fail');
             return;
         }else{
-          console.log("data", localStorage.getItem('orderData'))
           const localStorageData = {
             total: localStorage.getItem('total'),
             chuyenData: localStorage.getItem('chuyenData'),

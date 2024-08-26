@@ -90,12 +90,13 @@ const Navbar = () => {
                 <li className="">
                     <a href="/dat-ve" className="block py-2 text-black hover:text-red">{t("menu.bookTickets")}</a>
                 </li>
+                   <li className="">
+                    <a href="/kiem-tra-ve" className="block py-2 text-black hover:text-red">{t("checkTicket.checkTicket")}</a>
+                </li>
                 <li className="">
                     <a href="/contact" className="block py-2 text-black hover:text-red">{t("menu.contact")}</a>
                 </li>
-                 <li className="">
-                    <a href="/kiem-tra-ve" className="block py-2 text-black hover:text-red">Check ticket</a>
-                </li>
+
             </ul>
         </div>
        </div>
@@ -116,12 +117,17 @@ const Navbar = () => {
                                                 <img src='/img/icon/account.png' className='inline-block w-5 h-4 mr-2' alt='account'></img>
                                                 <span className='font-semibold '>{t("menu.information")}</span>
                                             </a>
-                                     {isLoggedIn && (                                       
+                                            <a href='/doi-mat-khau' 
+                                                className="text-black hover:text-green focus:outline-none flex items-center mb-2">
+                                                <img src='/img/icon/account.png' className='inline-block w-5 h-4 mr-2' alt='account'></img>
+                                                <span className='font-semibold '>{t("menu.changepass")}</span>
+                                                
+                                            </a>               
                                         <button className="text-black hover:text-red focus:outline-none flex items-center mb-2">
                                         <img src='/img/icon/ticket.png' className='inline-block w-5 h-4 mr-2' alt='logout'></img>
                                             <a className="font-semibold " href="/lich-su-dat-ve">{t("menu.bookingHistory")}</a>
                                         </button>
-                                    )}
+                                    
                                             <button onClick={logout}
                                                 className="text-black hover:text-red focus:outline-none flex items-center">
                                                 <img src='/img/icon/log-out.png' className='inline-block w-5 h-4 mr-2' alt='logout'></img>
