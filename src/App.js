@@ -22,7 +22,7 @@ function App() {
                         let Layout = DefaultLayout; // Default layout
                         if (route.path === '/login' || route.path === '/dang-ky' || route.path === '/quen-mat-khau') {
                             Layout = AuthLayout;
-                        } else if (route.path === '/lich-su-dat-ve' || route.path === '/dat-ve/thanh-toan-thanh-cong' || route.path === '/dat-ve') {
+                        } else if (route.path === '/lich-su-dat-ve' || route.path === '/dat-ve/thanh-toan-thanh-cong' ||route.path==='/dopayment' || route.path === '/dat-ve' || route.path==='/kiem-tra-ve') {
                             Layout = NullLayout;
                         }
                         const Page = route.component;

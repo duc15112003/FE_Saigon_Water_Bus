@@ -20,12 +20,21 @@ const [showPopup, setShowPopup] = useState(false);
             if (expirationTimeMillis > currentTime) {
                 setShowPopup(true);
             } else {
+                window.location.href = '/dat-ve'; 
+                localStorage.removeItem('chuyenData');
+                localStorage.removeItem('seatData');
+                localStorage.removeItem('total');
+                localStorage.removeItem('orderData');
+                localStorage.removeItem('paymentStatus');
+                localStorage.removeItem('expirationTime');
+                localStorage.removeItem('idHd');
+
             }
         }
     }, []);
 
     const handleRedirect = () => {
-        window.location.href = '/dopayment'; // Đổi '/payment' thành đường dẫn trang thanh toán của bạn
+        window.location.href = '/dopayment'; 
     };
 
 

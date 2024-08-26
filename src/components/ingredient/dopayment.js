@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { formatCurrencyVND } from "../../utils/formatVnd";
+import { formatDate } from "../../utils/formatDate";
 const apiUrl = process.env.REACT_APP_API_URL;
 function Dopayment() {
 localStorage.getItem('idHd')
@@ -9,7 +10,9 @@ localStorage.getItem('idHd')
   const { t } = useTranslation();
   const [submitted, setSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  const chuyenMail = JSON.parse(localStorage.getItem('orderData'));
+  const chuyenData = JSON.parse(localStorage.getItem('chuyenData'));
+  const seatData = JSON.parse(localStorage.getItem('seatData'));
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -57,9 +60,7 @@ const handleUpdateBookingComplete = async (email) => {
     }
 
 };
-    const chuyenMail = JSON.parse(localStorage.getItem('orderData'));
-    const chuyenData = JSON.parse(localStorage.getItem('chuyenData'));
-    const seatData = JSON.parse(localStorage.getItem('seatData'));
+
   const sendEmail = async () => {
                
     setIsLoading(true); // Show loading indicator
@@ -127,7 +128,7 @@ const handleUpdateBookingComplete = async (email) => {
         </div>
         <ul style="padding-left: 28px; list-style-type: disc;">
           <li>
-            Quý khách vui lòng đến điểm đón <b>trước ít nhất 30 PHÚT</b> (đối với ngày thường) hoặc <b>60 PHÚT</b> (đối với ngày Lễ Tết) <b>để in vé giấy/đổi vé giấy (nếu có) và làm thủ tục lên tàu</b>.
+            Quý khách vui lòng đến điểm đón <b>trước ít nhất 10 PHÚT</b> (đối với ngày thường) hoặc <b>30-45 PHÚT</b> (đối với ngày Lễ Tết) <b>để in vé giấy/đổi vé giấy (nếu có) và làm thủ tục lên tàu</b>.
           </li>
           <li>
             Quý khách vui lòng <b>cung cấp số điện thoại chính xác</b> và <b>giữ điện thoại luôn mở</b> để nhân viên có thể liên lạc được.
@@ -163,61 +164,57 @@ const handleUpdateBookingComplete = async (email) => {
               </tbody>
             </table>
           </div>
-          <div style="background-color: #ffffff; padding-bottom: 16px;">
-            <div style="padding: 0 14px;">
-              <h3 style="font-size: 18px; color: #1e40af; text-align: center; margin: 10px 0;">
-                Thông tin đơn hàng
-              </h3>
-              <table style="width: 100%; vertical-align: top; font-size: 0.75rem; color: #000000; line-height: 1.5; font-family: sans-serif;">
-                <tbody>
-                  <tr>
-                     <td style="font-size: 14px;">
-                        <strong>Thời gian khởi hành:</strong> ${chuyenData.departureTime} ngày ${formatDate(chuyenData.departureDate)}
-                      </td>
-
-                    </tr>
-                    <tr>
-                      <td style="font-size: 14px;">
+<div style="background-color: #ffffff; padding-bottom: 16px; position: relative;">
+    <div style="padding: 0 14px;">
+        <div style="width: 100%; padding: 10px 5px; text-align: center; position: relative; z-index: 1;">
+            <img 
+                src="https://ci3.googleusercontent.com/meips/ADKq_NZg4kMOo6qYPjqINxie_RCZD_S_b5h0WTD1P5VSJovy40m_U4WIj_FpgWSh9BEZMSQlAslzAL2h9upZw-0DHLHWbhK-Ag=s0-d-e1-ft#https://static.vexere.com/images/paid-stamp.png" 
+                alt="đã thanh toán" 
+                width="184px" 
+                style="position: absolute; top: 10px; left: 50%; transform: translateX(-50%); opacity: 0.3; z-index: -1;" 
+            />
+        </div>
+        <h3 style="font-size: 18px; color: #1e40af; text-align: center; margin: 1px 0;">
+            Thông tin đơn hàng
+        </h3>
+        <table style="width: 100%; vertical-align: top; font-size: 0.75rem; color: #000000; line-height: 1.5; font-family: sans-serif;">
+            <tbody>
+                <tr>
+                    <td style="font-size: 14px;">
                         <strong>Bến khởi hành:</strong> ${chuyenData.startTerminal}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 14px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 14px;">
                         <strong>Bến kết thúc:</strong> ${chuyenData.endTerminal}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 14px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 14px;">
                         <strong>Thời gian khởi hành:</strong> ${chuyenData.departureTime}
-                      </td>
-                    </tr>
-                    <tr>
-                      <td style="font-size: 14px;">
+                    </td>
+                </tr>
+                <tr>
+                    <td style="font-size: 14px;">
                         <strong>Số ghế đã đặt:</strong> ${seatNames}
-                      </td>
-                    </tr>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
         </div>
       </div>
     </div>
   </div>
-<p style="font-size: 16px; color: #FFFFFF; text-align: center;">
+<p style="font-size: 16px; color: #FFFFFF; text-align: center; font-weight: bold;">
   Một lần nữa xin cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Vui lòng giữ mã QR đính kèm trong email khi tới bến.
 </p>
-
 </div>
-
-
-
-
     `;
  
     const emailContent = `Ngày khởi hành: ${chuyenData.departureDate} \nBến khởi hành: ${chuyenData.startTerminal} \nBến kết thúc: ${chuyenData.endTerminal} \nThời gian khởi hành: ${chuyenData.departureTime} \nSố ghế: ${seatNames}`;
-
     const emailData = {
       to: to,
       subject: subject,
@@ -227,11 +224,13 @@ const handleUpdateBookingComplete = async (email) => {
 
     try {
       const response = await axios.post(`${apiUrl}/send-mail`, emailData);
-      window.location.href = '/dat-ve/thanh-toan-thanh-cong';
-      localStorage.clear()
+      const redirectUrl = `/dat-ve/thanh-toan-thanh-cong?email=${encodeURIComponent(chuyenMail.email)}&idHD=${encodeURIComponent(localStorage.getItem('idHd'))}`;
+      window.location.href = redirectUrl;
+
     } catch (error) {
       console.error('Error calling the send-mail API:', error);
     } finally {
+
       setIsLoading(false);
     }
 
@@ -244,34 +243,36 @@ const handleUpdateBookingComplete = async (email) => {
   };
     const [timeLeft, setTimeLeft] = useState(0);
 
-    useEffect(() => {
-      
-        const expirationTime = localStorage.getItem('expirationTime');
+useEffect(() => {
+    const expirationTime = localStorage.getItem('expirationTime');
 
-        if (expirationTime) {
-            const calculateTimeLeft = () => {
-                const now = new Date().getTime();
-                const endTime = new Date(expirationTime).getTime();
-                const distance = endTime - now;
+    if (expirationTime) {
+        let intervalId; // Khai báo biến intervalId trước khi sử dụng nó trong calculateTimeLeft
 
-                if (distance <= 0) {
-                    setTimeLeft(0);
-                    clearInterval(intervalId);
-                    localStorage.clear()
-                } else {
-                    setTimeLeft(Math.floor(distance / 1000));
-                }
-            };
+        const calculateTimeLeft = () => {
+            const now = new Date().getTime();
+            const endTime = new Date(expirationTime).getTime();
+            const distance = endTime - now;
 
-            calculateTimeLeft(); 
-            const intervalId = setInterval(() => {
-                calculateTimeLeft();
-            }, 1000); // Cập nhật mỗi giây
+            if (distance <= 0) {
+                setTimeLeft(0);
+                clearInterval(intervalId);
+                localStorage.clear();
+            } else {
+                setTimeLeft(Math.floor(distance / 1000));
+            }
+        };
 
-            return () => clearInterval(intervalId);
-        }
-    }, []);
-            const seatNames = seatData.map(seat => seat.seatName).join(', ');
+        calculateTimeLeft(); 
+        intervalId = setInterval(() => {
+            calculateTimeLeft();
+        }, 1000); // Cập nhật mỗi giây
+
+        return () => clearInterval(intervalId);
+    }
+}, []);
+
+const seatNames = seatData ? seatData.map(seat => seat.seatName).join(', ') : ''; 
 
     const formatTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
@@ -281,7 +282,14 @@ const handleUpdateBookingComplete = async (email) => {
     return (    
  
 <>
-<div className="container mx-auto bg-white shadow-lg rounded-lg p-6">
+                   <div className="flex items-center justify-center bg-stone-200 h-64">
+                    <div className="container mx-auto">
+                        <h1 className="qodef-m-title entry-title text-sm lg:text-5xl text-center font-bold ">
+                            Thanh toán đặt vé
+                        </h1>
+                    </div>
+                </div>
+<div className="container mx-auto bg-white p-6">
         {isLoading && (
             <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
               <div className="flex items-center space-x-2 text-white text-lg">
@@ -312,118 +320,101 @@ const handleUpdateBookingComplete = async (email) => {
             </div>
         </div>
 
-        <div className="flex">
-        <div className="w-2/3 container mx-auto">
+   <div className="flex">
+   <div className="w-full container mx-auto">
+   
   <div className="p-4 space-y-4">
-  {/* <div>
-    <h2 className="text-lg font-semibold">Mã giảm giá</h2>
-    <div className="space-y-2">
-      <div>
-        <div className="flex space-x-2">
-          <input
-            placeholder="Nhập mã"
-            className="border border-gray-300 p-2 rounded flex-1"
-            type="text"
-            defaultValue=""
-          />
-          <button
-            type="button"
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          >
-            Áp dụng
-          </button>
-        </div>
-      </div>
-    </div>
-  </div> */}
 
-  <div className="">
-    <h2 className="text-lg font-semibold">Tổng tiền</h2>
-    <div className="text-xl font-bold">{formatCurrencyVND(localStorage.getItem('total'))}</div>
+  <div className="space-y-4 p-4 sm:p-6 md:p-8">
+    <div className="justify-end flex ">
+    <h2 className="text-lg font-semibold mx-2">Tổng tiền</h2>
+    <div className="text-xl font-bold  text-blue-500">{formatCurrencyVND(localStorage.getItem('total'))}</div>
   </div>
-
-
-  <div className="space-y-4">
-    <h2 className="text-lg font-bold">Thông tin chuyến đi</h2>
-    <div className="border border-gray-300 rounded p-4 space-y-2">
-      <div>
-        <div className="font-semibold">Thông tin toàn chuyến</div>
-        <div className="text-gray-700">
-          <span className="font-medium text-black">{chuyenData.departureDate}</span>
-          <br />
-          Ghế ngồi 73 chỗ
+  <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Thông tin chuyến đi</h2>
+  <div className="border border-gray-300 rounded p-4 sm:p-6 md:p-8 space-y-2">
+    <div>
+      <div className="font-semibold text-base sm:text-lg text-center">Thông tin toàn chuyến</div>
+      <div className="text-gray-700 text-sm sm:text-base">
+        <span className="font-medium text-black">Ngày khởi hành: {formatDate(chuyenData.departureDate)}</span>
+        <br />
+        Ghế ngồi 73 chỗ
+      </div>
+      <hr className="my-2" />
+      <div className="space-y-2">
+        <div className="flex justify-between">
+          <div className="font-semibold text-sm sm:text-base">Thông tin hành khách</div>
+          {/* <div className="font-semibold">1 người</div> */}
         </div>
-        <hr className="my-2" />
-        <div className="space-y-2">
-          <div className="flex justify-between">
-            <div className="font-semibold">Thông tin hành khách</div>
-            {/* <div className="font-semibold">1 người</div> */}
+        <div className="border border-gray-200 rounded p-2 sm:p-4 space-y-2">
+          <div className="flex justify-between items-center">
+            <div className="flex items-center space-x-2">
+              <div className="text-sm sm:text-base">{chuyenMail.phone}</div>
+              <img
+                alt=""
+                src="https://static.vexere.com/webnx/prod/widget/images/phone-icon.svg?v=1"
+                className="w-4 h-4"
+              />
+            </div>
           </div>
-          <div className="border border-gray-200 rounded p-2 space-y-2">
-            <div className="flex justify-between items-center">
-              <div className="flex items-center space-x-2">
-                <div>{chuyenMail.phone}</div>
-                <img
-                  alt=""
-                  src="https://static.vexere.com/webnx/prod/widget/images/phone-icon.svg?v=1"
-                  className="w-4 h-4"
-                />
-              </div>
+          <div className="space-y-2">
+            <div className="flex items-center space-x-2">
+              <img
+                alt=""
+                src="https://static.vexere.com/webnx/prod/widget/images/from-icon.svg"
+              />
+              <span className="text-sm sm:text-base">08:30</span>
+              <div className="text-gray-700 text-sm sm:text-base">Bến tàu Bạch Đằng</div>
             </div>
-            <div className="space-y-2">
-              <div className="flex items-center space-x-2">
-                <img
-                  alt=""
-                  src="https://static.vexere.com/webnx/prod/widget/images/from-icon.svg"
-                />
-                <span>08:30</span>
-                <div className="text-gray-700">Bến tàu Bạch Đằng</div>
-              </div>
-              <div className="flex items-center space-x-2">
-                <img
-                  alt=""
-                  src="https://static.vexere.com/webnx/prod/widget/images/to-icon.svg"
-                />
-                <span>09:22</span>
-                <div className="text-gray-700">Bến tàu Linh Đông</div>
-              </div>
+            <div className="flex items-center space-x-2">
+              <img
+                alt=""
+                src="https://static.vexere.com/webnx/prod/widget/images/to-icon.svg"
+              />
+              <span className="text-sm sm:text-base">09:22</span>
+              <div className="text-gray-700 text-sm sm:text-base">Bến tàu Linh Đông</div>
             </div>
-            <div>
-              <div className="font-semibold">Số ghế : {seatNames}</div>
-            </div>
+          </div>
+          <div>
+            <div className="font-semibold text-sm sm:text-base">Số ghế : {seatNames}</div>
           </div>
         </div>
       </div>
     </div>
-    <h2 className="text-lg font-semibold">Thông tin liên hệ</h2>
-    <div className="border border-gray-300 rounded p-4 space-y-2">
-          <div className="flex justify-between">
-        <div className="font-medium">Mã vé</div>
-        <div className="font-bold">{localStorage.getItem('idHd')}</div>
-      </div>
-            <hr className="my-2" />
+  </div>
+  <h2 className="text-lg sm:text-xl md:text-2xl font-semibold">Thông tin liên hệ</h2>
+  <div className="border border-gray-300 rounded p-4 sm:p-6 md:p-8 space-y-2">
 
-      <div className="flex justify-between">
-        <div className="font-medium">Họ tên</div>
-        <div>{chuyenMail.name}</div>
-      </div>
-      <hr className="my-2" />
-      <div className="flex justify-between">
-        <div className="font-medium">Số điện thoại</div>
-        <div>{chuyenMail.phone}</div>
-      </div>
-      <hr className="my-2" />
-      <div className="flex justify-between">
-        <div className="font-medium">Email</div>
-        <div>{chuyenMail.email}</div>
-      </div>
-      <hr className="my-2" />
-      <div className="flex justify-between">
-        <div className="font-medium">Ghi chú</div>
-        <div>{chuyenMail.message}</div>
-      </div>
+    <div className="flex justify-between">
+      <div className="font-medium text-sm sm:text-base">Mã vé</div>
+      <div className="font-bold text-sm sm:text-base">{localStorage.getItem('idHd')}</div>
+    </div>
+    <hr className="my-2" />
+    <div className="flex justify-between">
+      <div className="font-medium text-sm sm:text-base">Họ tên</div>
+      <div className="text-sm sm:text-base">{chuyenMail.name}</div>
+    </div>
+    <hr className="my-2" />
+    <div className="flex justify-between">
+      <div className="font-medium text-sm sm:text-base">Số điện thoại</div>
+      <div className="text-sm sm:text-base">{chuyenMail.phone}</div>
+    </div>
+    <hr className="my-2" />
+<div className="flex justify-between">
+  <div className="font-medium text-sm sm:text-base">Email</div>
+  <div className="text-sm sm:text-base max-w-full truncate text-right">
+    {chuyenMail.email}
+  </div>
+</div>
+
+
+    <hr className="my-2" />
+    <div className="flex justify-between">
+      <div className="font-medium text-sm sm:text-base">Ghi chú</div>
+      <div className="text-sm sm:text-base">{chuyenMail.message}</div>
     </div>
   </div>
+</div>
+
 <div className="flex flex-col items-center space-y-4">
   <img
     className="payment-method-detail-img w-32 h-auto"
