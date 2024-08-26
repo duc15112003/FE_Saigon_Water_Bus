@@ -95,7 +95,8 @@ const Step3 = ({ prevStep }) => {
             total: localStorage.getItem('total'),
             chuyenData: localStorage.getItem('chuyenData'),
             seatData: localStorage.getItem('seatData'),
-            orderData: localStorage.getItem('orderData')
+            orderData: localStorage.getItem('orderData'),
+            us:localStorage.getItem("us")
           };
             const now = new Date();
             localStorage.setItem('paymentStatus', 'inProgress');

@@ -69,8 +69,6 @@ const handleUpdateBookingComplete = async (email) => {
 
     const seatNames = seatData.map(seat => seat.seatName).join(', ');
     const to = chuyenMail.email;
-    handleUpdateBookingComplete(to);
-    console.log()
     const subject = "Thanh toán thành công đặt vé Saigonwaterbus";
     const body = `
 <div style="background-color: #f59e0b; padding: 16px;">
@@ -220,6 +218,8 @@ const handleUpdateBookingComplete = async (email) => {
     };
 
     try {
+          handleUpdateBookingComplete(to);
+
       const response = await axios.post(`${apiUrl}/send-mail`, emailData);
       const redirectUrl = `/dat-ve/thanh-toan-thanh-cong?email=${encodeURIComponent(chuyenMail.email)}&idHD=${encodeURIComponent(localStorage.getItem('idHd'))}`;
       window.location.href = redirectUrl;

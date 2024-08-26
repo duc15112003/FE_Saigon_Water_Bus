@@ -330,10 +330,11 @@ cohereResponse = `Không có chuyến đi nào vào ngày ${date}.`;
   const handleStationSelection = (station) => {
       if (!selectedDepartureStation) {
           setSelectedDepartureStation(station);
-          setMessages([...messages, { role: 'assistant', content: `Bạn đã chọn bến đi: ${station.id}. Bây giờ, hãy chọn bến đến.` }]);
+          setMessages([...messages, { role: 'assistant', content: `Bạn đã chọn bến đi: ${station.name}` }]);
+          setMessages(prevMessages => [...prevMessages, { role: 'assistant', content: 'bây giờ xin chọn bến đến' }]);
       } else {
           setSelectedArrivalStation(station);
-          setMessages([...messages, { role: 'assistant', content: `Bạn đã chọn bến đến: ${station.id}.` }]);
+          setMessages([...messages, { role: 'assistant', content: `Bạn đã chọn bến đến: ${station.name}.` }]);
           setShowDateOptions(true);
       }
   };
@@ -486,19 +487,19 @@ setMessages([...messages, { role: 'assistant', content: `Bạn đã chọn ngày
                     )}
 
 
-                    {stations.length > 0 && !selectedArrivalStation && (
-<div className="mb-4 flex flex-wrap gap-3 justify-center">
-                            {stations.map(station => (
-                                <button
-                                    key={station.id}
-                                    onClick={() => handleStationSelection(station)}
-                                    className="px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
-                                >
-                                    {station.name}
-                                </button>
-                            ))}
-                        </div>
-                    )}
+                        {stations.length > 0 && !selectedArrivalStation && (
+                            <div className="mb-4 grid grid-cols-2 gap-3 justify-center">
+                                {stations.map((station) => (
+                                    <button
+                                        key={station.id}
+                                        onClick={() => handleStationSelection(station)}
+                                        className="px-5 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
+                                    >
+                                        {station.name}
+                                    </button>
+                                ))}
+                            </div>
+                        )}
 
                     {showDateOptions && (
                         <div className="mb-4 flex gap-3 justify-center">
@@ -529,18 +530,17 @@ setMessages([...messages, { role: 'assistant', content: `Bạn đã chọn ngày
 
                     {showTripSelection && trips.length > 0 && (
                         <div className="mb-4 grid grid-cols-1 gap-3">
-                            {trips.map(trip => (
+                            {trips.map((trip) => (
                                 <button
                                     key={trip.id}
                                     onClick={() => handleTripSelection(trip)}
                                     className="px-5 py-3 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition duration-200"
                                 >
-                                    {`Trip ID: ${trip.id}`}
+                                    {`Chuyến số: ${trip.id}: ${trip.startTerminal}-${trip.endTerminal}`}
                                 </button>
                             ))}
                         </div>
                     )}
-
 
 
                     {showSeatSelection ? (
