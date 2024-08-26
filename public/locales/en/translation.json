@@ -8,7 +8,8 @@
     "departureSchedule": "Departure Schedule",
     "bookTickets": "Book Tickets",
     "contact": "Contact",
-    "bookingHistory": "Booking History"
+    "bookingHistory": "Booking History",
+    "changepass": "Change Password"
   },
   "footer": {
     "company_info": "© 2022 THUONG NHAT COMPANY LTD. Business Registration Certificate No: 0304354924 issued on 05/05/2006 by the Department of Planning & Investment of Ho Chi Minh City. Address: 6 Phan Ke Binh, Da Kao Ward, District 1, Ho Chi Minh City.",
@@ -145,7 +146,8 @@
     "backToLogin": "Back to Login",
     "successMessage": "Password reset successfully!",
     "errorNetwork": "Network error. Please try again.",
-    "errorPasswordsDoNotMatch": "Passwords do not match!"
+    "errorPasswordsDoNotMatch": "Passwords do not match!",
+    "loading": "Loading"
   },
   "contactBooking": "Contact",
   "name": "Name",

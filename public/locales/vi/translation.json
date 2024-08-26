@@ -8,7 +8,8 @@
     "departureSchedule": "Lịch Khởi Hành",
     "bookTickets": "Đặt Vé",
     "contact": "Liên Hệ",
-    "bookingHistory": "Lịch Sử Đặt Vé"
+    "bookingHistory": "Lịch Sử Đặt Vé",
+    "changepass": "Đổi mật khẩu"
   },
   "footer": {
     "company_info": "© 2022 CÔNG TY TNHH THƯỜNG NHẬT. Giấy chứng nhận ĐKKD số 0304354924 cấp ngày 05/05/2006 bởi Sở Kế hoạch & Đầu tư TP. Hồ Chí Minh. Địa chỉ: 6 Phan Kế Bính, Phường Đa Kao, Quận 1, TP. Hồ Chí Minh.",
@@ -134,18 +135,19 @@
     "updateFailure": "Cập nhật thất bại!"
   },
   "forgotPassword": {
-    "forgotPassword": "Quên Mật Khẩu",
+    "forgotPassword": "Quên mật khẩu",
     "email": "Email",
     "inputCodePlaceholder": "Nhập mã xác minh được gửi đến email của bạn",
-    "newPassword": "Mật Khẩu Mới",
-    "confirmPassword": "Xác Nhận Mật Khẩu Mới",
-    "getMailCode": "Lấy Mã Xác Minh",
-    "resendCode": "Gửi lại sau {{timer}}s",
-    "resetPassword": "Đặt Lại Mật Khẩu",
-    "errorPasswordMismatch": "Mật khẩu mới và xác nhận không khớp",
-    "resetSuccess": "Đặt lại mật khẩu thành công! Đang chuyển hướng đến trang đăng nhập...",
-    "resetFailure": "Đặt lại mật khẩu thất bại!",
-    "backToLogin": "Quay trở lại trang đăng nhập"
+    "newPassword": "Mật khẩu mới",
+    "confirmPassword": "Xác nhận mật khẩu mới",
+    "getMailCode": "Lấy mã xác minh",
+    "resendCode": "Gửi lại sau {{timer}} giây",
+    "resetPassword": "Đặt lại mật khẩu",
+    "backToLogin": "Quay lại Đăng nhập",
+    "successMessage": "Đặt lại mật khẩu thành công!",
+    "errorNetwork": "Lỗi mạng. Vui lòng thử lại.",
+    "errorPasswordsDoNotMatch": "Mật khẩu không khớp!",
+    "loading": "Đang tải"
   },
   "contactBooking": "Liên hệ đặt vé",
   "name": "Tên",
