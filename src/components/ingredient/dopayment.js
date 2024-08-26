@@ -58,9 +58,7 @@ const handleUpdateBookingComplete = async (email) => {
 };
 
   const sendEmail = async () => {
-               
     setIsLoading(true); // Show loading indicator
-
     if (!seatData) {
       setIsLoading(false);
       return;

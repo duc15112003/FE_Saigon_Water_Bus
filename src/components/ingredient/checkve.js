@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import { formatCurrencyVND } from "../../utils/formatVnd";
 import { formatDate } from "../../utils/formatDate";
 import {useTranslation} from "react-i18next";
-
+import PopupDone from "../../utils/popup/popupDone";
+import usePopup from "../../utils/popup/usePopup";
 const apiUrl = process.env.REACT_APP_API_URL;
 function CheckTicket() {
     const {t} = useTranslation();
@@ -11,6 +12,7 @@ function CheckTicket() {
     const [idHD, setIdHD] = useState('');
     const [closeCheck, setCloseCheck] = useState(true);
     const [thongTinVe, setThongTinVe] = useState([]);
+      const { isOpen, message1, type, showPopup, closePopup } = usePopup();
 
     const handleInputChange = (event) => {
         const { name, value } = event.target;
@@ -25,18 +27,22 @@ function CheckTicket() {
         event.preventDefault();
         try {
             const response = await axios.get(`${apiUrl}/checking?email=${email}&invoiceid=${idHD}`);
-            setThongTinVe(response.data.result); // Cập nhật state với dữ liệu từ phản hồi API
-            console.log(response.data.result); // In ra dữ liệu để kiểm tra
+            if(response.data.code===1005){
+            setThongTinVe(response.data.result); 
+            setCloseCheck(false);
+            }else{
+
+             showPopup('Không tồn tại thông tin vé !', 'fail');
+            }
         } catch (error) {
             console.error('Error occurred while fetching ticket information:', error);
         }
-        setCloseCheck(false);
     };
 
-    console.log("ttve", thongTinVe);
 
     return ( 
         <>
+     <PopupDone isOpen={isOpen} message1={message1} type={type} onClose={closePopup} />
                         <div className="flex items-center justify-center bg-stone-200 h-64">
                     <div className="container mx-auto">
                         <h1 className="qodef-m-title entry-title text-sm lg:text-5xl text-center font-bold ">
