@@ -114,7 +114,7 @@ function CheckTicket() {
                                 <div className="mb-4">
                                     <div>
                                         Chúng tôi đã gửi thông tin vé đến email:
-                                        <span className="font-bold">{thongTinVe[0].fromStationName}</span>
+                                        <span className="font-bold">{thongTinVe[0].emailBooking}</span>
                                     </div>
                                     <div>
                                         15 phút sau khi thanh toán thành công, nếu quý khách vẫn chưa nhận
@@ -142,9 +142,10 @@ function CheckTicket() {
                                 <hr className="my-4" />
                                 <div>
                                     <div className="font-semibold mb-2">Điểm trả</div>
+                                    <div className="mb-2">Bến tàu {thongTinVe[0].toStationName}</div>
                                     <div>
                                         Trả lúc:{" "}
-                                        <span className="font-bold">09:12 31/08/2024</span>
+                                        <span className="font-bold">{thongTinVe[0].tripEndtime}</span>
                                     </div>
                                 </div>
                                 <hr className="my-4" />
@@ -180,7 +181,7 @@ function CheckTicket() {
                                 </div>
                                 <div className="mb-4">
                                     <div>Giờ đến:</div>
-                                    <div className="font-bold">{thongTinVe[0].tripEndTime}</div>
+                                    <div className="font-bold">{thongTinVe[0].tripEndtime}</div>
                                 </div>
                                 <div className="mb-4">
                                     <div>Giá vé: </div>
