@@ -46,10 +46,6 @@ localStorage.getItem('idHd')
     };
   }, []);
 
-  function formatDate(dateString) {
-    const [year, month, day] = dateString.split('-');
-    return `${day}-${month}-${year}`;
-  }
 
 const handleUpdateBookingComplete = async (email) => {
     try {
@@ -62,9 +58,7 @@ const handleUpdateBookingComplete = async (email) => {
 };
 
   const sendEmail = async () => {
-               
     setIsLoading(true); // Show loading indicator
-
     if (!seatData) {
       setIsLoading(false);
       return;

@@ -32,14 +32,13 @@ const Step3 = ({ prevStep }) => {
     total: localStorage.getItem('total')
   });
   useEffect(() => {
-          const isLoggedIn = localStorage.getItem("isLoggedIn")|| "";
+      const isLoggedIn = localStorage.getItem("isLoggedIn")|| "";
       const token = localStorage.getItem("token");
 
     const fetchUserDetail = async () => {
        
 
       if (isLoggedIn !== "") {
-        console.log("đã vào")
         try {
           const headers = { Authorization: `Bearer ${token}` };
           const response = await axios.get(`${apiUrl}/profile`, { headers });
@@ -146,7 +145,7 @@ const Step3 = ({ prevStep }) => {
 
   return (
       <div className="container mx-auto max-w-md mt-10">
-                   <PopupDone isOpen={isOpen} message1={message1} type={type} onClose={closePopup} />
+       <PopupDone isOpen={isOpen} message1={message1} type={type} onClose={closePopup} />
 
         {isLoading && (
             <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75 z-50">
