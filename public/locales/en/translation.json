@@ -67,7 +67,7 @@
   },
   "registration": {
     "title": "Register for SaiGonWaterBus Account",
-    "firstName": "First Name",
+    "firstname": "First Name",
     "lastName": "Last Name",
     "email": "Email",
     "phoneNumber": "Phone Number",
@@ -82,7 +82,9 @@
     "errorSendingCode": "Failed to send verification code",
     "errorPasswordMismatch": "Password and confirmation do not match",
     "errorGeneral": "An error occurred",
-    "successMessage": "Registration successful! Redirecting to login..."
+    "successMessage": "Registration successful! Redirecting to login...",
+    "failPass": "The password must be at least 6 characters, including at least 1 uppercase character and 1 special character"
+
   },
   "login": {
     "welcome": "Welcome to Saigon Waterbus",
@@ -267,7 +269,7 @@
     "orderBy": "Order by",
     "earliest": "Earliest departure time",
     "lastest": "Latest departure time",
-    "seat75": "75 - seat",
+    "seat75": "73 - seats",
     "minute": "Minute",
     "detail": "Detailed information",
     "belongTo": "Segment ticket of the trip",

@@ -11,7 +11,7 @@ const Step1 = ({nextStep, clickedSeats, setClickedSeats, chuyenTau, seatLabels})
                           chuyenTau={chuyenTau}/>
             <div className='flex justify-end'>
                 <button
-                    className={`bg-green-500 text-white font-bold py-2 px-4 rounded flex items-center ${clickedSeats.length === 0 || clickedSeats === null ? 'disabled bg-slate-100' : ''}`}
+                    className={`bg-green-500 text-white font-bold p-2 text-sm 2xl:text-base rounded flex items-center ${clickedSeats.length === 0 || clickedSeats === null ? 'disabled bg-slate-100' : ''}`}
                     onClick={clickedSeats.length === 0 || clickedSeats === null ? null : nextStep}
                 >
                     {t('continue')}

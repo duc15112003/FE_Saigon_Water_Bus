@@ -39,7 +39,7 @@ const Home = () => {
                 <div className="flex flex-col space-y-8 container mx-auto p-2">
                     <div className='flex items-center'>
                         <h1 className="text-base md:text-2xl font-bold">{t('home.4step')}</h1>
-                        <a href='/dat-ve' alt='datve' className='ml-auto text-base md:text-2xl font-bold bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500'>
+                        <a href='/dat-ve' alt='datve' className='ml-auto text-base md:text-2xl  font-bold bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500'>
                             {t('home.bookTicketNow')}
                         </a>
                     </div>

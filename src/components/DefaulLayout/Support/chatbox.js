@@ -134,7 +134,7 @@ const fetchBookedSeats = async (tripId, departureDate) => {
         const response = await axios.post(`${apiUrl}/payment/vnpay`, {
           orderId: new Date().getTime().toString(), // Sử dụng timestamp làm orderId
           amount: localStorage.getItem("total"),
-          returnUrl: `${apiUrl}/payment/vnpay/return`
+          returnUrl: 'https://saigonwaterbus.click/api/saigonwaterbus/payment/vnpay/return'
         });
         // Mở cửa sổ popup khi nhận được URL từ server
         paymentWindow = window.open(response.data, 'Payment', 'width=600,height=600');
@@ -162,7 +162,7 @@ const fetchBookedSeats = async (tripId, departureDate) => {
       const handlePaymentMessage = (event) => {
         if (event.data === 'payment_success') {
           closePaymentPopup();
-          sendEmail()
+        //   sendEmail()
 
           setMessages(prevMessages => [
               ...prevMessages,
@@ -212,67 +212,65 @@ const fetchBookedSeats = async (tripId, departureDate) => {
     return emailRegex.test(email);
 };
 
-  const sendEmail = async () => {
-    setIsLoading(true); // Show loading indicator
- 
+//   const sendEmail = async () => {
+//     setIsLoading(true); 
+//     const us = localStorage.getItem("us")
+//     if(validateEmail(us)){
+//         chuyenMail = us;
+//     }else{
+//         const response = await axios.get(`${apiUrl}/profile`,{
+//             headers:{
+//                 Authorization:`Bearer ${token}`
+//             }
+//         })
+//         chuyenMail = response.data.result.email;
+//         console.log(chuyenMail)
+//     }
+//     // const chuyenMail = JSON.parse(localStorage.getItem('orderData'));
+//     const chuyenData = JSON.parse(localStorage.getItem('chuyenData'));
+//     const seatData = JSON.parse(localStorage.getItem('seatData'));
+//     if (!seatData) {
+//       console.error('Seat data is not available');
+//       setIsLoading(false); // Hide loading indicator if seat data is not available
+//       return;
+//     }
 
-    const us = localStorage.getItem("us")
-    if(validateEmail(us)){
-        chuyenMail = us;
-    }else{
-        const response = await axios.get(`${apiUrl}/profile`,{
-            headers:{
-                Authorization:`Bearer ${token}`
-            }
-        })
-        chuyenMail = response.data.result.email;
-        console.log(chuyenMail)
-    }
-    // const chuyenMail = JSON.parse(localStorage.getItem('orderData'));
-    const chuyenData = JSON.parse(localStorage.getItem('chuyenData'));
-    const seatData = JSON.parse(localStorage.getItem('seatData'));
-    if (!seatData) {
-      console.error('Seat data is not available');
-      setIsLoading(false); // Hide loading indicator if seat data is not available
-      return;
-    }
+//     const seatNames = seatData.map(seat => seat.seatName).join(', ');
+//     const to = chuyenMail;
+//     const subject = "Thanh toán thành công đặt vé Saigonwaterbus";
+//     const body = `
+//     <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; background-color: #87CEEB;">
+//         <img src="https://saigonwaterbus.com/wp-content/uploads/2022/06/logo-swb-v-white.png" alt="" style="width: 200px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+//         <h2 style="color: #007bff; margin-bottom: 20px; font-size: 24px;">Thông tin vé Saigonwaterbus</h2>
+//         <p style="font-size: 18px;"><strong>Thời gian khởi hành:</strong>${chuyenData.departureTime} ngày ${formatDate(chuyenData.departureDate)}</p>
+//         <p style="font-size: 18px;"><strong>Bến khởi hành:</strong> ${chuyenData.startTerminal}</p>
+//         <p style="font-size: 18px;"><strong>Bến kết thúc:</strong> ${chuyenData.endTerminal}</p>
+//         <p style="font-size: 18px;"><strong>Thời gian khởi hành:</strong> ${chuyenData.departureTime}</p>
+//         <p style="font-size: 18px;"><strong>Số ghế đã đặt:</strong> ${seatNames}</p>
+//         <hr style="border-top: 1px solid #ddd; margin-top: 20px; margin-bottom: 20px;">
+//         <p style="font-size: 16px; color: #FF3300;">Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Vui lòng giữ mã QR này lại khi tới bến.</p>
+//     </div>
+//     `;
+//     const emailContent = `Ngày khởi hành: ${chuyenData.departureDate} \nBến khởi hành: ${chuyenData.startTerminal} \nBến kết thúc: ${chuyenData.endTerminal} \nThời gian khởi hành: ${chuyenData.departureTime} \nSố ghế: ${seatNames}`;
 
-    const seatNames = seatData.map(seat => seat.seatName).join(', ');
-    const to = chuyenMail;
-    const subject = "Thanh toán thành công đặt vé Saigonwaterbus";
-    const body = `
-    <div style="font-family: Arial, sans-serif; color: #333; padding: 20px; background-color: #87CEEB;">
-        <img src="https://saigonwaterbus.com/wp-content/uploads/2022/06/logo-swb-v-white.png" alt="" style="width: 200px; height: auto; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
-        <h2 style="color: #007bff; margin-bottom: 20px; font-size: 24px;">Thông tin vé Saigonwaterbus</h2>
-        <p style="font-size: 18px;"><strong>Thời gian khởi hành:</strong>${chuyenData.departureTime} ngày ${formatDate(chuyenData.departureDate)}</p>
-        <p style="font-size: 18px;"><strong>Bến khởi hành:</strong> ${chuyenData.startTerminal}</p>
-        <p style="font-size: 18px;"><strong>Bến kết thúc:</strong> ${chuyenData.endTerminal}</p>
-        <p style="font-size: 18px;"><strong>Thời gian khởi hành:</strong> ${chuyenData.departureTime}</p>
-        <p style="font-size: 18px;"><strong>Số ghế đã đặt:</strong> ${seatNames}</p>
-        <hr style="border-top: 1px solid #ddd; margin-top: 20px; margin-bottom: 20px;">
-        <p style="font-size: 16px; color: #FF3300;">Cảm ơn bạn đã sử dụng dịch vụ của chúng tôi. Vui lòng giữ mã QR này lại khi tới bến.</p>
-    </div>
-    `;
-    const emailContent = `Ngày khởi hành: ${chuyenData.departureDate} \nBến khởi hành: ${chuyenData.startTerminal} \nBến kết thúc: ${chuyenData.endTerminal} \nThời gian khởi hành: ${chuyenData.departureTime} \nSố ghế: ${seatNames}`;
+//     const emailData = {
+//       to: to,
+//       subject: subject,
+//       body: body,
+//       contentForQR: emailContent
+//     };
 
-    const emailData = {
-      to: to,
-      subject: subject,
-      body: body,
-      contentForQR: emailContent
-    };
-
-    try {
-      const response = await axios.post(`${apiUrl}/send-mail`, emailData);
-      console.log(response.data);
-      sendLocalStorageToServer();
-      window.location.href = 'https://saigonwaterbus.click/dat-ve/thanh-toan-thanh-cong';
-    } catch (error) {
-      console.error('Error calling the send-mail API:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+//     try {
+//       const response = await axios.post(`${apiUrl}/send-mail`, emailData);
+//       console.log(response.data);
+//       sendLocalStorageToServer();
+//       window.location.href = 'https://saigonwaterbus.click/dat-ve/thanh-toan-thanh-cong';
+//     } catch (error) {
+//       console.error('Error calling the send-mail API:', error);
+//     } finally {
+//       setIsLoading(false);
+//     }
+//   };
 
 
   // Function to handle sending the message

@@ -110,7 +110,7 @@ const Contact = () => {
                             <iframe
                                 className="w-full"
                                 loading="lazy"
-                                src="https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=Saigon%20Waterbus%20Station%2C%2010B%20T%C3%B4n%20%C4%90%E1%BB%A9c%20Th%E1%BA%AFng&zoom=15"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.3726345807236!2d106.70345567422632!3d10.782745489366395!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752f4ead921695%3A0x37953f54194a563d!2sSaigon%20Waterbus!5e0!3m2!1sen!2s!4v1724642300433!5m2!1sen!2s"
                                 title="Saigon Waterbus Station, 10B Tôn Đức Thắng"
                                 aria-label="Saigon Waterbus Station, 10B Tôn Đức Thắng"
                             />

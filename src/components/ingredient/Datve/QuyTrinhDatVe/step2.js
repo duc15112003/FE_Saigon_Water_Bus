@@ -49,7 +49,7 @@ const Step2 = ({ nextStep, prevStep, chuyenTau, clickedSeats }) => {
         <div
             className='flex flex-col md:flex-row justify-between items-center mt-4 space-y-4 md:space-y-0 md:space-x-4'>
           <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center"
+              className="bg-green-500 hover:bg-green-700 text-white font-bold p-2 text-sm 2xl:text-base rounded flex items-center"
               onClick={prevStep}
           >
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5"
@@ -58,9 +58,9 @@ const Step2 = ({ nextStep, prevStep, chuyenTau, clickedSeats }) => {
             </svg>
             {t('back')}
           </button>
-          <span className="text-center">{t('totalCost', { amount: formatCurrency(totalCost) })}</span>
+          <span className="text-center font-semibold">{t('totalCost', { amount: formatCurrency(totalCost) })}</span>
           <button
-              className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded flex items-center"
+              className="bg-green-500 hover:bg-green-700 text-white font-bold p-2 text-sm 2xl:text-base rounded flex items-center"
               onClick={nextStep}
           >
             {t('continue')}

@@ -12,6 +12,8 @@ import ThanhToanThanhCong from "../components/ingredient/thanhtoanthanhcong.js";
 import UserDetailsPage from "../components/ingredient/profile.js";
 import LichSuDatVe from "../components/ingredient/lichsudatve";
 import ForgotPassword from "../components/ingredient/quenmk.js";
+import CheckTicket from "../components/ingredient/checkve.js";
+import Dopayment from "../components/ingredient/dopayment.js";
 
 const publicRoutes = [
     {path: '/', component: Home},
@@ -27,7 +29,12 @@ const publicRoutes = [
     {path: '/profile', component: UserDetailsPage},
     {path: '/lich-su-dat-ve', component: LichSuDatVe},
     {path: '/quen-mat-khau', component: ForgotPassword},
-    {path: '/dat-ve/thanh-toan-thanh-cong', component: ThanhToanThanhCong}
+    {path: '/dat-ve/thanh-toan-thanh-cong', component: ThanhToanThanhCong},
+     {path: '/kiem-tra-ve', component: CheckTicket},
+          {path: '/dopayment', component: Dopayment},
+
+
+    
 ];
 
 export {publicRoutes};
